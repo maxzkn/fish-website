@@ -1,0 +1,73 @@
+// GLOBAL RULES START
+
+// @import '../src/assets/scss/modules/_fonts.scss';
+
+// // primary font
+// $primary_font: Roboto;
+
+// // font-weight
+// $thin:100;
+// $light:300;
+// $regular:400;
+// $bold:700;
+// $black:900;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    background: white;
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    // font-family: $primary_font, sans-serif;
+    // font-weight: $thin;
+    font-size: 1rem;
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1240px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0px 60px;
+}
+
+a {
+    text-decoration: none;
+    color: rgba(0,0,0,.5);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.6rem;
+}
+// kodel neveikia viduje a?
+a:hover {
+    color: rgba(0,0,0,.7);
+    transition: .2s ease-in-out;
+}
+
+a.contacts-a {
+    font-size: 14px;
+    color: #007bff;
+}
+
+a.contacts-a:hover {
+    color: #0068d6;
+    transition: .2s ease-in-out;
+}
+
+// GLOBAL RULES END
+
+@media screen and (max-width: 750px) {
+    .container {
+        padding: 0px 30px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        padding: 0px 15px;
+    }
+}

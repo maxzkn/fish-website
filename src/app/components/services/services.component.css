@@ -1,0 +1,100 @@
+section.services {
+  position: relative;
+}
+
+section.services img {
+  width: 100%;
+}
+
+section.services h1 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  text-align: center;
+  padding: 95px 0px 50px 0px;
+}
+
+section.services h2 {
+  font-size: 2rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+section.services p {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  color: #212529;
+}
+
+section.services .service-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+section.services .service-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+section.services .service-content .service-help, section.services .service-content .service-price {
+  width: 50%;
+  padding: 0px 15px;
+}
+
+section.services .service-content ul {
+  padding-left: 40px;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 1000px) {
+  section.services h1 {
+    font-size: 2.3rem;
+    padding: 50px 0px;
+  }
+  section.services h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  section.services h1 {
+    padding: 35px 0px;
+  }
+  section.services h2 {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  section.services p:last-child {
+    margin-bottom: 1.3rem;
+  }
+  section.services .service-content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  section.services .service-content .service-help, section.services .service-content .service-price {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  section.services h1 {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  section.services h1 {
+    font-size: 1.6rem;
+  }
+}
+/*# sourceMappingURL=services.component.css.map */

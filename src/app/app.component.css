@@ -1,0 +1,245 @@
+/* HEADER RULES START */
+header {
+  margin-bottom: 8px;
+}
+
+header .contacts {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header .contacts .contacts-phone, header .contacts .contacts-mail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .contacts .contacts-phone .material-icons.phone, header .contacts .contacts-phone .material-icons.mail, header .contacts .contacts-mail .material-icons.phone, header .contacts .contacts-mail .material-icons.mail {
+  font-size: 20px;
+  color: #0068d6;
+}
+
+header .header-info-wrapper {
+  background-color: #9dd5f371;
+}
+
+header .header-nav-wrapper {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+header .header-nav-wrapper .hamburgerHidden {
+  height: 0px;
+  visibility: hidden;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  overflow: hidden;
+}
+
+header .header-nav-wrapper .hamburgerShown {
+  visibility: hidden;
+  height: 0;
+}
+
+header .info-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 0px;
+  font-size: 14px;
+}
+
+header .info-wrapper .contacts #phone {
+  margin-right: 35px;
+}
+
+header .nav-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 0px;
+  overflow: hidden;
+}
+
+header .nav-wrapper .logo {
+  padding: 0px;
+}
+
+header .nav-wrapper .logoName #logoName1 {
+  font-weight: 700;
+  color: black;
+  font-size: 1.25rem;
+  margin-bottom: 4px;
+}
+
+header .nav-wrapper .logoName #logoName2 {
+  font-weight: 400;
+  color: #6998b1;
+  font-size: 14px;
+}
+
+header .nav-wrapper ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  list-style-type: none;
+  width: auto;
+}
+
+header .nav-wrapper .hamburger {
+  display: none;
+}
+
+header .nav-wrapper .hamburger .fa.fa-bars {
+  color: black;
+  padding: 7px 8px;
+  background: white;
+  border-radius: 50%;
+}
+
+footer {
+  border-top: 1px solid #6998b1;
+  text-align: center;
+  padding: 10px 0;
+}
+
+@media screen and (max-width: 860px) {
+  header .info-wrapper .contacts {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  header .info-wrapper .contacts .material-icons.phone, header .info-wrapper .contacts .material-icons.mail {
+    font-size: 17px;
+    margin-right: 5px;
+  }
+  header .info-wrapper .contacts a {
+    padding: 0.2rem;
+    font-size: 12px;
+  }
+  header .info-wrapper .contacts #phone {
+    margin-right: 0px !important;
+  }
+  header .nav-wrapper {
+    padding: 0px;
+  }
+  header .nav-wrapper .nav-links {
+    display: none;
+  }
+  header .nav-wrapper .hamburger {
+    display: block;
+  }
+  header .header-nav-wrapper {
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  }
+  header .header-nav-wrapper .hamburgerHidden ul, header .header-nav-wrapper .hamburgerShown ul {
+    list-style-type: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    padding: 5px;
+  }
+  header .header-nav-wrapper .hamburgerHidden li, header .header-nav-wrapper .hamburgerShown li {
+    padding: 5px 0px;
+  }
+  header .header-nav-wrapper .hamburgerHidden li a, header .header-nav-wrapper .hamburgerShown li a {
+    padding: 0.6rem 0;
+  }
+  header .header-nav-wrapper .hamburgerShown {
+    width: 100%;
+    height: 45px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    overflow: hidden;
+    visibility: visible;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  header .header-nav-wrapper .hamburgerHidden, header .header-nav-wrapper .hamburgerShown {
+    text-align: center;
+  }
+  header .header-nav-wrapper .hamburgerHidden ul, header .header-nav-wrapper .hamburgerShown ul {
+    list-style-type: none;
+    display: block;
+    padding: 0;
+  }
+  header .header-nav-wrapper .hamburgerShown {
+    height: 155px;
+  }
+  footer p {
+    padding: 10px 40px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  header .header-nav-wrapper .hamburgerHidden, header .header-nav-wrapper .hamburgerShown {
+    text-align: unset;
+  }
+  header .header-nav-wrapper .hamburgerHidden ul, header .header-nav-wrapper .hamburgerShown ul {
+    list-style-type: none;
+    display: block;
+  }
+  header .header-nav-wrapper .hamburgerShown {
+    height: 155px;
+  }
+  footer p {
+    padding: 10px 40px;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  header .info-wrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  header .info-wrapper p {
+    margin-bottom: 5px;
+  }
+  header .info-wrapper .contacts {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  header .info-wrapper .contacts .material-icons.phone, header .info-wrapper .contacts .material-icons.mail {
+    font-size: 15px;
+    margin-right: 3px;
+  }
+  header .info-wrapper .contacts a {
+    padding: 0.2rem;
+  }
+  header .info-wrapper .contacts #phone {
+    text-align: center;
+  }
+}
+/*# sourceMappingURL=app.component.css.map */

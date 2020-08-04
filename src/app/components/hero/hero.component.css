@@ -1,0 +1,153 @@
+.hero-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  padding-top: 50%;
+}
+
+.hero-text {
+  position: absolute;
+  top: 40%;
+  left: 5%;
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+
+.hero-text h2 {
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.hero-text h3 {
+  font-size: 1.75rem;
+  font-weight: 400;
+}
+
+.hero-text h1, .hero-text h2, .hero-text h3 {
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 1085px) {
+  section.hero .hero-text h1 {
+    font-size: 2.3rem;
+  }
+  section.hero .hero-text h2 {
+    font-size: 1.9rem;
+  }
+  section.hero .hero-text h3 {
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  section.hero .hero-text h1 {
+    font-size: 2rem;
+  }
+  section.hero .hero-text h2 {
+    font-size: 1.7rem;
+  }
+  section.hero .hero-text h3 {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 860px) {
+  section.hero .hero-text h1 {
+    font-size: 1.8rem;
+  }
+  section.hero .hero-text h2 {
+    font-size: 1.6rem;
+  }
+}
+
+@media screen and (max-width: 790px) {
+  section.hero .hero-text {
+    left: 0;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  section.hero .hero-text {
+    left: 5%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  section.hero .hero-text {
+    left: 5%;
+  }
+  section.hero .hero-text h1 {
+    font-size: 1.5rem;
+  }
+  section.hero .hero-text h2 {
+    font-size: 1.4rem;
+  }
+  section.hero .hero-text h3 {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  section.hero .hero-text {
+    left: 5%;
+  }
+  section.hero .hero-text h1 {
+    font-size: 1.3rem;
+  }
+  section.hero .hero-text h2 {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  section.hero .hero-text {
+    left: 5%;
+  }
+  section.hero .hero-text h1, section.hero .hero-text h2 {
+    font-size: 1.2rem;
+  }
+  section.hero .hero-text h3 {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  section.hero .hero-text {
+    left: 5%;
+  }
+  section.hero .hero-text h1, section.hero .hero-text h2 {
+    font-size: 1rem;
+  }
+  section.hero .hero-text h3 {
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  section.hero .hero-text {
+    left: 5%;
+  }
+  section.hero .hero-text h1, section.hero .hero-text h2 {
+    font-size: 0.9rem;
+  }
+  section.hero .hero-text h3 {
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  section.hero .hero-text {
+    left: 5%;
+  }
+  section.hero .hero-text h1, section.hero .hero-text h2 {
+    font-size: 0.8rem;
+  }
+  section.hero .hero-text h3 {
+    font-size: 0.6rem;
+  }
+}
+/*# sourceMappingURL=hero.component.css.map */

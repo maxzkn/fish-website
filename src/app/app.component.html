@@ -1,0 +1,66 @@
+<header>
+  <div class="header-info-wrapper">
+    <div class="container">
+      <div class="info-wrapper">
+        <p>Sveiki prisijungę!</p>
+        <div class="contacts">
+          <div class="contacts-phone">
+            <div class="material-icons phone">phone</div>
+            <div>
+              <a class="contacts-a" href="tel:+37069962727" id="phone">+ (370) 699 62727</a>
+            </div>
+          </div>
+          <div class="contacts-mail">
+            <div class="material-icons mail">mail</div>
+            <div>
+              <a class="contacts-a" href="mailto:jokubasfisas@gmail.com">jokubasfisas@gmail.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="header-nav-wrapper">
+    <div class="container">
+      <div class="nav-wrapper">
+        <a href="#" class="logo">
+          <div class="logoName">
+            <p id="logoName1">Jokūbas Fišas</p>
+            <p id="logoName2">Daktaras Neurologas</p>
+          </div>
+        </a>
+        <div class="nav-links">
+          <ul>
+            <li *ngFor="let link of ids">
+              <a [routerLink]='"."' [fragment]='link' (click)='hideRouterSections()'>{{ link }}</a>
+            </li>
+            <li><a routerLink='/photos' (click)='showPhotos()'>Nuotraukos</a></li>
+            <li><a routerLink='/articles' (click)='showArticles()'>Straipsniai</a></li>
+          </ul>
+        </div>
+        <a class="hamburger" (click)="showHamburgerMenu()">
+          <img src="../assets/images/icons8-menu.svg" alt="hamburger-icon" height="40px" width="30px"/>
+        </a>
+      </div>
+      <div [ngClass]="{'hamburgerHidden': isHidden, 'hamburgerShown': !isHidden}">
+        <ul>
+          <li *ngFor="let link of ids">
+            <a [routerLink]='"."' [fragment]='link' (click)='hideRouterSections()'>{{ link }}</a>
+          </li>
+          <li><a routerLink='/photos' (click)='showPhotos()'>Nuotraukos</a></li>
+          <li><a routerLink='/articles' (click)='showArticles()'>Straipsniai</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+<router-outlet *ngIf='showPhotosSection || showArticlesSection'></router-outlet>
+<div *ngIf='!showPhotosSection && !showArticlesSection'>
+  <app-hero></app-hero>
+  <app-about-me [attr.id]='ids[0]'></app-about-me> <!-- veikia ir su [id], bet koks skirtumas? -->
+  <app-services [attr.id]='ids[1]'></app-services>
+  <app-contacts [attr.id]='ids[2]'></app-contacts>
+</div>
+<footer>
+  <p>Visos teisės priklauso: <a class="contacts-a" href="https://jokubasfisas.lt/">www.jokubasfisas.lt</a> @ 2020</p>
+</footer>

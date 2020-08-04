@@ -1,0 +1,127 @@
+// SECTION ABOUT-ME START
+
+section.about-me {
+    h1 {
+        padding: 90px 0px 50px 0px;
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 300;
+    }
+
+    .about-me-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            color: #212529;
+        }
+
+        .about-me-image {
+            // margin-right: 5%;
+            padding: 0px 15px;
+
+            img {
+                max-width: 100%;
+            }
+        }
+
+        .about-me-text {
+            padding: 0px 15px;
+            max-width: 58%;
+        }
+    }
+
+    .certifications-wrapper {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 50px;
+
+        .certificate-image1,.certificate-image2 {
+            width: 50%;
+            padding: 0px 15px;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+
+// SECTION ABOUT-ME END
+
+// RESPONSIVE
+
+@media screen and (max-width: 1000px) {
+    section.about-me {
+        h1 {
+            padding: 50px 0px 35px 0px;
+            font-size: 2.3rem;
+        }
+
+        .about-me-wrapper {
+            align-items: unset;
+            flex-direction: column;
+
+            .about-me-image {
+                text-align: center;
+                margin-bottom: 10px;
+
+                img {
+                    max-width: 80%;
+                }
+            }
+
+            .about-me-text {
+                max-width: 100%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 860px) {
+    section.about-me {
+        h1 {
+            padding: 50px 0px 35px 0px;
+        }
+
+        .certifications-wrapper {
+            padding: 0px;
+
+            .certificate-image1,.certificate-image2 {
+                padding: 0;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 700px) {
+    section.about-me {
+        .certifications-wrapper {
+            padding: 0px;
+            flex-direction: column;
+
+            .certificate-image1,.certificate-image2 {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 580px) {
+    section.about-me {
+        h1 {
+            font-size: 2rem;
+        }
+    }
+}
+
+@media screen and (max-width: 380px) {
+    section.about-me {
+        h1 {
+            font-size: 1.6rem;
+        }
+    }
+}

@@ -58,6 +58,14 @@ section.services {
 
 // RESPONSIVE
 
+@media screen and (min-width: 1300px) {
+    section.services {
+        img {
+            height: 570px;
+        }
+    }
+}
+
 @media screen and (max-width: 1000px) {
     section.services {
         h1 {

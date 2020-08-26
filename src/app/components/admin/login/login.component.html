@@ -1,0 +1,72 @@
+<div class="login-form">
+    <div class="wrapper-form">
+        <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)"> -->
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)"> <!--[formGroup]-->
+            <div class="field-email">
+                <label for="email">E-mail: </label> <!--kai pasirenki auto email tai neveikia validatoriai-->
+                <input id="email" 
+                    type="email" 
+                    formControlName="email" 
+                    placeholder="Your email"
+                    [ngClass]="{'fieldInvalid': loginForm.controls.email.invalid && 
+                                                loginForm.controls.email.touched,
+                                'fieldValid':   loginForm.controls.email.valid &&
+                                                loginForm.controls.email.touched}"> <!--formControlName-->
+                <div class="email-errors" *ngIf="loginForm.controls.email.errors">
+                    <p *ngIf="loginForm.controls.email.touched &&
+                            loginForm.controls.email.errors.required">
+                            Please provide your e-mail address.
+                    </p>
+                    <p *ngIf="loginForm.controls.email.touched &&
+                            loginForm.controls.email.errors.email">
+                            Please provide correct e-mail address.
+                    </p>
+                </div>
+            </div>
+            <div class="field-password">
+                <label for="password">Password: </label>
+                <input id="password"
+                    type="password"
+                    formControlName="password" 
+                    placeholder="Your password"
+                    [ngClass]="{'fieldInvalid': loginForm.controls.password.invalid && 
+                                                loginForm.controls.password.touched,
+                                'fieldValid':   loginForm.controls.password.valid &&
+                                                loginForm.controls.password.touched}">
+                <div class="password-errors" *ngIf="loginForm.controls.password.errors">
+                    <p *ngIf="loginForm.controls.password.touched &&
+                              loginForm.controls.password.errors.required">
+                            Please provide your password.
+                    </p>
+                    <p *ngIf="loginForm.controls.password.touched &&
+                              loginForm.controls.password.errors.minlength">
+                            Your password must be more than {{ minPswLength }} characters long.
+                    </p>
+                    <p *ngIf="loginForm.controls.password.touched &&
+                              loginForm.controls.password.errors.maxlength">
+                            Your password must be no more than {{ maxPswLength }} characters long.
+                    </p>
+                    <p *ngIf="loginForm.controls.password.touched &&
+                              loginForm.controls.password.hasError('hasNumber')">
+                            Your password must have at least 1 number.
+                    </p>
+                    <p *ngIf="loginForm.controls.password.touched &&
+                              loginForm.controls.password.hasError('hasCapital')">
+                            Your password must have at least 1 capital letter.
+                    </p>
+                    <p *ngIf="loginForm.controls.password.touched &&
+                              loginForm.controls.password.hasError('hasLower')">
+                            Your password must have at least 1 lower letter.
+                    </p>
+                    <p *ngIf="loginForm.controls.password.touched &&
+                              loginForm.controls.password.hasError('hasSpecial')">
+                            Your password must have at least 1 special character. <br>
+                            <span style="font-size: 11px">Allowed special characters: {{ allowedSpecial }}</span>
+                    </p>
+                </div>
+            </div>
+            <button type="submit" [disabled]="!loginForm.valid"
+            [ngClass]="{'buttonValid': loginForm.valid, 'buttonInvalid': !loginForm.valid}">Login</button>
+        </form>
+    </div>
+</div>

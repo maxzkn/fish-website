@@ -123,7 +123,7 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy",
+          "builder": "@angular/fire:deploy",
           "options": {}
         }
       }

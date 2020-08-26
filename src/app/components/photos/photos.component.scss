@@ -1,0 +1,199 @@
+.wrapper-main {
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+[tabindex] {
+    outline: none !important;
+ }
+
+.modal {
+    display: none;
+    width: 100%;
+    min-height: 100%;
+    background: black;
+}
+
+.closeModal {
+    cursor: pointer;
+    color: white;
+    position: absolute;
+    top: 25px;
+    right: 50px;
+    font-size: 35px;
+    font-weight: bold;
+
+    &:hover {
+        color: rgb(211, 211, 211);
+        transition: 0.3s;
+    }
+}
+
+.modal-content {
+    max-width: 1200px;
+    width: 90%;
+    margin: 50px auto 50px auto;
+
+    .wrapper-image-main {
+        position: relative;
+    }
+
+    .previous,.next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 18px;
+        margin-top: -50px;
+        color: white;
+        font-weight: bold;
+        font-size: 30px;
+        transition: 0.8s ease;
+
+        &:hover {
+            color: rgb(211, 211, 211);
+            transition: 0.3s;
+        }
+    }
+
+    .next {
+        right: 0;
+    }
+
+    .modal-image-main {
+        text-align: center;
+        width: 100%;
+        position: relative;
+        // display: none;
+
+        .image-number {
+            color: white;
+            width: 100%;
+            padding: 10px 0px;
+            font-size: 12px;
+        }
+
+        img {
+            width: 30%;
+        }
+
+        .img1 {
+            width: 80%;
+        }
+    }
+
+    .wrapper-modal-images {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        .modal-images-divs {
+            flex: 25%;
+            .modal-images {
+                padding: 0px 3px;
+                height: 130px;
+                object-fit: cover;
+                opacity: 0.8;
+                cursor: pointer;
+                transition: 0.3s;
+                width: 100%;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+
+            .active {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.wrapper-images {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 50px;
+
+    .images {
+        flex: 25%;
+        padding: 10px;
+        text-align: center;
+    
+        img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            // object-fit: contain;
+            transition: 0.3s;
+    
+            &:hover {
+                transform: scale(1.1);
+                // height: 220px;
+                transition: 0.3s;
+                cursor: pointer;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+        }
+    }
+}
+
+// RESPONSIVE
+
+@media screen and (max-width: 860px) {
+    .wrapper-images {
+        margin-top: 150px;
+        margin-bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .wrapper-images {
+        .images {
+            flex: 50%;
+            padding: 10px;
+
+            img {
+                object-fit: contain;
+                height: 260px;
+            }
+        }
+
+        .img1 {
+            object-fit: cover;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .closeModal {
+        right: 30px;
+    }
+
+    .modal-images {
+        height: 80px !important;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .wrapper-images {
+        margin-top: 110px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .previous,.next {
+        padding: 10px !important;
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .closeModal {
+        right: 20px;
+        font-size: 25px;
+    }
+}

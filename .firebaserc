@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "fish-ddb26": {
+      "hosting": {
+        "fish-website": [
+          "fish-ddb26"
+        ]
+      }
+    }
+  }
+}

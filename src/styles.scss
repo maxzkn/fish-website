@@ -41,11 +41,11 @@ a {
     font-size: 1rem;
     cursor: pointer;
     padding: 0.6rem;
-}
-// kodel neveikia viduje a?
-a:hover {
-    color: rgba(0,0,0,.7);
-    transition: .2s ease-in-out;
+
+    &:hover {
+        color: rgba(0,0,0,.7);
+        transition: .2s ease-in-out;
+    }
 }
 
 a.contacts-a {

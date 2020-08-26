@@ -29,38 +29,40 @@
             <p id="logoName2">Daktaras Neurologas</p>
           </div>
         </a>
-        <div class="nav-links">
+        <div class="nav-links"
+             [ngClass]="{'hamburgerHidden': hamburgerHidden, 'hamburgerShown': !hamburgerHidden}">
           <ul>
             <li *ngFor="let link of ids">
-              <a [routerLink]='"."' [fragment]='link' (click)='hideRouterSections()'>{{ link }}</a>
+              <a [routerLink]='"."'
+                 [fragment]='link'
+                 (click)='activateNonRouterLinks()'
+                 routerLinkActive='active-link'>{{ link }}</a> <!--.?-->
             </li>
-            <li><a routerLink='/photos' (click)='showPhotos()'>Nuotraukos</a></li>
-            <li><a routerLink='/articles' (click)='showArticles()'>Straipsniai</a></li>
+            <li><a routerLink='/photos'
+                   (click)='activateRouterLinks()'
+                   routerLinkActive='active-link'>Nuotraukos</a></li>
+            <li><a routerLink='/articles' 
+                   (click)='activateRouterLinks()'
+                   routerLinkActive='active-link'>Straipsniai</a></li>
           </ul>
         </div>
         <a class="hamburger" (click)="showHamburgerMenu()">
           <img src="../assets/images/icons8-menu.svg" alt="hamburger-icon" height="40px" width="30px"/>
         </a>
       </div>
-      <div [ngClass]="{'hamburgerHidden': isHidden, 'hamburgerShown': !isHidden}">
-        <ul>
-          <li *ngFor="let link of ids">
-            <a [routerLink]='"."' [fragment]='link' (click)='hideRouterSections()'>{{ link }}</a>
-          </li>
-          <li><a routerLink='/photos' (click)='showPhotos()'>Nuotraukos</a></li>
-          <li><a routerLink='/articles' (click)='showArticles()'>Straipsniai</a></li>
-        </ul>
-      </div>
     </div>
   </div>
 </header>
-<router-outlet *ngIf='showPhotosSection || showArticlesSection'></router-outlet>
-<div *ngIf='!showPhotosSection && !showArticlesSection'>
+<router-outlet *ngIf="activeRouterLinks || isRouterUrlLink()"></router-outlet>
+<div class="wrapper-app"
+     *ngIf="activeNonRouterLinks && !isRouterUrlLink()"
+     [ngStyle]="marginStyle()"> <!--koks skirtumas: [ngStyle] ir ng-style?-->
   <app-hero></app-hero>
-  <app-about-me [attr.id]='ids[0]'></app-about-me> <!-- veikia ir su [id], bet koks skirtumas? -->
+  <app-about-me [attr.id]='ids[0]'></app-about-me>
   <app-services [attr.id]='ids[1]'></app-services>
   <app-contacts [attr.id]='ids[2]'></app-contacts>
 </div>
 <footer>
-  <p>Visos teisės priklauso: <a class="contacts-a" href="https://jokubasfisas.lt/">www.jokubasfisas.lt</a> @ 2020</p>
+  <p>Visos teisės priklauso: <a class="contacts-a"
+                                href="https://jokubasfisas.lt/">www.jokubasfisas.lt</a> @ 2020</p>
 </footer>

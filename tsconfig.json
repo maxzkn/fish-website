@@ -5,6 +5,16 @@
   To learn more about this file see: https://angular.io/config/solution-tsconfig.
 */
 {
+  // "compilerOptions": {
+  //   "target": "es2018",
+  //   "module": "commonjs",
+  //   "sourceMap": true,
+  //   "lib": [
+  //     "dom",
+  //     "dom.Iterable",
+  //     "es2018"
+  //   ]
+  // },
   "files": [],
   "references": [
     {
@@ -16,5 +26,5 @@
     {
       "path": "./e2e/tsconfig.json"
     }
-]
+  ]
 }

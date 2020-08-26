@@ -1,5 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +14,9 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { AboutMeComponent } from './components/about-me/about-me.component';
 import { PhotosComponent } from './components/photos/photos.component';
 import { ArticlesComponent } from './components/articles/articles.component';
+import { environment } from 'src/environments/environment';
+import { AdminComponent } from './components/admin/admin.component';
+import { LoginComponent } from './components/admin/login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,10 +27,17 @@ import { ArticlesComponent } from './components/articles/articles.component';
     AboutMeComponent,
     PhotosComponent,
     ArticlesComponent,
+    AdminComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -17,6 +17,7 @@ import { ArticlesComponent } from './components/articles/articles.component';
 import { environment } from 'src/environments/environment';
 import { AdminComponent } from './components/admin/admin.component';
 import { LoginComponent } from './components/admin/login/login.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { LoginComponent } from './components/admin/login/login.component';
     ArticlesComponent,
     AdminComponent,
     LoginComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

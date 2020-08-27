@@ -33,7 +33,7 @@
              [ngClass]="{'hamburgerHidden': hamburgerHidden, 'hamburgerShown': !hamburgerHidden}">
           <ul>
             <li *ngFor="let link of ids">
-              <a [routerLink]='"."'
+              <a [routerLink]="['/']"
                  [fragment]='link'
                  (click)='activateNonRouterLinks()'
                  routerLinkActive='active-link'>{{ link }}</a> <!--.?-->
@@ -53,14 +53,10 @@
     </div>
   </div>
 </header>
-<router-outlet *ngIf="activeRouterLinks || isRouterUrlLink()"></router-outlet>
+<router-outlet></router-outlet>
 <div class="wrapper-app"
      *ngIf="activeNonRouterLinks && !isRouterUrlLink()"
-     [ngStyle]="marginStyle()"> <!--koks skirtumas: [ngStyle] ir ng-style?-->
-  <app-hero></app-hero>
-  <app-about-me [attr.id]='ids[0]'></app-about-me>
-  <app-services [attr.id]='ids[1]'></app-services>
-  <app-contacts [attr.id]='ids[2]'></app-contacts>
+     [ngStyle]="marginStyle()">
 </div>
 <footer>
   <p>Visos teisės priklauso: <a class="contacts-a"

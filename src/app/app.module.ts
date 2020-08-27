@@ -18,6 +18,8 @@ import { environment } from 'src/environments/environment';
 import { AdminComponent } from './components/admin/admin.component';
 import { LoginComponent } from './components/admin/login/login.component';
 import { HomeComponent } from './components/home/home.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { AuthService } from 'src/app/services/auth.service';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { HomeComponent } from './components/home/home.component';
     AdminComponent,
     LoginComponent,
     HomeComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,7 @@ import { HomeComponent } from './components/home/home.component';
     AngularFireStorageModule,
     AngularFireAuthModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

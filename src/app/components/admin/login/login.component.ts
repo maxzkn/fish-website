@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from '../../../validators/custom-validators'
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,9 @@ export class LoginComponent implements OnInit {
   // email: string;
   // password: string;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+    private router: Router,
+    private auth: AuthService) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -32,8 +36,13 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    window.alert('email: ' + form.value.email +
-                 '\npassword: ' + form.value.password);
+    // window.alert('email: ' + form.value.email +
+    //              '\npassword: ' + form.value.password);
+    if(form.valid){
+      this.auth.loginViaEmail(form.value.email, form.value.password).then(()=>{
+        this.router.navigate(['/admin/dashboard'])
+      })
+    }
   }
 
   // onSubmit(form: any) {

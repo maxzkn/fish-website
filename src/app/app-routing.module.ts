@@ -5,16 +5,20 @@ import { AppComponent } from './app.component'
 import { PhotosComponent } from './components/photos/photos.component';
 import { ArticlesComponent } from './components/articles/articles.component';
 import { LoginComponent } from './components/admin/login/login.component';
+import { RegisterComponent } from './components/admin/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { ResetPswComponent } from './components/admin/reset-psw/reset-psw.component';
 
 const routerOptions: ExtraOptions = {
   scrollPositionRestoration: 'enabled',
   anchorScrolling: 'enabled',
 }
 
-const routes: Routes = [ // kodel  // kodel be situ neveikia scroll antra karta?
+const routes: Routes = [
   { path:'login', component: LoginComponent },
+  { path:'register', component: RegisterComponent },
+  { path:'resetpsw', component: ResetPswComponent },
   { path:'photos', component: PhotosComponent },
   { path:'articles', component: ArticlesComponent },
   { path:'admin', children:[

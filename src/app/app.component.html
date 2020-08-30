@@ -36,14 +36,14 @@
               <a [routerLink]="['/']"
                  [fragment]='link'
                  (click)='activateNonRouterLinks()'
-                 routerLinkActive='active-link'>{{ link }}</a> <!--.?-->
+                 routerLinkActive='active'>{{ link }}</a> <!--.?-->
             </li>
             <li><a routerLink='/photos'
                    (click)='activateRouterLinks()'
-                   routerLinkActive='active-link'>Nuotraukos</a></li>
+                   routerLinkActive='active'>Nuotraukos</a></li>
             <li><a routerLink='/articles' 
                    (click)='activateRouterLinks()'
-                   routerLinkActive='active-link'>Straipsniai</a></li>
+                   routerLinkActive='active'>Straipsniai</a></li>
           </ul>
         </div>
         <a class="hamburger" (click)="showHamburgerMenu()">
@@ -54,10 +54,10 @@
   </div>
 </header>
 <router-outlet></router-outlet>
-<div class="wrapper-app"
+<!-- <div class="wrapper-app"
      *ngIf="activeNonRouterLinks && !isRouterUrlLink()"
      [ngStyle]="marginStyle()">
-</div>
+</div> -->
 <footer>
   <p>Visos teisės priklauso: <a class="contacts-a"
                                 href="https://jokubasfisas.lt/">www.jokubasfisas.lt</a> @ 2020</p>

@@ -5,24 +5,27 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+export class RegisterComponent implements OnInit {
+  registerForm: FormGroup;
   minPswLength: number = 8;
   maxPswLength: number = 16;
+  minUsrLength: number = 3;
+  maxUsrLength: number = 10;
   allowedSpecial: string = "*.!@#$%^&(){}\:;<>,.?~_+-=|\]["
-  // email: string;
-  // password: string;
 
   constructor(private formBuilder: FormBuilder,
-    private router: Router,
-    private auth: AuthService) { }
+              private router: Router,
+              private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
+    this.registerForm = this.formBuilder.group({
+      'username': [null, Validators.compose([Validators.required,
+                                             Validators.minLength(this.minUsrLength),
+                                             Validators.maxLength(this.maxUsrLength)])],
       'email': [null, Validators.compose([Validators.required, 
                                           Validators.email])],
       'password': [null, Validators.compose([Validators.required,
@@ -36,24 +39,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    // window.alert('email: ' + form.value.email +
-    //              '\npassword: ' + form.value.password);
-    if(form.valid){
-      this.auth.loginViaEmail(form.value.email, form.value.password).then(()=>{
-        this.router.navigate(['/admin/dashboard']);
+    // window.alert('email: ' + form.value.email + 'password: ' + form.value.password);
+    if (form.valid) {
+      this.auth.signupViaEmail(form.value.email, form.value.password).then(() => {
+        this.router.navigate['/admin/dashboard'];
       })
     }
   }
-
-  resetPassword() {
-    this.router.navigate(['/resetpsw']);
-  }
-
-  // onSubmit(form: any) {
-  //   this.email = form.email;
-  //   this.password = form.password;
-
-  //   window.alert('email: ' + this.email +
-  //                ' password: ' + this.password);
-  // }
 }

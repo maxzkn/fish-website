@@ -1,0 +1,96 @@
+<div class="register-form">
+    <div class="wrapper-form">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
+            <div class="field-username">
+                <label for="username">Username: </label>
+                <input id="username" 
+                    type="text" 
+                    formControlName="username" 
+                    placeholder="Your username"
+                    [ngClass]="{'fieldInvalid': registerForm.controls.username.invalid && 
+                                                registerForm.controls.username.touched,
+                                'fieldValid':   registerForm.controls.username.valid &&
+                                                registerForm.controls.username.touched}">
+                <div class="username-errors" *ngIf="registerForm.controls.username.errors">
+                    <p *ngIf="registerForm.controls.username.touched &&
+                            registerForm.controls.username.errors.required">
+                            Please provide your username.
+                    </p>
+                    <p *ngIf="registerForm.controls.username.touched &&
+                            registerForm.controls.username.errors.minlength">
+                            Your username should consist of minimum of 3 characters.
+                    </p>
+                    <p *ngIf="registerForm.controls.username.touched &&
+                            registerForm.controls.username.errors.maxlength">
+                            Your username should consist of maximum of 10 characters.
+                    </p>
+                </div>
+            </div>
+            <div class="field-email">
+                <label for="email">E-mail: </label> <!--kai pasirenki auto email tai neveikia validatoriai-->
+                <input id="email" 
+                    type="email" 
+                    formControlName="email" 
+                    placeholder="Your email"
+                    [ngClass]="{'fieldInvalid': registerForm.controls.email.invalid && 
+                                                registerForm.controls.email.touched,
+                                'fieldValid':   registerForm.controls.email.valid &&
+                                                registerForm.controls.email.touched}"> <!--formControlName-->
+                <div class="email-errors" *ngIf="registerForm.controls.email.errors">
+                    <p *ngIf="registerForm.controls.email.touched &&
+                            registerForm.controls.email.errors.required">
+                            Please provide your e-mail address.
+                    </p>
+                    <p *ngIf="registerForm.controls.email.touched &&
+                            registerForm.controls.email.errors.email">
+                            Please provide correct e-mail address.
+                    </p>
+                </div>
+            </div>
+            <div class="field-password">
+                <label for="password">Password: </label>
+                <input id="password"
+                    type="password"
+                    formControlName="password" 
+                    placeholder="Your password"
+                    [ngClass]="{'fieldInvalid': registerForm.controls.password.invalid && 
+                                                registerForm.controls.password.touched,
+                                'fieldValid':   registerForm.controls.password.valid &&
+                                                registerForm.controls.password.touched}">
+                <div class="password-errors" *ngIf="registerForm.controls.password.errors">
+                    <p *ngIf="registerForm.controls.password.touched &&
+                              registerForm.controls.password.errors.required">
+                            Please provide your password.
+                    </p>
+                    <p *ngIf="registerForm.controls.password.touched &&
+                              registerForm.controls.password.errors.minlength">
+                            Your password must be more than {{ minPswLength }} characters long.
+                    </p>
+                    <p *ngIf="registerForm.controls.password.touched &&
+                              registerForm.controls.password.errors.maxlength">
+                            Your password must be no more than {{ maxPswLength }} characters long.
+                    </p>
+                    <p *ngIf="registerForm.controls.password.touched &&
+                              registerForm.controls.password.hasError('hasNumber')">
+                            Your password must have at least 1 number.
+                    </p>
+                    <p *ngIf="registerForm.controls.password.touched &&
+                              registerForm.controls.password.hasError('hasCapital')">
+                            Your password must have at least 1 capital letter.
+                    </p>
+                    <p *ngIf="registerForm.controls.password.touched &&
+                              registerForm.controls.password.hasError('hasLower')">
+                            Your password must have at least 1 lower letter.
+                    </p>
+                    <p *ngIf="registerForm.controls.password.touched &&
+                              registerForm.controls.password.hasError('hasSpecial')">
+                            Your password must have at least 1 special character. <br>
+                            <span style="font-size: 11px">Allowed special characters: {{ allowedSpecial }}</span>
+                    </p>
+                </div>
+            </div>
+            <button type="submit" [disabled]="!registerForm.valid"
+            [ngClass]="{'buttonValid': registerForm.valid, 'buttonInvalid': !registerForm.valid}">Register</button>
+        </form>
+    </div>
+</div>

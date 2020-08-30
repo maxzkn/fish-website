@@ -65,8 +65,12 @@
                     </p>
                 </div>
             </div>
-            <button type="submit" [disabled]="!loginForm.valid"
-            [ngClass]="{'buttonValid': loginForm.valid, 'buttonInvalid': !loginForm.valid}">Login</button>
+            <button type="submit"
+                    [disabled]="!loginForm.valid"
+                    [ngClass]="{'buttonValid': loginForm.valid, 'buttonInvalid': !loginForm.valid}">Login</button>
+            <button type="button"
+                    class="buttonValid"
+                    (click)='resetPassword()'>Forgot password?</button>
         </form>
     </div>
 </div>

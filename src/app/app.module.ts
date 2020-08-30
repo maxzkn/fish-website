@@ -20,6 +20,8 @@ import { LoginComponent } from './components/admin/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { AuthService } from 'src/app/services/auth.service';
+import { RegisterComponent } from './components/admin/register/register.component';
+import { ResetPswComponent } from './components/admin/reset-psw/reset-psw.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { AuthService } from 'src/app/services/auth.service';
     LoginComponent,
     HomeComponent,
     DashboardComponent,
+    RegisterComponent,
+    ResetPswComponent,
   ],
   imports: [
     BrowserModule,

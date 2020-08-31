@@ -17,11 +17,11 @@ export class ImageService {
     return of(images);
   }
 
-  async uploadPicture(f) {
+  async uploadPicture(file) {
     let imageName = Date.now() + '.jpg';
     const uploadTask = this.storage.upload(
       `${imageName}`,
-      f
+      file
     );
 
     //jeigu reikia progress bar upload
@@ -46,4 +46,8 @@ export class ImageService {
   saveImageNameInDatabase(url, imageName){
     return this.afs.collection('/images').add({name: imageName, url: url})
   }
+
+
+  //istrinti nuotrauka.. service istrina is storage ir is collection....
+  
 }

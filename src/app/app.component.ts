@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -9,14 +9,14 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent implements OnInit{
   title = 'fish-website';
-  ids: Array<String> = ['Apie mane', 'Paslaugos', 'Kontaktai'];
+  ids: Array<String> = ['Apie-mane', 'Paslaugos', 'Kontaktai'];
   hamburgerHidden: boolean = true;
   activeRouterLinks: boolean = false;
   activeNonRouterLinks: boolean = true;
   routerUrlLink: boolean = false;
   user;
 
-  constructor(private router: Router, private auth: AuthService) {}
+  constructor(private router: Router, private aR: ActivatedRoute, private auth: AuthService) {}
 
   ngOnInit(){
     this.auth.user$.subscribe(user=> this.user = user);
@@ -27,11 +27,23 @@ export class AppComponent implements OnInit{
     this.activeNonRouterLinks = false;
     this.hamburgerHidden = true;
   }
-
+  
+  //inicijuojame po click
   activateNonRouterLinks() {
     this.activeRouterLinks = false;
     this.activeNonRouterLinks = true;
     this.hamburgerHidden = true;
+    
+    this.aR.fragment.subscribe(param => {
+        if(param){
+          document.querySelector(`#${param}`).scrollIntoView({
+              behavior: 'auto',
+              block: 'center',
+              inline: 'center'
+          });
+        }
+    });
+    
   }
 
   showHamburgerMenu() {

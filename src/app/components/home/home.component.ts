@@ -8,25 +8,23 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  ids: Array<String> = ['Apie mane', 'Paslaugos', 'Kontaktai'];
+  ids: Array<String> = ['Apie-mane', 'Paslaugos', 'Kontaktai'];
   constructor(private aR: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.aR.fragment.subscribe(param => {
-      console.log(param)
-      console.log(document.querySelector(`#${param}`))
-    });
-    
   }
 
+  //inicijuoja po puslapio visu elementu uzkrovimo...
   ngAfterViewInit(){
-    this.aR.fragment.subscribe(param => {
+   this.aR.fragment.subscribe(param => {
       setTimeout(()=>{
-        document.querySelector(`#${param}`).scrollIntoView({
-            behavior: 'auto',
-            block: 'center',
-            inline: 'center'
-        });
+        if(param){
+          document.querySelector(`#${param}`).scrollIntoView({
+              behavior: 'auto',
+              block: 'center',
+              inline: 'center'
+          });
+        }
       }, 500);
     });
   }

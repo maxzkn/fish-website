@@ -11,5 +11,5 @@ export class AdminImagesComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  
 }

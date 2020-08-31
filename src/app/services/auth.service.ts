@@ -32,6 +32,7 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password).then(
       (user) => {
         console.log(user);
+        
       }
     );
   }
@@ -53,6 +54,10 @@ export class AuthService {
         return this.updateUserData(user);
       }
     )
+  }
+
+  signUpViaFacebook(){
+
   }
 
   //2. Forgot password
@@ -85,7 +90,6 @@ export class AuthService {
   private updateUserData(user) {
     // sukuriame lentele su jau prisijungusio varototojo unikaliu ID
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
-    
     //Papildoma informacija kuria norime irasyti
     // i duomenu baze apie musu vartotoja
     const data = { 
@@ -98,11 +102,22 @@ export class AuthService {
         guest: true
       }
     } 
-
     //jeigu jau egzistavo toks vartotojas, mes nekuriame naujo
     // o sujungiame (merge:true) su pries tai egzistavusia informacija.
-    return userRef.set(data, { merge: true })
-
-    
+    return userRef.set(data, { merge: true });
   }
 }
+// sukurti UI admin
+// sukurti image manage (istrinti, ikelti)
+// articles (crud);
+
+//calender.where(august, == , 'working_days')
+// collection(ref => ref.where(a, ==, b))
+//calander.add(pacient)
+
+// scalinti...
+// pacientu
+// newsletteriu
+
+// 2x darbo ka darytum su django 
+//

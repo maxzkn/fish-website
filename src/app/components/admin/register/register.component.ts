@@ -41,8 +41,8 @@ export class RegisterComponent implements OnInit {
   onSubmit(form: FormGroup) {
     // window.alert('email: ' + form.value.email + 'password: ' + form.value.password);
     if (form.valid) {
-      this.auth.signupViaEmail(form.value.email, form.value.password).then(() => {
-        this.router.navigate['/admin/dashboard'];
+      this.auth.signupViaEmail(form.value).then(() => {
+        this.router.navigate['/admin'];
       })
     }
   }

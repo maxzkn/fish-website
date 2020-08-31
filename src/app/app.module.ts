@@ -23,6 +23,10 @@ import { AuthService } from 'src/app/services/auth.service';
 import { RegisterComponent } from './components/admin/register/register.component';
 import { ResetPswComponent } from './components/admin/reset-psw/reset-psw.component';
 
+import { AuthGuard } from './guards/auth.guard';
+import { AdminBarComponent } from './components/ui/admin-bar/admin-bar.component';
+import { AdminImagesComponent } from './components/admin/admin-images/admin-images.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +42,8 @@ import { ResetPswComponent } from './components/admin/reset-psw/reset-psw.compon
     DashboardComponent,
     RegisterComponent,
     ResetPswComponent,
+    AdminBarComponent,
+    AdminImagesComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +54,7 @@ import { ResetPswComponent } from './components/admin/reset-psw/reset-psw.compon
     AngularFireStorageModule,
     AngularFireAuthModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

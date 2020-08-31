@@ -53,6 +53,7 @@
     </div>
   </div>
 </header>
+<ui-admin-bar *ngIf="isAdmin()"></ui-admin-bar>
 <router-outlet></router-outlet>
 <!-- <div class="wrapper-app"
      *ngIf="activeNonRouterLinks && !isRouterUrlLink()"

@@ -1,26 +1,31 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 
+import { User } from 'src/app/models/user'; // optional
+import { Observable, of, merge } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   
-  user;
-  email;
+  user$: Observable<User>;
    
   constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth) {
     
-    this.afAuth.authState.subscribe(user => {
-      this.user = user;
-      // if(user){
-      //   this.user = user;
-      // }else{
-      //   this.user = null;
-      // }
-    })
+    
+    this.user$ = this.afAuth.authState.pipe(
+      switchMap(user => {
+          // Logged in
+        if (user) {
+          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+        } else {
+          // Logged out
+          return of(null);
+        }
+      }));
   }
 
   loginViaEmail(email, password){
@@ -35,20 +40,69 @@ export class AuthService {
   // sukurti register via email
   // naudoti formoje username, email, password.
   // signup firebase panel reikalauja tik 2 parametru email, password.
-  signupViaEmail(email, password) {
-    return this.afAuth.createUserWithEmailAndPassword(email, password)
-    .then(user => {
-      console.log(user);
-    }
+  signupViaEmail(form) {
+    return this.afAuth.createUserWithEmailAndPassword(form.email, form.password)
+    .then(result => {
+      
+        let user = {
+          uid: result.user.uid, 
+          email: result.user.email,
+          username: form.username,
+          signedVia: 'email'
+        }
+        return this.updateUserData(user);
+      }
     )
   }
 
   //2. Forgot password
   //Naudoti su egzistuojanciu email.
   resetPassword(email) {
-    this.email = email;
     return this.afAuth.sendPasswordResetEmail(email).then(() => {
-      alert(`Password reset link has been sent to ${this.email}`);
+      alert(`Password reset link has been sent to ${email}`);
     })
+  }
+
+  //funkcijos padesencios issiaiskinti vartotojo role
+  public isAdmin(user: User){
+    const role = ['admin'];
+    return this.checkAuthorization(user, role);
+  }
+  private checkAuthorization(user: User, allowedRoles: string[]): boolean {
+    if (!user) return false;
+    if (user['roles'] == undefined) return false;
+    for (const role of allowedRoles) {
+      if ( user['roles'][role] ) {
+        return true
+      }
+    }
+    return false
+  }
+
+
+  //issaugome papildoma prisijungusio ar uzsiregistruojancio vartotojo informacija
+  //musu duomenu bazeje
+  private updateUserData(user) {
+    // sukuriame lentele su jau prisijungusio varototojo unikaliu ID
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+    
+    //Papildoma informacija kuria norime irasyti
+    // i duomenu baze apie musu vartotoja
+    const data = { 
+      uid: user.uid, 
+      email: user.email, 
+      username: user.username, 
+      lastSeen: Date.now(),
+      signedVia: user.signedVia,
+      roles: {
+        guest: true
+      }
+    } 
+
+    //jeigu jau egzistavo toks vartotojas, mes nekuriame naujo
+    // o sujungiame (merge:true) su pries tai egzistavusia informacija.
+    return userRef.set(data, { merge: true })
+
+    
   }
 }

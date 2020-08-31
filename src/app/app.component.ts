@@ -1,20 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'fish-website';
   ids: Array<String> = ['Apie mane', 'Paslaugos', 'Kontaktai'];
   hamburgerHidden: boolean = true;
   activeRouterLinks: boolean = false;
   activeNonRouterLinks: boolean = true;
   routerUrlLink: boolean = false;
+  user;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private auth: AuthService) {}
+
+  ngOnInit(){
+    this.auth.user$.subscribe(user=> this.user = user);
+  }
 
   activateRouterLinks() {
     this.activeRouterLinks = true;
@@ -53,5 +59,10 @@ export class AppComponent {
                return {'margin-top.px': '260'};
              }
     return {};
+  }
+
+  
+  isAdmin(){
+    return this.auth.isAdmin(this.user);
   }
 }

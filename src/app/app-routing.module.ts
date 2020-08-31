@@ -9,6 +9,8 @@ import { RegisterComponent } from './components/admin/register/register.componen
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { ResetPswComponent } from './components/admin/reset-psw/reset-psw.component';
+import { AuthGuard } from './guards/auth.guard';
+import { AdminImagesComponent } from './components/admin/admin-images/admin-images.component';
 
 const routerOptions: ExtraOptions = {
   scrollPositionRestoration: 'enabled',
@@ -23,16 +25,19 @@ const routes: Routes = [
   { path:'articles', component: ArticlesComponent },
   { path:'admin', children:[
     {
-      path: 'dashboard',
-      component: DashboardComponent
-    },
-    {
       path: 'photos',
-      component: DashboardComponent
+      component: AdminImagesComponent,
+      canActivate: [AuthGuard]
     },
     {
       path: 'articles',
-      component: DashboardComponent
+      component: DashboardComponent,
+      canActivate: [AuthGuard]
+    },
+    {
+      path: '',
+      component: DashboardComponent,
+      canActivate: [AuthGuard]
     },
   ]},
   { path:'', component: HomeComponent },

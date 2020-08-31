@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     //              '\npassword: ' + form.value.password);
     if(form.valid){
       this.auth.loginViaEmail(form.value.email, form.value.password).then(()=>{
-        this.router.navigate(['/admin/dashboard']);
+        this.router.navigate(['/admin']);
       })
     }
   }

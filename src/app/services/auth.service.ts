@@ -18,6 +18,7 @@ export class AuthService {
     
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
+        console.log('authService constructor: ' + user.email);
           // Logged in
         if (user) {
           return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
@@ -32,7 +33,6 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password).then(
       (user) => {
         console.log(user);
-        
       }
     );
   }
@@ -73,9 +73,11 @@ export class AuthService {
     const role = ['admin'];
     return this.checkAuthorization(user, role);
   }
+
   private checkAuthorization(user: User, allowedRoles: string[]): boolean {
     if (!user) return false;
     if (user['roles'] == undefined) return false;
+    console.log('user roles: '+user['roles']);
     for (const role of allowedRoles) {
       if ( user['roles'][role] ) {
         return true

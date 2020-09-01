@@ -8,7 +8,6 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  title = 'fish-website';
   ids: Array<String> = ['Apie-mane', 'Paslaugos', 'Kontaktai'];
   hamburgerHidden: boolean = true;
   activeRouterLinks: boolean = false;
@@ -37,9 +36,9 @@ export class AppComponent implements OnInit{
     this.aR.fragment.subscribe(param => {
         if(param){
           document.querySelector(`#${param}`).scrollIntoView({
-              behavior: 'auto',
-              block: 'center',
-              inline: 'center'
+              behavior: 'smooth',
+              block: 'start',
+              inline: 'nearest'
           });
         }
     });

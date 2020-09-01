@@ -20,13 +20,12 @@ export class HomeComponent implements OnInit {
       setTimeout(()=>{
         if(param){
           document.querySelector(`#${param}`).scrollIntoView({
-              behavior: 'auto',
-              block: 'center',
-              inline: 'center'
+              behavior: 'smooth',
+              block: 'start',
+              inline: 'nearest'
           });
         }
-      }, 500);
+      }, 0);
     });
   }
-
 }

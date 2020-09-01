@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { images } from '../models/images'
 
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -11,27 +11,35 @@ import { AngularFireStorage } from '@angular/fire/storage';
 export class ImageService {
 
   constructor(private afs: AngularFirestore, 
-    private storage: AngularFireStorage) { }
+              private storage: AngularFireStorage) { }
 
   fetchImages(): Observable<any> {
     return of(images);
   }
 
+  uploadProgress = null;
+  imageUrl: string = null;
+  
   async uploadPicture(file) {
     let imageName = Date.now() + '.jpg';
-    const uploadTask = this.storage.upload(
-      `${imageName}`,
-      file
-    );
+    const uploadTask: AngularFireUploadTask = this.storage.upload(`${imageName}`, file);
 
     //jeigu reikia progress bar upload
-    // uploadTask.percentageChanges().subscribe(change => {
-    //   this.uploadProgress = change;
-    // });
- 
+    uploadTask.percentageChanges().subscribe(change => {
+      this.uploadProgress = change;
+      console.log(this.uploadProgress);
+    });
+    
+    console.log(typeof(uploadTask)); // why object but not promise?
     uploadTask.then(async res => {
-      let url = res.downloadURL;
-      this.saveImageNameInDatabase(url, imageName);
+      console.log('res: ' + res.downloadURL);
+      // let url = res.downloadURL;
+      console.log(this.storage.ref(`${imageName}`).getDownloadURL());
+      this.storage.ref(`${imageName}`).getDownloadURL().subscribe(url => this.imageUrl = url);
+      console.log(this.imageUrl);
+      setTimeout(() => {
+        this.saveImageNameInDatabase(this.imageUrl, imageName);
+      }, 500);
     });
   }
 

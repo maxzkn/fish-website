@@ -13,8 +13,8 @@ import { AuthGuard } from './guards/auth.guard';
 import { AdminImagesComponent } from './components/admin/admin-images/admin-images.component';
 
 const routerOptions: ExtraOptions = {
-  scrollPositionRestoration: 'enabled',
-  anchorScrolling: 'enabled',
+  // scrollPositionRestoration: 'enabled',
+  // anchorScrolling: 'enabled',
 }
 
 const routes: Routes = [

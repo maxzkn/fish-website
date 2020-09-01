@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "admin-bar.component.scss"
+    ],
+    "names": [],
+    "file": "admin-bar.component.css"
+}

@@ -14,8 +14,9 @@ export class AuthGuard implements CanActivate {
     //su pipe pagalba galime istraukti butent tai ko mums reikia
       return this.auth.user$.pipe(
            take(1),
-           map(user => !!user), // <-- map to boolean (NOT NOT funkcija grazina True/False)
+           map(user => {console.log('authGuard map user: '+user.email); return !!user}), // <-- map to boolean (NOT NOT funkcija grazina True/False)
            tap(loggedIn => {
+             console.log('authGuard logged in user: '+loggedIn);
              if (!loggedIn) {
                 //jeigu vartotojas neprisijunges, nukreipiame i login puslapi
                this.router.navigate(['/login']);

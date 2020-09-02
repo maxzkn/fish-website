@@ -7,8 +7,9 @@
                    name="image"
                    autocomplete="off"/>
             <div class="images" *ngFor="let photo of photos; let i = index"> <!--async???-->
-                <img src="{{ photo.url }}" alt="image(i + 1)" #imageDelete>
-                <button type="button" (click)="deletePicture(imageDelete)">Delete</button>
+                <div class="deleteButton" (click)="deletePicture(imageDelete)">
+                    <img src="{{ photo.url }}" alt="image(i + 1)" #imageDelete>
+                </div>
             </div>
         </div>
     </div>

@@ -76,6 +76,5 @@ export class ImageService {
     this.storage.storage.ref(`${this.imageNameToDelete}`).delete();
     this.afs.collection('/images').doc(this.imageIdToDelete).delete();
   }
-
   // ar nereikia unsubscribint nuo visu subscribe kad isvengti memory leaks?
 }

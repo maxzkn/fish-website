@@ -9,7 +9,8 @@ import { ImageService } from 'src/app/services/image.service';
 export class AdminImagesComponent implements OnInit {
 
   selectedFile: File = null;
-  pics: Array<Object> = [];
+  selectedFileSrc: string = '';
+  photos: Array<Object> = [];
 
   constructor(private imageService: ImageService) { }
 
@@ -24,6 +25,11 @@ export class AdminImagesComponent implements OnInit {
   }
 
   showPictures() {
-    this.imageService.getAllImages().subscribe(pics => this.pics = pics);
+    this.imageService.getAllImages().subscribe(photos => this.photos = photos);
+  }
+
+  deletePicture(image: HTMLElement) {
+    this.selectedFileSrc = image['src'];
+    this.imageService.deleteImageFromDatabase(this.selectedFileSrc);
   }
 }

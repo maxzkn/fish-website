@@ -12,16 +12,16 @@ import { switchMap } from 'rxjs/operators';
 export class AuthService {
   
   user$: Observable<User>;
-   
+  // kada kvieciamas konstruktorius? pvz kai login ar register tai kvieciami login ir register metodai.
   constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth) {
-    
-    
+    // kodel negalime grazinti info apie user loginViaEmail metode? kodel cia?
     this.user$ = this.afAuth.authState.pipe(
-      switchMap(user => {
+      switchMap(user => { // o jeigu nenaudoti switchMap?
         console.log('authService constructor: ' + user.email);
           // Logged in
         if (user) {
-          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+          console.log('authService valueChanges(): '+this.afs.doc<User>(`users/${user.uid}`).valueChanges().subscribe(res => console.log(res)));
+          return this.afs.doc<User>(`users/${user.uid}`).valueChanges(); // ka cia graziname? kodel valueChanges?
         } else {
           // Logged out
           return of(null);
@@ -32,7 +32,7 @@ export class AuthService {
   loginViaEmail(email, password){
     return this.afAuth.signInWithEmailAndPassword(email, password).then(
       (user) => {
-        console.log(user);
+        console.log('signInWithEmailAndPassword: ' + user);
       }
     );
   }
@@ -44,7 +44,7 @@ export class AuthService {
   signupViaEmail(form) {
     return this.afAuth.createUserWithEmailAndPassword(form.email, form.password)
     .then(result => {
-      
+        // kam sitas objektas jeigu sukureme class User?
         let user = {
           uid: result.user.uid, 
           email: result.user.email,
@@ -77,7 +77,7 @@ export class AuthService {
   private checkAuthorization(user: User, allowedRoles: string[]): boolean {
     if (!user) return false;
     if (user['roles'] == undefined) return false;
-    console.log('user roles: '+user['roles']);
+    // console.log('user roles: '+user['roles']);
     for (const role of allowedRoles) {
       if ( user['roles'][role] ) {
         return true

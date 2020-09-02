@@ -5,7 +5,7 @@ export class User{
     roles: Roles;
     signedVia: String;
     
-    constructor(authData){
+    constructor(authData){ // authData??
         this.email = authData.email;
         this.roles = { guest: true }
     }

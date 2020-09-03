@@ -5,10 +5,18 @@
                    id="file"
                    (change)="selectPicture($event)"
                    name="image"
-                   autocomplete="off"/>
+                   autocomplete="off"
+                   accept="image/*"/>
             <div class="images" *ngFor="let photo of photos; let i = index"> <!--async???-->
-                <div class="deleteButton" (click)="deletePicture(imageDelete)">
-                    <img src="{{ photo.url }}" alt="image(i + 1)" #imageDelete>
+                <div>
+                    <img src="{{ photo.url }}"
+                         alt="image(i + 1)"
+                         #imageDelete>
+                    <div class="deleteButton displayDiv"
+                         (mouseover)="displayDiv($event)"
+                         (mouseout)="displayDiv($event)"
+                         id="deleteBtn"
+                         (click)="deletePicture(imageDelete)">-</div>
                 </div>
             </div>
         </div>

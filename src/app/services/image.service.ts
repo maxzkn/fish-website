@@ -22,8 +22,8 @@ export class ImageService {
     return of(images);
   }
   
-  async uploadPicture(file) {
-    let imageName = Date.now() + '.jpg';
+  async uploadPicture(file) { // async.........
+    let imageName = file.name.split('.').slice(0, -1).join(" ") + '_' + Date.now();
     const uploadTask: AngularFireUploadTask = this.storage.upload(`${imageName}`, file);
 
     //jeigu reikia progress bar upload
@@ -32,7 +32,6 @@ export class ImageService {
       console.log(this.uploadProgress);
     });
     
-    console.log(typeof(uploadTask));
     uploadTask.then(async res => {
       console.log('res.downloadURL: ' + res.downloadURL); // undefined
       // let url = res.downloadURL;

@@ -115,23 +115,20 @@
 .wrapper-images {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
     margin-top: 50px;
 
     .images {
-        flex: 25%;
         padding: 10px;
-        text-align: center;
     
         img {
-            width: 100%;
+            width: 200px;
             height: 200px;
             object-fit: cover;
-            // object-fit: contain;
             transition: 0.3s;
     
             &:hover {
                 transform: scale(1.1);
-                // height: 220px;
                 transition: 0.3s;
                 cursor: pointer;
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
@@ -147,24 +144,6 @@
     .wrapper-images {
         margin-top: 150px;
         margin-bottom: 50px;
-    }
-}
-
-@media screen and (max-width: 700px) {
-    .wrapper-images {
-        .images {
-            flex: 50%;
-            padding: 10px;
-
-            img {
-                object-fit: contain;
-                height: 260px;
-            }
-        }
-
-        .img1 {
-            object-fit: cover;
-        }
     }
 }
 

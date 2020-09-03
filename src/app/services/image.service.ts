@@ -64,16 +64,16 @@ export class ImageService {
       if(image['url'] === imageSource) {
         console.log(image);
         this.imageNameToDelete = image['name'];
+        this.storage.storage.ref(`${this.imageNameToDelete}`).delete();
       }
     }));
 
     this.afs.collection('/images', ref => ref.where('url', '==', `${imageSource}`)).
     snapshotChanges().subscribe(image => {
+      console.log(image[0]);
       this.imageIdToDelete = image[0].payload.doc.id;
+      this.afs.collection('/images').doc(this.imageIdToDelete).delete();
     });
-
-    this.storage.storage.ref(`${this.imageNameToDelete}`).delete();
-    this.afs.collection('/images').doc(this.imageIdToDelete).delete();
   }
   // ar nereikia unsubscribint nuo visu subscribe kad isvengti memory leaks?
 }

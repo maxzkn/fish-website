@@ -10,7 +10,7 @@
             <div class="images" *ngFor="let photo of photos; let i = index"> <!--async???-->
                 <div>
                     <img src="{{ photo.url }}"
-                         alt="image(i + 1)"
+                         alt="image_{{ i + 1 }}"
                          #imageDelete>
                     <div class="deleteButton displayDiv"
                          (mouseover)="displayDiv($event)"

@@ -73,8 +73,8 @@
 }
 
 .wrapper-images .images img:hover {
-  -webkit-transform: scale(1.05);
-          transform: scale(1.05);
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
   -webkit-transition: 0.3s;
   transition: 0.3s;
   cursor: pointer;

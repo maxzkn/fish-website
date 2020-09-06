@@ -9,7 +9,7 @@ import { ImageService } from '../../services/image.service'
 export class PhotosComponent implements OnInit {
   images: Array<Object> = [];
   slideIndex: number = 0;
-  e: KeyboardEvent;
+  event: KeyboardEvent;
   // newImagesArray: Array<Object> = []; // rodoma po 4 slide
   // idx: number = 0;
   // isCarouselActive: boolean = false;
@@ -43,16 +43,17 @@ export class PhotosComponent implements OnInit {
   }
 
   plusSlide(n): void {
-    this.showSlide(this.slideIndex += n, this.e = undefined);
+    this.showSlide(this.slideIndex += n, this.event = undefined);
   }
 
   currentSlide(n, event: KeyboardEvent): void {
-    this.showSlide(this.slideIndex = n, this.e = event);
+    console.log(event.type);
+    this.showSlide(this.slideIndex = n, this.event = event);
   }
 
-  showSlide(slideIndex, e);
+  showSlide(slideIndex, event);
 
-  showSlide(n, e): void {
+  showSlide(n, event): void {
     let i;
     let modalImagesMain = document.getElementsByClassName('modal-image-main') as HTMLCollectionOf<HTMLElement>;
     let modalImagesArray = document.getElementsByClassName('modal-images') as HTMLCollectionOf<HTMLElement>;
@@ -61,7 +62,7 @@ export class PhotosComponent implements OnInit {
     //   // jeigu pasirinktas slide yra paskutinis naujam masyve
     //   if (n === modalImagesArray.length - 1) {
     //     // jeigu pasirinktas slide nera paskutinis
-    //     if (modalImagesArray[n].id != this.images[this.images.length-1]['id]) {
+    //     if (modalImagesArray[n].id != this.images[this.images.length-1]['id']) {
     //       this.idx = this.idx + 1; // inkrementuoti iki tol kol nepasibaigs slide main masyve
     //     }
     //       // kiekvienas [i] slide naujam masyve yra keičiamas [i+1] sekančiu slide iš viso slide masyvo
@@ -75,7 +76,7 @@ export class PhotosComponent implements OnInit {
     // carousel(n); // šaukiama funkcija
 
     // // jeigu pasirinktas slide yra pats pirmas, bet jis nera lygus pačio pirmo slide id
-    // if (this.isCarouselActive && this.slideIndex == 0 && !(modalImagesArray[this.slideIndex].id === this.images[0].id)) {
+    // if (this.isCarouselActive && this.slideIndex == 0 && !(modalImagesArray[this.slideIndex].id === this.images[0]['id'])) {
     //   if (this.idx > 0) {
     //     this.idx = this.idx - 1;
     //     // kiekvienas [i] slide naujam masyve yra keičiamas [i-1] slide iš viso slide masyvo
@@ -100,31 +101,27 @@ export class PhotosComponent implements OnInit {
       modalImagesArray[i].className = modalImagesArray[i].className.replace(' active', '');
     }
 
-    if (e?.key === 'ArrowRight' || e?.type === 'click') {
-      if (modalImagesArray[this.slideIndex].id === modalImagesArray[modalImagesArray.length - 1].id) {
+    if (event?.key === 'ArrowRight' || event?.key === 'ArrowLeft') {
+
+      if (event?.key === 'ArrowRight' && modalImagesArray[this.slideIndex].id === modalImagesArray[modalImagesArray.length - 1].id) {
         this.slideIndex = -1;
       }
-      if (e?.type === 'click') {
-        modalImagesArray[this.slideIndex].focus();
-        modalImagesMain[this.slideIndex].style.display = 'block';
-        modalImagesArray[this.slideIndex].className += " active";
-      } else {
-        modalImagesArray[this.slideIndex + 1].focus();
-        modalImagesMain[this.slideIndex + 1].style.display = 'block';
-        modalImagesArray[this.slideIndex + 1].className += " active";
+
+      if (event?.key === 'ArrowRight') {
+        this.slideIndex = this.slideIndex + 1;
+      }
+
+      if (event?.key === 'ArrowLeft') {
+        if (modalImagesArray[this.slideIndex].id === modalImagesArray[0].id) {
+          this.slideIndex = modalImagesArray.length - 1;
+        } else {
+          this.slideIndex = this.slideIndex - 1;
+        }
       }
     }
-    else if (e?.key === 'ArrowLeft') {
-      if (modalImagesArray[this.slideIndex].id === modalImagesArray[0].id) {
-        this.slideIndex = modalImagesArray.length;
-      }
-      modalImagesArray[this.slideIndex - 1].focus();
-      modalImagesMain[this.slideIndex - 1].style.display = 'block';
-      modalImagesArray[this.slideIndex - 1].className += " active";
-    }
-    else {
-      modalImagesMain[this.slideIndex].style.display = 'block';
-      modalImagesArray[this.slideIndex].className += " active";
-    }
+
+    modalImagesArray[this.slideIndex].focus();
+    modalImagesMain[this.slideIndex].style.display = 'block';
+    modalImagesArray[this.slideIndex].className += " active";
   }
 }

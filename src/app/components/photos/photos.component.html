@@ -5,7 +5,7 @@
                 <img (click)="openModal(); currentSlide(i, $event);"
                      id="{{ image.id }}"
                      src="{{ image.url }}"
-                     alt="image(i + 1)">
+                     alt="image_{{ i + 1 }}">
             </div>
         </div>
     </div>
@@ -29,9 +29,9 @@
                 <!-- <div class="modal-images-divs" *ngFor="let image of newImagesArray; let i = index"> -->
                     <img class="modal-images"
                          id="{{ image.id }}"
-                         (click)="currentSlide(i)"
                          src="{{ image.url }}"
-                         alt="image(i + 1)"
+                         alt="image_{{ i + 1 }}"
+                         (click)="currentSlide(i, $event)"
                          (keydown)='currentSlide(i, $event)'
                          tabindex="0">
                 </div>

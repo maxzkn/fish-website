@@ -34,6 +34,7 @@ export class AppComponent implements OnInit{
     this.hamburgerHidden = true;
     
     this.aR.fragment.subscribe(param => {
+      setTimeout(()=>{
         if(param){
           document.querySelector(`#${param}`).scrollIntoView({
               behavior: 'smooth',
@@ -41,6 +42,8 @@ export class AppComponent implements OnInit{
               inline: 'nearest'
           });
         }
+        // uzdejau irgi cia timeout nes kitaip buvo problemos kur aprasiau home.component.ts
+      }, 100);
     });
     
   }

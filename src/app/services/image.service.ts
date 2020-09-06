@@ -23,6 +23,7 @@ export class ImageService {
   }
   
   async uploadPicture(file) { // async.........
+    // imagename_date formatas
     let imageName = file.name.split('.').slice(0, -1).join(" ") + '_' + Date.now();
     const uploadTask: AngularFireUploadTask = this.storage.upload(`${imageName}`, file);
 
@@ -35,7 +36,6 @@ export class ImageService {
     uploadTask.then(async res => {
       console.log('res.downloadURL: ' + res.downloadURL); // undefined
       // let url = res.downloadURL;
-      console.log(this.storage.ref(`${imageName}`).getDownloadURL());
       this.storage.ref(`${imageName}`).getDownloadURL().subscribe(url => this.imageUrl = url);
       console.log(this.imageUrl); // buvo null, todel padariau setTimeout
       setTimeout(() => {
@@ -59,6 +59,7 @@ export class ImageService {
   //istrinti nuotrauka.. service istrina is storage ir is collection....
   deleteImageFromDatabase(imageSource) {
     console.log('hi')
+    
     this.afs.collection('/images').valueChanges().
     subscribe(images => images.map(image => {
       if(image['url'] === imageSource) {
@@ -70,7 +71,9 @@ export class ImageService {
 
     this.afs.collection('/images', ref => ref.where('url', '==', `${imageSource}`)).
     snapshotChanges().subscribe(image => {
+      console.log('hey');
       console.log(image[0]);
+      // cannot read property payload of undefined, nes kvieciamas 2 kartus - why?
       this.imageIdToDelete = image[0].payload.doc.id;
       this.afs.collection('/images').doc(this.imageIdToDelete).delete();
     });

@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="field-email">
-                <label for="email">E-mail: </label> <!--kai pasirenki auto email tai neveikia validatoriai-->
+                <label for="email">E-mail: </label>
                 <input id="email" 
                     type="email" 
                     formControlName="email" 
@@ -35,7 +35,7 @@
                     [ngClass]="{'fieldInvalid': registerForm.controls.email.invalid && 
                                                 registerForm.controls.email.touched,
                                 'fieldValid':   registerForm.controls.email.valid &&
-                                                registerForm.controls.email.touched}"> <!--formControlName-->
+                                                registerForm.controls.email.touched}">
                 <div class="email-errors" *ngIf="registerForm.controls.email.errors">
                     <p *ngIf="registerForm.controls.email.touched &&
                             registerForm.controls.email.errors.required">

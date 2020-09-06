@@ -10,6 +10,7 @@ export class AuthGuard implements CanActivate {
 
   constructor(private auth: AuthService, private router: Router) {}
 
+  // kam next ir state?
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     //Patikrinime ar vartotojas yra prisijunges
     //su pipe pagalba galime istraukti butent tai ko mums reikia

@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   //inicijuoja po puslapio visu elementu uzkrovimo...
   ngAfterViewInit(){
    this.aR.fragment.subscribe(param => {
+     // jeigu nuimti timeout tai skrolina ne ten po psl perkrovimo
       setTimeout(()=>{
         if(param){
           document.querySelector(`#${param}`).scrollIntoView({
@@ -25,7 +26,8 @@ export class HomeComponent implements OnInit {
               inline: 'nearest'
           });
         }
-      }, 0);
+        // jeigu uzdeti laika, tai skrolina su uzdelsimu pirma karta
+      }, 100);
     });
   }
 }

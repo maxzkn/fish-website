@@ -12,7 +12,6 @@ export class ResetPswComponent implements OnInit {
   resetForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private router: Router,
               private auth: AuthService) { }
 
   ngOnInit(): void {

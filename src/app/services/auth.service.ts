@@ -20,7 +20,7 @@ export class AuthService {
         console.log('authService constructor: ' + user.email);
           // Logged in
         if (user) {
-          return this.afs.doc<User>(`users/${user.uid}`).valueChanges(); // ka cia graziname? kodel valueChanges?
+          return this.afs.doc<User>(`users/${user.uid}`).valueChanges(); // kam cia graziname info apie user?
         } else {
           // Logged out
           return of(null);

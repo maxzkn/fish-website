@@ -12,11 +12,6 @@ import { ResetPswComponent } from './components/admin/reset-psw/reset-psw.compon
 import { AuthGuard } from './guards/auth.guard';
 import { AdminImagesComponent } from './components/admin/admin-images/admin-images.component';
 
-const routerOptions: ExtraOptions = {
-  // scrollPositionRestoration: 'enabled',
-  // anchorScrolling: 'enabled',
-}
-
 const routes: Routes = [
   { path:'login', component: LoginComponent },
   { path:'register', component: RegisterComponent },
@@ -44,7 +39,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, routerOptions), CommonModule],
+  imports: [RouterModule.forRoot(routes), CommonModule],
   exports: [RouterModule],
 })
 export class AppRoutingModule { }

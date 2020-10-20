@@ -1,1 +1,17 @@
-/* No CSS *//*# sourceMappingURL=home.component.css.map */
+.wrapper-app {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+@media screen and (max-width: 860px) {
+  .wrapper-app {
+    margin-top: 140px;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .wrapper-app {
+    margin-top: 100px;
+  }
+}
+/*# sourceMappingURL=home.component.css.map */

@@ -1,1 +1,5 @@
-/* No CSS *//*# sourceMappingURL=articles.component.css.map */
+section.articles {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+/*# sourceMappingURL=articles.component.css.map */

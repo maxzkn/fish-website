@@ -1,9 +1,9 @@
-<div class="login-form">
-    <div class="wrapper-form">
+<div class="login-form" [ngStyle]="applyMargin()">
+    <!-- <div class="wrapper-form"> -->
         <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)"> -->
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)"> <!--[formGroup]-->
+        <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
             <div class="field-email">
-                <label for="email">E-mail: </label> <!--kai pasirenki auto email tai neveikia validatoriai-->
+                <label for="email">E-mail: </label>
                 <input id="email" 
                     type="email" 
                     formControlName="email" 
@@ -11,7 +11,7 @@
                     [ngClass]="{'fieldInvalid': loginForm.controls.email.invalid && 
                                                 loginForm.controls.email.touched,
                                 'fieldValid':   loginForm.controls.email.valid &&
-                                                loginForm.controls.email.touched}"> <!--formControlName-->
+                                                loginForm.controls.email.touched}">
                 <div class="email-errors" *ngIf="loginForm.controls.email.errors">
                     <p *ngIf="loginForm.controls.email.touched &&
                             loginForm.controls.email.errors.required">
@@ -72,5 +72,76 @@
                     class="buttonValid"
                     (click)='resetPassword()'>Forgot password?</button>
         </form>
-    </div>
+    </div> -->
+
+    <mat-card>
+        <mat-card-content>
+            <div class="header">
+                <h2>Login</h2>
+            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+                <div class="email-field">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>E-mail</mat-label>
+                        <input formControlName="email"
+                               matInput
+                               required
+                               placeholder="Ex: yourmail@mail.com">
+                        <mat-error *ngIf="loginForm.get('email').errors?.required">
+                            Please provide your e-mail address.
+                        </mat-error>
+                        <mat-error *ngIf="loginForm.get('email').errors?.email">
+                            Please enter a valid e-mail address.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="password-field">
+                    <div class="forgotPassword">
+                        <a class="forgotLink"><span (click)='resetPassword()'>Forgot password?</span></a>
+                    </div>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input formControlName="password"
+                               matInput
+                               required
+                               [type]="_hidePassword ? 'password' : 'text'">
+                        <button mat-icon-button
+                                aria-label="Hide password"
+                                aria-pressed="Show password"
+                                matSuffix
+                                (click)="hidePassword()">
+                            <mat-icon>{{ _hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="loginForm.get('password').errors?.required">
+                            Please provide your password.
+                        </mat-error>
+                        <mat-error *ngIf="loginForm.get('password').errors?.minlength">
+                            Your password must be more than {{ minPswLength }} characters long.
+                        </mat-error>
+                        <mat-error *ngIf="loginForm.get('password').errors?.maxlength">
+                            Your password must be no more than {{ maxPswLength }} characters long.
+                        </mat-error>
+                        <mat-error *ngIf="loginForm.get('password').errors?.hasNumber">
+                            Your password must have at least 1 number.
+                        </mat-error>
+                        <mat-error *ngIf="loginForm.get('password').errors?.hasCapital">
+                            Your password must have at least 1 capital letter.
+                        </mat-error>
+                        <mat-error *ngIf="loginForm.get('password').errors?.hasLower">
+                            Your password must have at least 1 lower letter.
+                        </mat-error>
+                        <mat-error *ngIf="loginForm.get('password').errors?.hasSpecial">
+                            Your password must have at least 1 special character.<br>
+                            <span style="font-size: 11px">Allowed special characters: {{ allowedSpecial }}</span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="loginBtn">
+                    <button mat-flat-button color="primary"
+                            type="submit"
+                            [disabled]="!loginForm.valid">Login</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
 </div>

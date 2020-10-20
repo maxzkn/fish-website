@@ -1,0 +1,15 @@
+.wrapper-app {
+    transition: 0.5s;
+}
+
+@media screen and (max-width: 860px) {
+    .wrapper-app {
+        margin-top: 140px;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .wrapper-app {
+        margin-top: 100px;
+    }
+}

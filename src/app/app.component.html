@@ -35,14 +35,14 @@
             <li *ngFor="let link of ids">
               <a [routerLink]="['/']"
                  [fragment]='link'
-                 (click)='activateNonRouterLinks()'
+                 (click)='hideHamburgerMenu()'
                  routerLinkActive='active'>{{ link.replace('-', ' ') }}</a> <!--.?-->
             </li>
             <li><a routerLink='/photos'
-                   (click)='activateRouterLinks()'
+                   (click)='hideHamburgerMenu()'
                    routerLinkActive='active'>Nuotraukos</a></li>
             <li><a routerLink='/articles' 
-                   (click)='activateRouterLinks()'
+                   (click)='hideHamburgerMenu()'
                    routerLinkActive='active'>Straipsniai</a></li>
           </ul>
         </div>
@@ -53,15 +53,8 @@
     </div>
   </div>
 </header>
-
-<!-- <ui-admin-bar *ngIf="isAdmin()"></ui-admin-bar> -->
-<ui-admin-bar></ui-admin-bar>
-
+<ui-admin-bar *ngIf="isAdmin()"></ui-admin-bar>
 <router-outlet></router-outlet>
-<!-- <div class="wrapper-app"
-     *ngIf="activeNonRouterLinks && !isRouterUrlLink()"
-     [ngStyle]="marginStyle()">
-</div> -->
 <footer>
   <p>Visos teisės priklauso: <a class="contacts-a"
                                 href="https://jokubasfisas.lt/">www.jokubasfisas.lt</a> @ 2020</p>

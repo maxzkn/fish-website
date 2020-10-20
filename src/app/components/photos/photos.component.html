@@ -1,34 +1,36 @@
-<div class="wrapper-main">
+<div class="wrapper-main" [ngStyle]="applyMargin()">
     <div class="container" id="hideContainer">
         <div class="wrapper-images">
             <div class="images" *ngFor="let image of images; let i = index">
                 <img (click)="openModal(); currentSlide(i, $event);"
-                     id="{{ image.id }}"
+                     id="{{ i + 1 }}"
                      src="{{ image.url }}"
                      alt="image_{{ i + 1 }}">
             </div>
         </div>
     </div>
     <div class="modal" id="myModal">
-        <span title="Close" class="closeModal" (click)="closeModal()">&times;</span>
+        <div class="wrapper-close-modal">
+            <span title="Close" class="closeModal" (click)="closeModal()">&times;</span>
+        </div>
         <div class="modal-content">
             <div class="wrapper-image-main">
                 <div class="modal-image-main" *ngFor="let image of images; let i = index">
                 <!-- <div class="modal-image-main" *ngFor="let image of newImagesArray; let i = index"> -->
-                    <img src="{{ image.url }}" class="img{{ image.id }}" id="{{ image.id }}" alt="image(i + 1)">
+                    <img src="{{ image.url }}" class="img{{ i + 1 }}" id="{{ i + 1 }}" alt="image(i + 1)">
                     <div class="image-number">
-                        {{ image.id }} / {{ images.length }}
+                        {{ i + 1 }} / {{ images.length }}
                     </div>
+                    <a class="previous" (click)="plusSlide(-1)">&#10094;</a>
+                    <a class="next" (click)="plusSlide(1)">&#10095;</a>
                 </div>
-                <a class="previous" (click)="plusSlide(-1)">&#10094;</a>
-                <a class="next" (click)="plusSlide(1)">&#10095;</a>
             </div>
             <div class="wrapper-modal-images">
                 <div class="modal-images-divs"
                      *ngFor="let image of images; let i = index">
                 <!-- <div class="modal-images-divs" *ngFor="let image of newImagesArray; let i = index"> -->
                     <img class="modal-images"
-                         id="{{ image.id }}"
+                         id="{{ i + 1 }}"
                          src="{{ image.url }}"
                          alt="image_{{ i + 1 }}"
                          (click)="currentSlide(i, $event)"

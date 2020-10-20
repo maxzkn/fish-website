@@ -182,11 +182,6 @@ footer {
     visibility: visible;
     text-align: center;
   }
-  .wrapper-app {
-    margin-top: 150px;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-  }
 }
 
 @media screen and (max-width: 570px) {
@@ -195,9 +190,6 @@ footer {
   }
   .header-nav-wrapper .hamburgerShown, .header-nav-wrapper .hamburgerHidden {
     top: 63px !important;
-  }
-  .wrapper-app {
-    margin-top: 105px;
   }
 }
 

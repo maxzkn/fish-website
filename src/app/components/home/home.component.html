@@ -1,5 +1,7 @@
  <!--koks skirtumas: [ngStyle] ir ng-style?-->
-  <app-hero></app-hero>
-  <app-about-me [attr.id]='ids[0]'></app-about-me>
-  <app-services [attr.id]='ids[1]'></app-services>
-  <app-contacts [attr.id]='ids[2]'></app-contacts>
+ <div class="wrapper-app" [ngStyle]="applyMargin()">
+    <app-hero></app-hero>
+    <app-about-me [attr.id]='ids[0]'></app-about-me>
+    <app-services [attr.id]='ids[1]'></app-services>
+    <app-contacts [attr.id]='ids[2]'></app-contacts>
+ </div>

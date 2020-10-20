@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { HamburgerService } from 'src/app/services/hamburger.service';
 import { ImageService } from '../../services/image.service'
 
 @Component({
@@ -14,14 +15,19 @@ export class PhotosComponent implements OnInit {
   // idx: number = 0;
   // isCarouselActive: boolean = false;
 
-  constructor(private imageService: ImageService) { }
+  constructor(private imageService: ImageService,
+    private hamburger: HamburgerService) { }
 
   ngOnInit(): void {
     this.loadImages();
   }
 
+  applyMargin() {
+    return this.hamburger.marginStyleOther();
+  }
+
   loadImages(): void {
-    this.imageService.fetchImages().subscribe(images => this.images = images);
+    this.imageService.getAllImages().subscribe(images => this.images = images);
 
     // if (this.images.length > 4) {
     //   this.newImagesArray = this.images.slice(0, 4);

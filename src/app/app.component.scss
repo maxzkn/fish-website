@@ -187,11 +187,6 @@ footer {
             }
         }
     }
-
-    .wrapper-app {
-        margin-top: 150px;
-        transition: 0.5s;
-    }
 }
 
 @media screen and (max-width: 570px) {
@@ -203,10 +198,6 @@ footer {
         .hamburgerShown,.hamburgerHidden {
             top: 63px !important;
         }
-    }
-
-    .wrapper-app {
-        margin-top: 105px;
     }
 }
 

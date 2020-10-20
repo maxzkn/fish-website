@@ -26,6 +26,13 @@ import { ResetPswComponent } from './components/admin/reset-psw/reset-psw.compon
 import { AuthGuard } from './guards/auth.guard';
 import { AdminBarComponent } from './components/ui/admin-bar/admin-bar.component';
 import { AdminImagesComponent } from './components/admin/admin-images/admin-images.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -53,6 +60,12 @@ import { AdminImagesComponent } from './components/admin/admin-images/admin-imag
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]

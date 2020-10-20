@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HamburgerService } from 'src/app/services/hamburger.service';
 import { ImageService } from 'src/app/services/image.service';
 
 @Component({
@@ -12,10 +13,15 @@ export class AdminImagesComponent implements OnInit {
   selectedFileSrc: string = '';
   photos: Array<Object> = [];
 
-  constructor(private imageService: ImageService) { }
+  constructor(private imageService: ImageService,
+    private hamburger: HamburgerService) { }
 
   ngOnInit(): void {
     this.showPictures();
+  }
+
+  applyMargin() {
+    return this.hamburger.marginStyleOther();
   }
 
   displayDiv(event: any) {
@@ -28,7 +34,7 @@ export class AdminImagesComponent implements OnInit {
       event.target.className += ' displayDiv';
     }
   }
-  
+
   selectPicture(event) {
     this.selectedFile = event.target.files[0];
     console.log(event.target.files[0]);

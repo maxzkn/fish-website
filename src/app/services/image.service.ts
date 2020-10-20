@@ -18,9 +18,9 @@ export class ImageService {
   constructor(private afs: AngularFirestore, 
               private storage: AngularFireStorage) { }
 
-  fetchImages(): Observable<any> {
-    return of(images);
-  }
+  // fetchImages(): Observable<any> {
+  //   return of(images);
+  // }
   
   async uploadPicture(file) { // async.........
     // imagename_date formatas
@@ -29,7 +29,7 @@ export class ImageService {
 
     //jeigu reikia progress bar upload
     uploadTask.percentageChanges().subscribe(change => {
-      this.uploadProgress = change; // o kur deklaruotas uploadProgress?
+      this.uploadProgress = change;
       console.log(this.uploadProgress);
     });
     
@@ -46,7 +46,7 @@ export class ImageService {
 
   //gauna visas nuotraukas is duomenu bazes, 
   // pirma gauname url kur guli musu nuotraukos
-  getAllImages(){
+  getAllImages(): Observable<any> {
     return this.afs.collection('/images').valueChanges(); // kodel valueChanges?
   }
   

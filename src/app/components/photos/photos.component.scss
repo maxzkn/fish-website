@@ -1,8 +1,8 @@
 .wrapper-main {
     min-height: 100vh;
-    height: 100%;
     width: 100%;
     display: flex;
+    transition: 0.5s;
 }
 
 [tabindex] {
@@ -14,27 +14,30 @@
     width: 100%;
     min-height: 100%;
     background: black;
-}
 
-.closeModal {
-    cursor: pointer;
-    color: white;
-    position: absolute;
-    top: 25px;
-    right: 50px;
-    font-size: 35px;
-    font-weight: bold;
+    .wrapper-close-modal {
+        display: flex;
+        justify-content: flex-end;
 
-    &:hover {
-        color: rgb(211, 211, 211);
-        transition: 0.3s;
+        .closeModal {
+            cursor: pointer;
+            color: white;
+            padding: 25px 50px 0px 0px;
+            font-size: 35px;
+            font-weight: bold;
+        
+            &:hover {
+                color: rgb(211, 211, 211);
+                transition: 0.3s;
+            }
+        }
     }
 }
 
 .modal-content {
     max-width: 1200px;
     width: 90%;
-    margin: 50px auto 50px auto;
+    margin: 0px auto 50px auto;
 
     .wrapper-image-main {
         position: relative;
@@ -44,9 +47,9 @@
         cursor: pointer;
         position: absolute;
         top: 50%;
+        transform: translate(0%,-50%);
         width: auto;
-        padding: 150px 20px;
-        margin-top: -200px;
+        padding: 100px 20px;
         color: white;
         font-weight: bold;
         font-size: 30px;
@@ -56,6 +59,10 @@
             color: rgb(211, 211, 211);
             transition: 0.3s;
         }
+    }
+
+    .previous {
+        left: 0;
     }
 
     .next {
@@ -79,18 +86,17 @@
             width: 30%;
         }
 
-        .img1 {
-            width: 80%;
-        }
+        // .img1 {
+        //     width: 80%;
+        // }
     }
 
     .wrapper-modal-images {
         display: flex;
-        justify-content: center;
         flex-wrap: wrap;
 
         .modal-images-divs {
-            flex: 25%;
+            width: 25%;
             .modal-images {
                 padding: 0px 3px;
                 height: 130px;
@@ -115,14 +121,15 @@
 .wrapper-images {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
     margin-top: 50px;
 
     .images {
         padding: 10px;
+        min-width: 200px;
+        width: 25%;
     
         img {
-            width: 200px;
+            width: 100%;
             height: 200px;
             object-fit: cover;
             transition: 0.3s;
@@ -140,10 +147,22 @@
 
 // RESPONSIVE
 
+@media screen and (max-width: 940px) {
+    .wrapper-images {
+        .images {
+            width: 33%;
+        }
+    }
+}
+
 @media screen and (max-width: 860px) {
     .wrapper-images {
         margin-top: 150px;
         margin-bottom: 50px;
+
+        .images {
+            width: 50%;
+        }
     }
 }
 
@@ -174,5 +193,10 @@
     .closeModal {
         right: 20px;
         font-size: 25px;
+    }
+    .wrapper-images {
+        .images {
+            width: 100%;
+        }
     }
 }

@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "AAAA,AAAA,OAAO,AAAA,UAAU,CAAC;EACd,UAAU,EAAE,IAAI;CACnB",
     "sources": [
         "dashboard.component.scss"
     ],

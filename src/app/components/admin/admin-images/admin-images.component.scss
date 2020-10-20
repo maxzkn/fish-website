@@ -1,8 +1,8 @@
 .wrapper-main {
     min-height: 100vh;
-    height: 100%;
     width: 100%;
     display: flex;
+    transition: 0.5s;
 }
   
   [type="file"] {
@@ -11,7 +11,7 @@
     color: transparent;
     cursor: pointer;
     transition: all 0.3s;
-    width: 200px;
+    width: 100%;
     height: 200px;
     position: relative;
     margin: 10px;
@@ -33,7 +33,7 @@
     &::after {
         transform: rotate(-90deg);
         top: 39%;
-        left: 49.6%;
+        left: 49.85%;
     }
     
     &:hover {
@@ -44,15 +44,15 @@
 .wrapper-images {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin-top: 50px;
 
     .images {
         padding: 10px;
+        min-width: 200px;
+        width: 25%;
         position: relative;
 
         img {
-            width: 200px;
+            width: 100%;
             height: 200px;
             object-fit: cover;
             transition: 0.3s;
@@ -91,15 +91,35 @@
 
 // RESPONSIVE
 
+@media screen and (max-width: 940px) {
+    .wrapper-images {
+        .images {
+            width: 33%;
+        }
+    }
+}
+
 @media screen and (max-width: 860px) {
     .wrapper-images {
         margin-top: 150px;
         margin-bottom: 50px;
+
+        .images {
+            width: 50%;
+        }
     }
 }
 
 @media screen and (max-width: 570px) {
     .wrapper-images {
         margin-top: 110px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .wrapper-images {
+        .images {
+            width: 100%;
+        }
     }
 }

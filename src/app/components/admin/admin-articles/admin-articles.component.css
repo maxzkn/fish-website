@@ -1,0 +1,35 @@
+.wrapper-main {
+  height: 100vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.wrapper-main table {
+  width: 100%;
+}
+
+.wrapper-main table th.mat-sort-header-sorted {
+  color: black;
+}
+
+.wrapper-main .wrapper-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.wrapper-main .wrapper-input .mat-form-field {
+  font-size: 14px;
+  width: 90%;
+}
+/*# sourceMappingURL=admin-articles.component.css.map */

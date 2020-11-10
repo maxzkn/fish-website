@@ -1,0 +1,84 @@
+<div class="wrapper-main" [ngStyle]="applyMargin()">
+  <div class="container">
+    <div class="wrapper-article">
+      <div class="header">
+        <h2>Add a new article</h2>
+      </div>
+      <div class="wrapper-form">
+        <form
+          [formGroup]="addArticleForm"
+          (ngSubmit)="onSubmit(addArticleForm)"
+        >
+          <div class="title-field">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Title</mat-label>
+              <input
+                formControlName="title"
+                matInput
+                required
+                placeholder="Article title"
+              />
+              <mat-error *ngIf="addArticleForm.get('title').errors?.required">
+                Please provide the title of an article.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="status-select">
+            <mat-form-field appearance="fill">
+              <mat-label>Status</mat-label>
+              <mat-select formControlName="status" name="status" required>
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let stat of statuses" [value]="stat.value">
+                  {{ stat.viewValue }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="addArticleForm.get('status').errors?.required"
+                >You must make a selection.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="editor-wrapper">
+            <div class="editor-field">
+              <editor
+                formControlName="editor"
+                apiKey="xnl7v0bjarjdrse2bbicq48wd4mtvxpdnlrdrvezobfn128o"
+                [init]="{
+                  height: 400,
+                  plugins: [
+                    'advlist autolink lists link image charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table paste code help wordcount'
+                  ],
+                  toolbar:
+                    'undo redo | formatselect | bold italic backcolor | \
+                alignleft aligncenter alignright alignjustify | \
+                bullist numlist outdent indent | removeformat | help'
+                }"
+              ></editor>
+            </div>
+            <div id="errorPosition" class="mat-form-field-subscript-wrapper">
+              <mat-error
+                *ngIf="
+                  addArticleForm.controls.editor.touched &&
+                  addArticleForm.controls.editor.hasError('required')
+                "
+              >
+                Please add an article before posting it.
+              </mat-error>
+            </div>
+          </div>
+          <div class="addArticleBtn">
+            <button
+              mat-flat-button
+              color="primary"
+              type="submit"
+              [disabled]="!addArticleForm.valid"
+            >
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

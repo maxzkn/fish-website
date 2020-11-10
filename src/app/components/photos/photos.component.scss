@@ -1,202 +1,201 @@
 .wrapper-main {
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    transition: 0.5s;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  transition: 0.5s;
 }
 
 [tabindex] {
-    outline: none !important;
- }
+  outline: none !important;
+}
 
 .modal {
-    display: none;
-    width: 100%;
-    min-height: 100%;
-    background: black;
+  display: none;
+  width: 100%;
+  min-height: 100%;
+  background: black;
 
-    .wrapper-close-modal {
-        display: flex;
-        justify-content: flex-end;
+  .wrapper-close-modal {
+    display: flex;
+    justify-content: flex-end;
 
-        .closeModal {
-            cursor: pointer;
-            color: white;
-            padding: 25px 50px 0px 0px;
-            font-size: 35px;
-            font-weight: bold;
-        
-            &:hover {
-                color: rgb(211, 211, 211);
-                transition: 0.3s;
-            }
-        }
+    .closeModal {
+      cursor: pointer;
+      color: white;
+      padding: 25px 50px 0px 0px;
+      font-size: 35px;
+      font-weight: bold;
+
+      &:hover {
+        color: rgb(211, 211, 211);
+        transition: 0.3s;
+      }
     }
+  }
 }
 
 .modal-content {
-    max-width: 1200px;
-    width: 90%;
-    margin: 0px auto 50px auto;
+  max-width: 1200px;
+  width: 90%;
+  margin: 0px auto 50px auto;
 
-    .wrapper-image-main {
-        position: relative;
+  .wrapper-image-main {
+    position: relative;
+  }
+
+  .previous,
+  .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translate(0%, -50%);
+    width: auto;
+    padding: 100px 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    transition: 0.8s ease;
+
+    &:hover {
+      color: rgb(211, 211, 211);
+      transition: 0.3s;
+    }
+  }
+
+  .previous {
+    left: 0;
+  }
+
+  .next {
+    right: 0;
+  }
+
+  .modal-image-main {
+    text-align: center;
+    width: 100%;
+    position: relative;
+    // display: none;
+
+    .image-number {
+      color: white;
+      width: 100%;
+      padding: 10px 0px;
+      font-size: 12px;
     }
 
-    .previous,.next {
+    img {
+      width: 30%;
+    }
+  }
+
+  .wrapper-modal-images {
+    display: flex;
+    flex-wrap: wrap;
+
+    .modal-images-divs {
+      width: 25%;
+      .modal-images {
+        padding: 0px 3px;
+        height: 130px;
+        object-fit: cover;
+        opacity: 0.8;
         cursor: pointer;
-        position: absolute;
-        top: 50%;
-        transform: translate(0%,-50%);
-        width: auto;
-        padding: 100px 20px;
-        color: white;
-        font-weight: bold;
-        font-size: 30px;
-        transition: 0.8s ease;
+        transition: 0.3s;
+        width: 100%;
 
         &:hover {
-            color: rgb(211, 211, 211);
-            transition: 0.3s;
+          opacity: 1;
         }
+      }
+
+      .active {
+        opacity: 1;
+      }
     }
-
-    .previous {
-        left: 0;
-    }
-
-    .next {
-        right: 0;
-    }
-
-    .modal-image-main {
-        text-align: center;
-        width: 100%;
-        position: relative;
-        // display: none;
-
-        .image-number {
-            color: white;
-            width: 100%;
-            padding: 10px 0px;
-            font-size: 12px;
-        }
-
-        img {
-            width: 30%;
-        }
-
-        // .img1 {
-        //     width: 80%;
-        // }
-    }
-
-    .wrapper-modal-images {
-        display: flex;
-        flex-wrap: wrap;
-
-        .modal-images-divs {
-            width: 25%;
-            .modal-images {
-                padding: 0px 3px;
-                height: 130px;
-                object-fit: cover;
-                opacity: 0.8;
-                cursor: pointer;
-                transition: 0.3s;
-                width: 100%;
-
-                &:hover {
-                    opacity: 1;
-                }
-            }
-
-            .active {
-                opacity: 1;
-            }
-        }
-    }
+  }
 }
 
 .wrapper-images {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 50px;
 
-    .images {
-        padding: 10px;
-        min-width: 200px;
-        width: 25%;
-    
-        img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: 0.3s;
-    
-            &:hover {
-                transform: scale(1.03);
-                transition: 0.3s;
-                cursor: pointer;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                        0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            }
-        }
+  .images {
+    width: 24%;
+    overflow: hidden;
+    height: 200px;
+    margin: 1px;
+
+    img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: 0.3s ease;
+      filter: brightness(0.9);
+
+      &:hover {
+        transform: scale(1.15);
+        transition: 0.3s ease;
+        cursor: pointer;
+        filter: brightness(1);
+      }
     }
+  }
 }
 
 // RESPONSIVE
 
 @media screen and (max-width: 940px) {
-    .wrapper-images {
-        .images {
-            width: 33%;
-        }
+  .wrapper-images {
+    .images {
+      width: 33%;
     }
+  }
 }
 
 @media screen and (max-width: 860px) {
-    .wrapper-images {
-        margin-top: 150px;
-        margin-bottom: 50px;
+  .wrapper-images {
+    margin-top: 150px;
+    margin-bottom: 50px;
 
-        .images {
-            width: 50%;
-        }
+    .images {
+      width: 49%;
     }
+  }
 }
 
 @media screen and (max-width: 600px) {
-    .closeModal {
-        right: 30px;
-    }
+  .closeModal {
+    right: 30px;
+  }
 
-    .modal-images {
-        height: 80px !important;
-    }
+  .modal-images {
+    height: 80px !important;
+  }
 }
 
 @media screen and (max-width: 570px) {
-    .wrapper-images {
-        margin-top: 110px;
-    }
+  .wrapper-images {
+    margin-top: 110px;
+  }
 }
 
 @media screen and (max-width: 500px) {
-    .previous,.next {
-        padding: 10px !important;
-        font-size: 20px !important;
-    }
+  .previous,
+  .next {
+    padding: 10px !important;
+    font-size: 20px !important;
+  }
 }
 
 @media screen and (max-width: 450px) {
-    .closeModal {
-        right: 20px;
-        font-size: 25px;
+  .closeModal {
+    right: 20px;
+    font-size: 25px;
+  }
+  .wrapper-images {
+    .images {
+      width: 100%;
     }
-    .wrapper-images {
-        .images {
-            width: 100%;
-        }
-    }
+  }
 }

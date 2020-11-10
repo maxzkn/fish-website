@@ -1,125 +1,144 @@
 .wrapper-main {
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    transition: 0.5s;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  transition: 0.5s;
 }
-  
-  [type="file"] {
-    background: #d4ecfa;
-    border-radius: 5px;
-    color: transparent;
+
+[type="file"] {
+  background: #d4ecfa;
+  border-radius: 5px;
+  color: transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 97%;
+  height: 200px;
+  position: relative;
+  margin: 10px 0px 1px 0px;
+  padding-top: 200px;
+
+  &::after,
+  &::before {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    content: " ";
+    height: 45px;
+    width: 2px;
+    background-color: #333;
+    opacity: 0.2;
     cursor: pointer;
-    transition: all 0.3s;
-    width: 100%;
-    height: 200px;
-    position: relative;
-    margin: 10px;
-    padding-top: 200px;
-
-    &::after,&::before {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        content: " ";
-        height: 45px;
-        width: 2px;
-        background-color: #333;
-        opacity: 0.2;
-        cursor: pointer;
-    }
-
-    &::after {
-        transform: rotate(-90deg);
-        top: 39%;
-        left: 49.85%;
-    }
-    
-    &:hover {
-      background-color: darken(#d4ecfa, 10%);
-    }
   }
 
+  &::after {
+    transform: rotate(-90deg);
+    top: 39%;
+    left: 49.85%;
+  }
+
+  &:hover {
+    background-color: darken(#d4ecfa, 10%);
+  }
+}
+
 .wrapper-images {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 
-    .images {
-        padding: 10px;
-        min-width: 200px;
-        width: 25%;
-        position: relative;
+  .uploadProgress {
+    width: 100%;
+  }
 
-        img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: 0.3s;
-    
-            &:hover {
-                transform: scale(1.03);
-                transition: 0.3s;
-                cursor: pointer;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-                        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  .images {
+    width: 24%;
+    overflow: hidden;
+    height: 200px;
+    margin: 1px;
+    position: relative;
 
-                ~ #deleteBtn {
-                    display: block;
-                }
-            }
+    img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: 0.3s ease;
+      filter: brightness(0.9);
+
+      &:hover {
+        transform: scale(1.15);
+        transition: 0.3s ease;
+        cursor: pointer;
+        filter: brightness(1);
+
+        ~ #deleteBtn {
+          display: block;
         }
-        
-        .displayDiv {
-            display: none;
-        }
-        
-        .deleteButton {
-            color: white;
-            border-radius: 4px;
-            width: 20px;
-            height: 20px;
-            background: tomato;
-            position: absolute;
-            cursor: pointer;
-            top: 10px;
-            right: 10px;
-            text-align: center;
-        }
+      }
     }
+
+    .displayDiv {
+      display: none;
+    }
+
+    .deleteButton {
+      color: white;
+      border-radius: 2px;
+      padding: 0px 4px;
+      background: tomato;
+      position: absolute;
+      cursor: pointer;
+      top: 10px;
+      right: 10px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 300;
+    }
+  }
 }
 
 // RESPONSIVE
 
 @media screen and (max-width: 940px) {
-    .wrapper-images {
-        .images {
-            width: 33%;
-        }
+  [type="file"] {
+    width: 100%;
+  }
+
+  .wrapper-images {
+    .images {
+      width: 33%;
     }
+  }
 }
 
 @media screen and (max-width: 860px) {
-    .wrapper-images {
-        margin-top: 150px;
-        margin-bottom: 50px;
+  [type="file"] {
+    width: 99%;
+  }
 
-        .images {
-            width: 50%;
-        }
+  .wrapper-images {
+    margin-top: 150px;
+    margin-bottom: 50px;
+
+    .images {
+      width: 49%;
     }
+  }
 }
 
 @media screen and (max-width: 570px) {
-    .wrapper-images {
-        margin-top: 110px;
-    }
+  .wrapper-images {
+    margin-top: 110px;
+  }
 }
 
 @media screen and (max-width: 450px) {
-    .wrapper-images {
-        .images {
-            width: 100%;
-        }
+  [type="file"] {
+    width: 100%;
+  }
+
+  .wrapper-images {
+    .images {
+      width: 100%;
     }
+  }
 }

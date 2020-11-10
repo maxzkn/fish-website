@@ -1,0 +1,38 @@
+.wrapper-main {
+  min-height: 100vh;
+  width: 100%;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.wrapper-main .header {
+  text-align: center;
+}
+
+.wrapper-main .header h2 {
+  font-size: 22px;
+  font-weight: 300;
+  padding: 10px;
+}
+
+.wrapper-main form .full-width {
+  width: 100%;
+}
+
+.wrapper-main form .mat-form-field {
+  padding-top: 6px;
+}
+
+.wrapper-main form .addArticleBtn {
+  margin-top: 20px;
+}
+
+.wrapper-main form .editor-wrapper {
+  padding-top: 10px;
+}
+
+.wrapper-main form .editor-wrapper #errorPosition {
+  position: unset;
+  padding: 0 1em;
+}
+/*# sourceMappingURL=admin-article-new.component.css.map */

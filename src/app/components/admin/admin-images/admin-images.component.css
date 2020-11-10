@@ -15,10 +15,10 @@
   cursor: pointer;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  width: 100%;
+  width: 97%;
   height: 200px;
   position: relative;
-  margin: 10px;
+  margin: 10px 0px 1px 0px;
   padding-top: 200px;
 }
 
@@ -55,10 +55,15 @@
       flex-wrap: wrap;
 }
 
+.wrapper-images .uploadProgress {
+  width: 100%;
+}
+
 .wrapper-images .images {
-  padding: 10px;
-  min-width: 200px;
-  width: 25%;
+  width: 24%;
+  overflow: hidden;
+  height: 200px;
+  margin: 1px;
   position: relative;
 }
 
@@ -67,18 +72,20 @@
   height: 200px;
   -o-object-fit: cover;
      object-fit: cover;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+  -webkit-filter: brightness(0.9);
+          filter: brightness(0.9);
 }
 
 .wrapper-images .images img:hover {
-  -webkit-transform: scale(1.03);
-          transform: scale(1.03);
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+  -webkit-transform: scale(1.15);
+          transform: scale(1.15);
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
   cursor: pointer;
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-filter: brightness(1);
+          filter: brightness(1);
 }
 
 .wrapper-images .images img:hover ~ #deleteBtn {
@@ -91,30 +98,37 @@
 
 .wrapper-images .images .deleteButton {
   color: white;
-  border-radius: 4px;
-  width: 20px;
-  height: 20px;
+  border-radius: 2px;
+  padding: 0px 4px;
   background: tomato;
   position: absolute;
   cursor: pointer;
   top: 10px;
   right: 10px;
   text-align: center;
+  font-size: 14px;
+  font-weight: 300;
 }
 
 @media screen and (max-width: 940px) {
+  [type="file"] {
+    width: 100%;
+  }
   .wrapper-images .images {
     width: 33%;
   }
 }
 
 @media screen and (max-width: 860px) {
+  [type="file"] {
+    width: 99%;
+  }
   .wrapper-images {
     margin-top: 150px;
     margin-bottom: 50px;
   }
   .wrapper-images .images {
-    width: 50%;
+    width: 49%;
   }
 }
 
@@ -125,6 +139,9 @@
 }
 
 @media screen and (max-width: 450px) {
+  [type="file"] {
+    width: 100%;
+  }
   .wrapper-images .images {
     width: 100%;
   }

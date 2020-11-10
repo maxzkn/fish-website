@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common'
-import { Routes, RouterModule, ExtraOptions } from '@angular/router';
-import { AppComponent } from './app.component'
+import { Routes, RouterModule } from '@angular/router';
 import { PhotosComponent } from './components/photos/photos.component';
 import { ArticlesComponent } from './components/articles/articles.component';
 import { LoginComponent } from './components/admin/login/login.component';
@@ -11,6 +10,8 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
 import { ResetPswComponent } from './components/admin/reset-psw/reset-psw.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminImagesComponent } from './components/admin/admin-images/admin-images.component';
+import { AdminArticlesComponent } from './components/admin/admin-articles/admin-articles.component';
+import { AdminArticleNewComponent } from './components/admin/admin-articles/admin-article-new/admin-article-new.component';
 
 const routes: Routes = [
   { path:'login', component: LoginComponent },
@@ -18,7 +19,7 @@ const routes: Routes = [
   { path:'resetpsw', component: ResetPswComponent },
   { path:'photos', component: PhotosComponent },
   { path:'articles', component: ArticlesComponent },
-  { path:'admin', children:[
+  { path:'admin', children: [
     {
       path: 'photos',
       component: AdminImagesComponent,
@@ -26,8 +27,13 @@ const routes: Routes = [
     },
     {
       path: 'articles',
-      component: DashboardComponent,
-      canActivate: [AuthGuard]
+      component: AdminArticlesComponent,
+      canActivate: [AuthGuard],
+    },
+    {
+      path: 'articles/article-new', // su children nepavyko
+          component: AdminArticleNewComponent,
+          canActivate: [AuthGuard]
     },
     {
       path: '',

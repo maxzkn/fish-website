@@ -52,7 +52,8 @@
   position: relative;
 }
 
-.modal-content .previous, .modal-content .next {
+.modal-content .previous,
+.modal-content .next {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -67,7 +68,8 @@
   transition: 0.8s ease;
 }
 
-.modal-content .previous:hover, .modal-content .next:hover {
+.modal-content .previous:hover,
+.modal-content .next:hover {
   color: lightgray;
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -140,9 +142,10 @@
 }
 
 .wrapper-images .images {
-  padding: 10px;
-  min-width: 200px;
-  width: 25%;
+  width: 24%;
+  overflow: hidden;
+  height: 200px;
+  margin: 1px;
 }
 
 .wrapper-images .images img {
@@ -150,18 +153,20 @@
   height: 200px;
   -o-object-fit: cover;
      object-fit: cover;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+  -webkit-filter: brightness(0.9);
+          filter: brightness(0.9);
 }
 
 .wrapper-images .images img:hover {
-  -webkit-transform: scale(1.03);
-          transform: scale(1.03);
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+  -webkit-transform: scale(1.15);
+          transform: scale(1.15);
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
   cursor: pointer;
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-filter: brightness(1);
+          filter: brightness(1);
 }
 
 @media screen and (max-width: 940px) {
@@ -176,7 +181,7 @@
     margin-bottom: 50px;
   }
   .wrapper-images .images {
-    width: 50%;
+    width: 49%;
   }
 }
 
@@ -196,7 +201,8 @@
 }
 
 @media screen and (max-width: 500px) {
-  .previous, .next {
+  .previous,
+  .next {
     padding: 10px !important;
     font-size: 20px !important;
   }

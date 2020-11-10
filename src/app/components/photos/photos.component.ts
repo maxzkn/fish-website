@@ -107,6 +107,8 @@ export class PhotosComponent implements OnInit {
       modalImagesArray[i].className = modalImagesArray[i].className.replace(' active', '');
     }
 
+    // jeigu nuimti ? tai bus klaida "cannot read property key of undefined", nes
+    // plusSlide funkcijoje padaviau parametra event = undefined
     if (event?.key === 'ArrowRight' || event?.key === 'ArrowLeft') {
 
       if (event?.key === 'ArrowRight' && modalImagesArray[this.slideIndex].id === modalImagesArray[modalImagesArray.length - 1].id) {

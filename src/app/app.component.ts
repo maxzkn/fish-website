@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { HamburgerService } from './services/hamburger.service';
 
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
               private auth: AuthService,
               private hamburger: HamburgerService) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.auth.user$.subscribe(user=> this.user = user);
   }
 
@@ -27,8 +27,9 @@ export class AppComponent implements OnInit {
 
     //jeigu cia nuimti tai antra karta jei paspausti tai neskrolins
     this.aR.fragment.subscribe(param => {
+      console.log(param);
       setTimeout(() => {
-        if (param !== null) {
+        if (param !== null && param !== undefined) {
           document.querySelector(`#${param}`).scrollIntoView({
               behavior: 'smooth',
               block: 'start',

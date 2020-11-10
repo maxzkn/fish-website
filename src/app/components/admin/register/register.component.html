@@ -140,13 +140,13 @@
                                matInput
                                required
                                [type]="_hidePassword ? 'password' : 'text'">
-                        <button mat-icon-button
+                        <!-- <button mat-icon-button
                                 aria-label="Hide password"
-                                aria-pressed="Show password"
-                                matSuffix
-                                (click)="hidePassword()">
-                            <mat-icon>{{ _hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-                        </button>
+                                aria-pressed="Show password"> -->
+                        <mat-icon class="icon-eye"
+                                  matSuffix
+                                  (click)="hidePassword()">{{ _hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                        <!-- </button> -->
                         <mat-error *ngIf="registerForm.get('password').errors?.required">
                             Please provide your password.
                         </mat-error>

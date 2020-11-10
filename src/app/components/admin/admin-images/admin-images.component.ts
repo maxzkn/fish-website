@@ -12,6 +12,7 @@ export class AdminImagesComponent implements OnInit {
   selectedFile: File = null;
   selectedFileSrc: string = '';
   photos: Array<Object> = [];
+  uploadProgress;
 
   constructor(private imageService: ImageService,
     private hamburger: HamburgerService) { }
@@ -39,14 +40,18 @@ export class AdminImagesComponent implements OnInit {
     this.selectedFile = event.target.files[0];
     console.log(event.target.files[0]);
     this.imageService.uploadPicture(this.selectedFile);
+    this.uploadProgress = this.imageService.uploadProgress;
   }
 
   showPictures() {
-    this.imageService.getAllImages().subscribe(photos => this.photos = photos);
+    this.imageService.getAllImages().subscribe(photos => {
+      console.log('component showPictures() func:', photos);
+      this.photos = photos;
+    });
   }
 
-  deletePicture(image: HTMLElement) {
-    this.selectedFileSrc = image['src'];
-    this.imageService.deleteImageFromDatabase(this.selectedFileSrc);
+  deletePicture(image: Object) {
+    console.log('components deletePicture()', image);
+    this.imageService.deleteImageFromDatabase(image['name'], image['id']);
   }
 }

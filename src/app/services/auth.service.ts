@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import { User } from 'src/app/models/user'; // optional
-import { Observable, of, merge } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 @Injectable({
@@ -21,7 +21,7 @@ export class AuthService {
         // Logged in
         if (user) {
           console.log('authService constructor: ' + user.email);
-          return this.afs.doc<User>(`users/${user.uid}`).valueChanges(); // kam cia graziname info apie user?
+          return this.afs.doc<User>(`users/${user.uid}`).valueChanges(); // cia graziname info apie user?
         } else {
           // Logged out
           return of(null);
@@ -32,7 +32,7 @@ export class AuthService {
   loginViaEmail(email, password) {
     return this.afAuth.signInWithEmailAndPassword(email, password).then(
       user => {
-        console.log('signInWithEmailAndPassword: ' + user);
+        // console.log('signInWithEmailAndPassword: ' + user);
       }
     ).catch(function (error) {
       console.log('Firebase login error: ', error);
@@ -66,7 +66,7 @@ export class AuthService {
       });
   } // tai createUserWithEmailAndPassword dar neissaugoja nauja user DB?
 
-  //issaugome papildoma prisijungusio ar uzsiregistruojancio vartotojo informacija
+  //issaugome papildoma prisijungusio (?) ar uzsiregistruojancio vartotojo informacija
   //musu duomenu bazeje
   private updateUserData(user) {
     // sukuriame lentele su jau prisijungusio varototojo unikaliu ID

@@ -1,0 +1,38 @@
+.wrapper-main {
+  min-height: 100vh;
+  width: 100%;
+  transition: 0.5s;
+
+  .header {
+    text-align: center;
+
+    h2 {
+      font-size: 22px;
+      font-weight: 300;
+      padding: 10px;
+    }
+  }
+
+  form {
+    .full-width {
+      width: 100%;
+    }
+
+    .mat-form-field {
+      padding-top: 6px;
+    }
+
+    .addArticleBtn {
+      margin-top: 20px;
+    }
+
+    .editor-wrapper {
+      padding-top: 10px;
+
+      #errorPosition {
+        position: unset;
+        padding: 0 1em;
+      }
+    }
+  }
+}

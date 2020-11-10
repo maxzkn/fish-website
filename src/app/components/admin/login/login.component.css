@@ -55,6 +55,11 @@
   margin-top: 10px;
 }
 
+.mat-card form .icon-eye {
+  padding: 2px;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 860px) {
   .login-form {
     margin-top: 50px;

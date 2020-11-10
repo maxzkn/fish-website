@@ -107,6 +107,7 @@ footer {
   border-top: 1px solid #6998b1;
   text-align: center;
   padding: 10px 0;
+  margin-top: 20px;
 }
 
 @media screen and (max-width: 860px) {

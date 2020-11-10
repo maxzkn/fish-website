@@ -1,4 +1,4 @@
-export class User{
+export class User { // kur naudojame?
     uid?: String;
     username: String;
     email: String;
@@ -12,7 +12,7 @@ export class User{
 }
 // musu Vartotojo interface
 
-export interface Roles{
+export interface Roles{ // kur naudojame?
     guest: boolean;
     admin?: boolean;
 }

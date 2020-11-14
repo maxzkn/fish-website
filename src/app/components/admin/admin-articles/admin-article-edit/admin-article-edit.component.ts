@@ -48,9 +48,10 @@ export class AdminArticleEditComponent implements OnInit {
           )
         )
       );
+
     if (this.articleService.articleId) {
       this.selected$.subscribe((article) => {
-        console.log(article[0]);
+        console.log(article[0]); // kodel rodo po edit -> delete?
         this.selectedArticle = article[0];
         this.initForm();
       });
@@ -60,13 +61,15 @@ export class AdminArticleEditComponent implements OnInit {
   }
 
   initForm() {
-    this.addArticleForm = this.formBuilder.group({
-      title: [this.selectedArticle.title, Validators.compose([Validators.required])],
-      status: [this.selectedArticle.status, Validators.compose([Validators.required])],
-      source: [this.selectedArticle.source],
-      editor: [this.selectedArticle.body, Validators.compose([Validators.required])],
-    });
-    this.fileName = this.selectedArticle.imageName;
+    if (this.selectedArticle) {
+      this.addArticleForm = this.formBuilder.group({
+        title: [this.selectedArticle.title, Validators.compose([Validators.required])],
+        status: [this.selectedArticle.status, Validators.compose([Validators.required])],
+        source: [this.selectedArticle.source],
+        editor: [this.selectedArticle.body, Validators.compose([Validators.required])],
+      });
+      this.fileName = this.selectedArticle.imageName;
+    }
   }
 
   applyMargin() {

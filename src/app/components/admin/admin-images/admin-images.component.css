@@ -99,14 +99,14 @@
 .wrapper-images .images .deleteButton {
   color: white;
   border-radius: 2px;
-  padding: 0px 4px;
+  padding: 0px 5px;
   background: tomato;
   position: absolute;
   cursor: pointer;
   top: 10px;
   right: 10px;
   text-align: center;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 300;
 }
 

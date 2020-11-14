@@ -1,23 +1,32 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+} from '@angular/fire/firestore';
+
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import { User } from 'src/app/models/user'; // optional
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   user$: Observable<User>;
-  // kada kvieciamas konstruktorius? pvz kai login ar register tai kvieciami login ir register metodai.
-  constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth) {
-    // kodel negalime grazinti info apie user loginViaEmail metode? kodel cia?
+
+  constructor(
+    private afs: AngularFirestore,
+    private afAuth: AngularFireAuth,
+    private router: Router
+  ) {
     // console.log(this.afAuth.authState.subscribe(a => console.log(a.uid, a.email)));
     this.user$ = this.afAuth.authState.pipe(
-      switchMap(user => { // o jeigu nenaudoti switchMap? kam jis cia reikalingas?
+      switchMap((user) => {
+        // o jeigu nenaudoti switchMap? kam jis cia reikalingas?
         // Logged in
         if (user) {
           console.log('authService constructor: ' + user.email);
@@ -26,20 +35,24 @@ export class AuthService {
           // Logged out
           return of(null);
         }
-      }));
+      })
+    );
   }
 
   loginViaEmail(email, password) {
-    return this.afAuth.signInWithEmailAndPassword(email, password).then(
-      user => {
+    return this.afAuth
+      .signInWithEmailAndPassword(email, password)
+      .then((user) => {
         // console.log('signInWithEmailAndPassword: ' + user);
-      }
-    ).catch(function (error) {
-      console.log('Firebase login error: ', error);
-      let errorCode = error.code;
-      let errorMessage = error.message;
-      window.alert(`Error code: ${errorCode}, Error message: ${errorMessage}`);
-    });
+      })
+      .catch(function (error) {
+        console.log('Firebase login error: ', error);
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        window.alert(
+          `Error code: ${errorCode}, Error message: ${errorMessage}`
+        );
+      });
   }
 
   //1.
@@ -47,22 +60,24 @@ export class AuthService {
   // naudoti formoje username, email, password.
   // signup firebase panel reikalauja tik 2 parametru email, password.
   signupViaEmail(form) {
-    return this.afAuth.createUserWithEmailAndPassword(form.email, form.password)
-      .then(result => {
-        // kam sitas objektas jeigu sukureme class User?
+    return this.afAuth
+      .createUserWithEmailAndPassword(form.email, form.password)
+      .then((result) => {
         let user = {
           uid: result.user.uid,
           email: result.user.email,
           username: form.username,
-          signedVia: 'email'
-        }
+          signedVia: 'email',
+        };
         return this.updateUserData(user);
-      }
-      ).catch(function (error) {
+      })
+      .catch(function (error) {
         console.log('Firebase signup error: ', error);
         let errorCode = error.code;
         let errorMessage = error.message;
-        window.alert(`Error code: ${errorCode}, Error message: ${errorMessage}`);
+        window.alert(
+          `Error code: ${errorCode}, Error message: ${errorMessage}`
+        );
       });
   } // tai createUserWithEmailAndPassword dar neissaugoja nauja user DB?
 
@@ -70,7 +85,9 @@ export class AuthService {
   //musu duomenu bazeje
   private updateUserData(user) {
     // sukuriame lentele su jau prisijungusio varototojo unikaliu ID
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(
+      `users/${user.uid}`
+    );
     //Papildoma informacija kuria norime irasyti
     // i duomenu baze apie musu vartotoja
     const data = {
@@ -80,32 +97,34 @@ export class AuthService {
       lastSeen: Date.now(),
       signedVia: user.signedVia,
       roles: {
-        guest: true
-      }
-    }
+        guest: true,
+      },
+    };
     //jeigu jau egzistavo toks vartotojas, mes nekuriame naujo
     // o sujungiame (merge:true) su pries tai egzistavusia informacija. - kodel nenaudojame if ?
     return userRef.set(data, { merge: true });
   }
 
-  signUpViaFacebook() {
-
-  }
-
   logoutUser() {
-    return this.afAuth.signOut().then(() => {
-      console.log('You have been logged out.')
-    }).catch(error => {
-      console.log('Log out error: ', error);
-    });
+    this.afAuth
+      .signOut()
+      .then(() => {
+        console.log('You have been logged out.');
+        this.router.navigate(['/']);
+      })
+      .catch((error) => {
+        console.log('Log out error: ', error);
+      });
   }
 
   //2. Forgot password
   //Naudoti su egzistuojanciu email.
   resetPassword(email) {
     return this.afAuth.sendPasswordResetEmail(email).then(() => {
-      alert(`Password reset link for the user ${this.user$} has been sent to ${email}`);
-    })
+      alert(
+        `Password reset link for the user ${this.user$} has been sent to ${email}`
+      );
+    });
   }
 
   //funkcijos padesencios issiaiskinti vartotojo role
@@ -118,12 +137,14 @@ export class AuthService {
     if (!user) return false;
     if (user['roles'] == undefined) return false;
     // console.log('user roles: ' + user['roles']);
-    for (const role of allowedRoles) { // kodel const, o ne let?
-      if (user['roles'][role]) { // tas pats kas tikrinti user['roles'].admin? ir user['roles'].guest
-        return true
+    for (const role of allowedRoles) {
+      // kodel const, o ne let?
+      if (user['roles'][role]) {
+        // tas pats kas tikrinti user['roles'].admin? ir user['roles'].guest
+        return true;
       }
     }
-    return false
+    return false;
   }
 }
 // sukurti UI admin
@@ -138,5 +159,5 @@ export class AuthService {
 // pacientu
 // newsletteriu
 
-// 2x darbo ka darytum su django 
+// 2x darbo ka darytum su django
 //

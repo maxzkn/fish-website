@@ -41,8 +41,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
+import { AdminArticleEditComponent } from './components/admin/admin-articles/admin-article-edit/admin-article-edit.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,7 @@ import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
     AdminImagesComponent,
     AdminArticlesComponent,
     AdminArticleNewComponent,
+    AdminArticleEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,6 +87,7 @@ import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
     MatPaginatorModule,
     MatSortModule,
     MatSelectModule,
+    MatSidenavModule,
     EditorModule,
   ],
   providers: [

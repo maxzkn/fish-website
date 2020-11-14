@@ -9,19 +9,11 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AdminBarComponent implements OnInit {
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   logoutUser() {
-    this.auth.logoutUser().then(() => {
-      if (this.router.url.includes('/admin')) {
-        this.router.navigate(['/']);
-      } else {
-        return null; // nieko nedaryti
-      }
-    });
+    this.auth.logoutUser();
   }
-
 }

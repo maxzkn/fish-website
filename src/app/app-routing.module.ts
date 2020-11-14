@@ -12,6 +12,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AdminImagesComponent } from './components/admin/admin-images/admin-images.component';
 import { AdminArticlesComponent } from './components/admin/admin-articles/admin-articles.component';
 import { AdminArticleNewComponent } from './components/admin/admin-articles/admin-article-new/admin-article-new.component';
+import { AdminArticleEditComponent } from './components/admin/admin-articles/admin-article-edit/admin-article-edit.component';
 
 const routes: Routes = [
   { path:'login', component: LoginComponent },
@@ -31,8 +32,13 @@ const routes: Routes = [
       canActivate: [AuthGuard],
     },
     {
-      path: 'articles/article-new', // su children nepavyko
+      path: 'articles/article-new',
           component: AdminArticleNewComponent,
+          canActivate: [AuthGuard]
+    },
+    {
+      path: 'articles/edit/:id',
+          component: AdminArticleEditComponent,
           canActivate: [AuthGuard]
     },
     {

@@ -1,51 +1,61 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { finalize, map } from 'rxjs/operators'
+import { finalize, map } from 'rxjs/operators';
 
 import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import {
+  AngularFireStorage,
+  AngularFireUploadTask,
+} from '@angular/fire/storage';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ImageService {
-
   uploadProgress = null;
   imageUrl: string = '';
   imageNameToDelete: string = '';
   imageIdToDelete: string = '';
 
-  constructor(private afs: AngularFirestore, 
-              private storage: AngularFireStorage) { }
-  
-  async uploadPicture(file) { // async visada returnina Promise, bet jis cia nebutinas.
-    // imagename_date formatas
-    let imageName = file.name.split('.').slice(0, -1).join(" ") + '_' + Date.now();
-    const uploadTask: AngularFireUploadTask = this.storage.upload(`${imageName}`, file);
+  constructor(
+    private afs: AngularFirestore,
+    private storage: AngularFireStorage
+  ) {}
 
-    //jeigu reikia progress bar upload
-    uploadTask.percentageChanges().subscribe(change => {
+  async uploadPicture(file) {
+    // async visada returnina Promise, bet jis cia nebutinas + nera await.
+    // imagename_date formatas
+    let imageName =
+      file.name.split('.').slice(0, -1).join(' ') + '_' + Date.now();
+    const uploadTask: AngularFireUploadTask = this.storage.upload(
+      `images/${imageName}`,
+      file
+    );
+
+    uploadTask.percentageChanges().subscribe((change) => {
       this.uploadProgress = change;
       console.log(this.uploadProgress);
     });
 
-    return uploadTask.then(async res => {
-      return res;
-    }).then( snapshot => {
-      return snapshot.ref.getDownloadURL().then(downloadUrl => {
+    // return uploadTask
+    //   .then(async (res) => {
+    //     return res;
+    //   })
+    //   .then((snapshot) => {
+    //     return snapshot.ref.getDownloadURL().then((downloadUrl) => {
+    //       const imageUrl = downloadUrl;
+    //       return this.saveImageNameInDatabase(imageUrl, imageName);
+    //     });
+    //   });
+
+    // #1 variantas (nereikia async nes vis tiek nenaudojame await)
+    uploadTask.then((res) => {
+      return res.ref.getDownloadURL().then((downloadUrl) => {
         const imageUrl = downloadUrl;
         return this.saveImageNameInDatabase(imageUrl, imageName);
       });
-    })
+    });
 
-    // #1 variantas (nereikia async nes vis tiek nenaudojame await)
-    // uploadTask.then(res => {
-    //   return res.ref.getDownloadURL().then(downloadUrl => {
-    //     const imageUrl = downloadUrl;
-    //     return this.saveImageNameInDatabase(imageUrl, imageName);
-    //   });
-    // })
-    
     // #2 variantas
     // uploadTask.snapshotChanges().pipe(
     //   finalize(() => {
@@ -58,46 +68,51 @@ export class ImageService {
     // ).subscribe();
   }
 
-  //gauna visas nuotraukas is duomenu bazes, 
+  //gauna visas nuotraukas is duomenu bazes,
   // pirma gauname url kur guli musu nuotraukos
   getAllImages(): Observable<any> {
-    // return this.afs.collection('/images').valueChanges(); // kodel valueChanges?
-    return this.afs.collection('/images').snapshotChanges().pipe(
-      map(changes => {
-        // console.log('changes', changes);
-        return changes.map(doc => {
-          let photo = doc.payload.doc.data();
-          // console.log('doc.data()', photo);
-          return {
-            id: doc.payload.doc.id,
-            name: photo['name'],
-            url: photo['url']
-          }
+    const images = this.afs.collection('images', (ref) =>
+      ref.orderBy('date', 'desc')
+    );
+    return images
+      .snapshotChanges()
+      .pipe(
+        map((changes) => {
+          // console.log('changes', changes);
+          return changes.map((doc) => {
+            let photo = doc.payload.doc.data();
+            // console.log('doc.data()', photo);
+            return {
+              id: doc.payload.doc.id,
+              name: photo['name'],
+              url: photo['url'],
+            };
+          });
         })
-      })
-    )
+      );
   }
-  
+
   //issaugome url, kurio pagalba mes galime atvaizduoti savo nuotrauka,
   //bei issaugome paveiksliuko pavadinima, kad ateityje galetume pagal pavadinima istrinti is direktorijos
-  saveImageNameInDatabase(url, imageName){
-    return this.afs.collection('/images').add({name: imageName, url: url});
+  saveImageNameInDatabase(url, imageName) {
+    return this.afs
+      .collection('/images')
+      .add({ name: imageName, url: url, date: new Date() });
   }
 
   deleteImageFromDatabase(imageName, id) {
-    console.log('service deleteImageFromDatabase():', imageName);
-    return this.storage.storage.ref(`${imageName}`).delete().then(
-      data => {
-        console.log(data);
+    return this.storage.storage
+      .ref(`/images/${imageName}`)
+      .delete()
+      .then(() => {
         return this.afs.collection('/images').doc(id).delete();
-      }
-    )
+      });
   }
 
   //istrinti nuotrauka.. service istrina is storage ir is collection....
   // deleteImageFromDatabase(imageSource) {
   //   console.log('hi')
-    
+
   //   this.afs.collection('/images').valueChanges().
   //   subscribe(images => images.map(image => {
   //     if(image['url'] === imageSource) {

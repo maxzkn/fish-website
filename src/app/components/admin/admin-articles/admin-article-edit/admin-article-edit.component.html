@@ -1,11 +1,12 @@
-<div class="wrapper-main" [ngStyle]="applyMargin()">
+<div class="wrapper-main" [ngStyle]="">
   <div class="container">
     <div class="wrapper-article">
       <div class="header">
-        <h2>Add a new article</h2>
+        <h2>Edit article</h2>
       </div>
       <div class="wrapper-form">
         <form
+          *ngIf="addArticleForm"
           [formGroup]="addArticleForm"
           (ngSubmit)="onSubmit(addArticleForm)"
         >
@@ -80,8 +81,8 @@
                   ],
                   toolbar:
                     'undo redo | formatselect | bold italic backcolor | \
-                alignleft aligncenter alignright alignjustify | \
-                bullist numlist outdent indent | removeformat | help'
+                  alignleft aligncenter alignright alignjustify | \
+                  bullist numlist outdent indent | removeformat | help'
                 }"
               ></editor>
             </div>
@@ -105,6 +106,11 @@
             >
               Save
             </button>
+            <a routerLink="/admin/articles">
+              <button mat-flat-button color="warn" type="button">
+                Cancel
+              </button>
+            </a>
           </div>
         </form>
       </div>

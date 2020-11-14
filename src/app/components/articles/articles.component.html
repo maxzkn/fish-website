@@ -1,3 +1,29 @@
 <section class="articles" [ngStyle]="applyMargin()">
-    
+  <div class="container">
+    <div class="wrapper-articles">
+      <mat-card *ngFor="let article of articleArray" class="card">
+        <mat-card-header>
+          <mat-card-title>{{ article.title }}</mat-card-title>
+          <mat-card-subtitle>{{
+            article.date.toDate() | date
+          }}</mat-card-subtitle>
+        </mat-card-header>
+        <img
+          mat-card-image
+          src="{{ article.image }}"
+          alt="{{ article.title }}"
+        />
+        <mat-card-content>
+          <p class="truncate-text">
+            {{ article.body }}
+          </p>
+          <div class="button-read">
+            <button mat-button color="primary" style="margin: 10px">
+              Skaityti...
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
 </section>

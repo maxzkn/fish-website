@@ -2,4 +2,88 @@ section.articles {
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
+
+section.articles .container {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0px 60px;
+}
+
+section.articles .wrapper-articles {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+section.articles .wrapper-articles .card {
+  width: 30%;
+  margin: 15px;
+  padding: 0;
+}
+
+section.articles .wrapper-articles .card .mat-card-header {
+  padding: 10px 0px;
+}
+
+section.articles .wrapper-articles .card .mat-card-header .mat-card-header-text {
+  overflow: hidden;
+}
+
+section.articles .wrapper-articles .card .mat-card-header .mat-card-header-text .mat-card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+section.articles .wrapper-articles .card .mat-card-subtitle {
+  margin-bottom: 0;
+}
+
+section.articles .wrapper-articles .card .mat-card-image {
+  width: 100%;
+  height: 250px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin: 0;
+}
+
+section.articles .wrapper-articles .card .truncate-text {
+  max-width: 430px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 10px;
+}
+
+section.articles .wrapper-articles .card .button-read {
+  text-align: center;
+}
+
+section.articles .wrapper-articles .card .button-read button {
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 1020px) {
+  .card {
+    width: 45% !important;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .card {
+    width: 44% !important;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .card {
+    width: 100% !important;
+  }
+}
 /*# sourceMappingURL=articles.component.css.map */

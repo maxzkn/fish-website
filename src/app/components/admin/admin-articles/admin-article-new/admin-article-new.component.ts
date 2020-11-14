@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HamburgerService } from 'src/app/services/hamburger.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-interface Status {
-  value: string;
-  viewValue: string;
-}
+import { ArticleService } from '../../../../services/article.service';
+import { Status } from '../../../../models/statuses';
 
 @Component({
   selector: 'app-admin-article-new',
@@ -13,9 +10,13 @@ interface Status {
   styleUrls: ['./admin-article-new.component.scss'],
 })
 export class AdminArticleNewComponent implements OnInit {
+  fileName: string = null;
+  selectedFile: File = null;
+
   constructor(
     private hamburger: HamburgerService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private articleService: ArticleService
   ) {}
 
   addArticleForm: FormGroup;
@@ -29,6 +30,7 @@ export class AdminArticleNewComponent implements OnInit {
     this.addArticleForm = this.formBuilder.group({
       title: [null, Validators.compose([Validators.required])],
       status: [null, Validators.compose([Validators.required])],
+      source: [null],
       editor: [null, Validators.compose([Validators.required])],
     });
   }
@@ -38,10 +40,31 @@ export class AdminArticleNewComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    const regex = /(<([^>]+)>)/ig;
-    const result = form.value.editor.replace(regex, "");
-    console.log(
-      'title: ' + form.value.title + 'select: ' + form.value.status + 'editor text: ' + result
-    );
+    const regex = /(<([^>]+)>)/gi;
+    const articleText = form.value.editor.replace(regex, '');
+    if (this.selectedFile) {
+      this.articleService
+        .uploadArticleImage(this.selectedFile, form.value.title)
+        .then(() => {
+          this.articleService.saveArticleInDatabase(
+            form.value.title,
+            articleText,
+            form.value.status,
+            form.value.source
+          );
+        });
+    } else {
+      this.articleService.saveArticleInDatabase(
+        form.value.title,
+        articleText,
+        form.value.status,
+        form.value.source
+      );
+    }
+  }
+
+  imgInputChange(fileInputEvent: any) {
+    this.fileName = fileInputEvent.target.files[0].name;
+    this.selectedFile = fileInputEvent.target.files[0];
   }
 }

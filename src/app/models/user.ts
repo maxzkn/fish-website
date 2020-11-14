@@ -10,10 +10,8 @@ export class User { // kur naudojame?
         this.roles = { guest: true }
     }
 }
-// musu Vartotojo interface
 
 export interface Roles{ // kur naudojame?
     guest: boolean;
     admin?: boolean;
 }
-//? reiskia, jog sis paremetras nebutinai gali buti grazinamoje/irasamoje informacijoje

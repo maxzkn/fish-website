@@ -24,6 +24,7 @@ export class ArticleService {
     const articles = this.afs.collection('articles', (ref) =>
       ref.orderBy('date', 'desc')
     );
+    
     return articles.snapshotChanges().pipe(
       map((changes) => {
         return changes.map((doc) => {
@@ -43,17 +44,12 @@ export class ArticleService {
     );
   }
 
-  async saveArticleInDatabase(
-    articleTitle: string,
-    articleText: string,
-    articleStatus: string,
-    articleSource: string
-  ) {
+  async saveArticleInDatabase(articleForm, articleText: string) {
     await this.afs.collection('/articles').add({
-      title: articleTitle,
+      title: articleForm.title,
       body: articleText,
-      status: articleStatus,
-      source: articleSource,
+      status: articleForm.status,
+      source: articleForm.source,
       image: this.imageUrl,
       imageName: this.imgName,
       date: new Date(),
@@ -61,12 +57,13 @@ export class ArticleService {
     this.router.navigate(['/admin/articles']);
   }
 
-  deleteOldArticleImage(article) {
-    return this.storage.storage.ref(`/images_article/${article.imageName}`).delete();
+  async deleteOldArticleImage(article) {
+    if (article.image) this.storage.storage.ref(`/images_article/${article.imageName}`).delete();
+    return null;
   }
 
-  uploadArticleImage(file: File, title: string): Promise<any> {
-    let imageName = file.name.split('.').slice(0, -1).join(' ') + '_' + title;
+  uploadArticleImage(file: File): Promise<any> {
+    let imageName = file.name.split('.').slice(0, -1).join(' ') + '_' + Date.now();
     this.imgName = imageName;
 
     const uploadTask: AngularFireUploadTask = this.storage.upload(`images_article/${imageName}`, file);
@@ -109,10 +106,9 @@ export class ArticleService {
       };
       return articleRef.set(data, { merge: true });
     }
-    // return articleRef.set(data, { merge: true });
   }
 
-  deleteSelectedArticle(id: any, imageName, title: string) {
+  deleteSelectedArticle(id: any, imageName) {
     if (imageName) {
       return this.storage.storage
         .ref(`/images_article/${imageName}`)

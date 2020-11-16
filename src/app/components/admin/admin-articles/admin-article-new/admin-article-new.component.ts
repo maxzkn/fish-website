@@ -44,22 +44,12 @@ export class AdminArticleNewComponent implements OnInit {
     const articleText = form.value.editor.replace(regex, '');
     if (this.selectedFile) {
       this.articleService
-        .uploadArticleImage(this.selectedFile, form.value.title)
+        .uploadArticleImage(this.selectedFile)
         .then(() => {
-          this.articleService.saveArticleInDatabase(
-            form.value.title,
-            articleText,
-            form.value.status,
-            form.value.source
-          );
+          this.articleService.saveArticleInDatabase(form.value, articleText);
         });
     } else {
-      this.articleService.saveArticleInDatabase(
-        form.value.title,
-        articleText,
-        form.value.status,
-        form.value.source
-      );
+      this.articleService.saveArticleInDatabase(form.value, articleText);
     }
   }
 

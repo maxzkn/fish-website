@@ -5,7 +5,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { ArticleService } from 'src/app/services/article.service';
 import { MatPaginator } from '@angular/material/paginator';
-import { elementAt } from 'rxjs/operators';
 
 @Component({
   selector: 'app-admin-articles',
@@ -61,6 +60,6 @@ export class AdminArticlesComponent implements OnInit {
   }
 
   deleteArticle(article) {
-    this.articleService.deleteSelectedArticle(article.id, article.imageName, article.title);
+    this.articleService.deleteSelectedArticle(article.id, article.imageName);
   }
 }

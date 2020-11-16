@@ -83,7 +83,7 @@ export class AdminArticleEditComponent implements OnInit {
     if (this.selectedFile) {
     this.articleService.deleteOldArticleImage(this.selectedArticle).then(() => {
       this.articleService
-        .uploadArticleImage(this.selectedFile, form.value.title).then(() => {
+        .uploadArticleImage(this.selectedFile).then(() => {
           this.articleService.editSelectedArticle(form, articleText).then(() => {
             this.router.navigate(['/admin/articles']);
           });

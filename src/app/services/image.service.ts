@@ -13,7 +13,7 @@ import {
 })
 export class ImageService {
   uploadProgress = null;
-  imageUrl: string = '';
+  // imageUrl: string = '';
   imageNameToDelete: string = '';
   imageIdToDelete: string = '';
 

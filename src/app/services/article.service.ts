@@ -84,28 +84,18 @@ export class ArticleService {
       `articles/${this.articleId}`
     );
 
-    if (this.imageUrl) {
-      const data = {
-        title: form.value.title,
-        body: text,
-        status: form.value.status,
-        source: form.value.source,
-        image: this.imageUrl,
-        imageName: this.imgName,
-        dateUpdated: new Date(),
-      };
-      return articleRef.set(data, { merge: true });
-    } else {
-      const data = {
-        title: form.value.title,
-        body: text,
-        status: form.value.status,
-        source: form.value.source,
-        imageName: this.imgName,
-        dateUpdated: new Date(),
-      };
-      return articleRef.set(data, { merge: true });
-    }
+    const data = {
+      title: form.value.title,
+      body: text,
+      status: form.value.status,
+      source: form.value.source,
+      imageName: this.imgName,
+      dateUpdated: new Date(),
+    };
+
+    if (this.imageUrl) data['image'] = this.imageUrl;
+
+    return articleRef.set(data, { merge: true });
   }
 
   deleteSelectedArticle(id: any, imageName) {

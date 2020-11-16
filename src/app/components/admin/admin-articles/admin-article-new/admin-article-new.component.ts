@@ -27,6 +27,9 @@ export class AdminArticleNewComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.articleService.imageUrl = '';
+    this.articleService.imgName = '';
+    
     this.addArticleForm = this.formBuilder.group({
       title: [null, Validators.compose([Validators.required])],
       status: [null, Validators.compose([Validators.required])],

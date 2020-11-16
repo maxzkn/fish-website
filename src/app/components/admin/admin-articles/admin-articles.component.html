@@ -60,9 +60,9 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
           <td mat-cell *matCellDef="let element">
             <a routerLink="/admin/articles/edit/{{ element.id }}">
-              <button mat-button color="primary" (click)="editArticle(element.id)">Edit</button>
+              <button mat-button color="primary" (click)="selectArticle(element.id)">Edit</button>
             </a>
-            <button mat-button color="warn" (click)="deleteArticle(element.id, element.imageName)">Delete</button>
+            <button mat-button color="warn" (click)="deleteArticle(element)">Delete</button>
           </td>
         </ng-container>
 

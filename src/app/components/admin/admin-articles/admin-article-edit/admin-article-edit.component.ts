@@ -51,7 +51,7 @@ export class AdminArticleEditComponent implements OnInit {
 
     if (this.articleService.articleId) {
       this.selected$.subscribe((article) => {
-        console.log(article[0]); // kodel rodo po edit -> delete?
+        console.log(article[0]);
         this.selectedArticle = article[0];
         this.initForm();
       });
@@ -68,7 +68,7 @@ export class AdminArticleEditComponent implements OnInit {
         source: [this.selectedArticle.source],
         editor: [this.selectedArticle.body, Validators.compose([Validators.required])],
       });
-      this.fileName = this.selectedArticle.imageName;
+      if (this.selectedArticle.image) this.fileName = this.selectedArticle.imageName;
     }
   }
 
@@ -79,25 +79,21 @@ export class AdminArticleEditComponent implements OnInit {
   onSubmit(form: FormGroup) {
     const regex = /(<([^>]+)>)/gi;
     const articleText = form.value.editor.replace(regex, '');
+
     if (this.selectedFile) {
+    this.articleService.deleteOldArticleImage(this.selectedArticle).then(() => {
       this.articleService
-        .uploadArticleImage(this.selectedFile, form.value.title)
-        .then(() => {
-          this.articleService.saveArticleInDatabase(
-            form.value.title,
-            articleText,
-            form.value.status,
-            form.value.source
-          );
+        .uploadArticleImage(this.selectedFile, form.value.title).then(() => {
+          this.articleService.editSelectedArticle(form, articleText).then(() => {
+            this.router.navigate(['/admin/articles']);
+          });
         });
-    } else {
-      this.articleService.saveArticleInDatabase(
-        form.value.title,
-        articleText,
-        form.value.status,
-        form.value.source
-      );
-    }
+      });
+      } else {
+        this.articleService.editSelectedArticle(form, articleText).then(() => {
+          this.router.navigate(['/admin/articles']);
+        });
+      }
   }
 
   imgInputChange(fileInputEvent: any) {

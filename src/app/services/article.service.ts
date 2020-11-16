@@ -1,12 +1,6 @@
 import { Injectable } from '@angular/core';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-} from '@angular/fire/firestore';
-import {
-  AngularFireStorage,
-  AngularFireUploadTask,
-} from '@angular/fire/storage';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -67,13 +61,15 @@ export class ArticleService {
     this.router.navigate(['/admin/articles']);
   }
 
+  deleteOldArticleImage(article) {
+    return this.storage.storage.ref(`/images_article/${article.imageName}`).delete();
+  }
+
   uploadArticleImage(file: File, title: string): Promise<any> {
     let imageName = file.name.split('.').slice(0, -1).join(' ') + '_' + title;
     this.imgName = imageName;
-    const uploadTask: AngularFireUploadTask = this.storage.upload(
-      `images_article/${imageName}`,
-      file
-    );
+
+    const uploadTask: AngularFireUploadTask = this.storage.upload(`images_article/${imageName}`, file);
 
     return uploadTask.then((res) => {
       return res.ref.getDownloadURL().then((downloadUrl) => {
@@ -82,30 +78,50 @@ export class ArticleService {
     });
   }
 
-  editSelectedArticle(id: any) {
+  selectArticle(id: any) {
     this.articleId = id;
-    const articleRef: AngularFirestoreDocument<Articles> = this.afs.doc(
-      `articles/${id}`
-    );
-    // const data = {
-    //   uid: user.uid,
-    //   email: user.email,
-    //   username: user.username,
-    //   lastSeen: Date.now(),
-    //   signedVia: user.signedVia,
-    //   roles: {
-    //     guest: true,
-    //   },
-    // };
-    // return userRef.set(data, { merge: true });
   }
 
-  deleteSelectedArticle(id: any, imageName) {
-    return this.storage.storage
-      .ref(`/images_article/${imageName}`)
-      .delete()
-      .then(() => {
-        return this.afs.collection('/articles').doc(id).delete();
-      });
+  editSelectedArticle(form: any, text: string) {
+    const articleRef: AngularFirestoreDocument<any> = this.afs.doc(
+      `articles/${this.articleId}`
+    );
+
+    if (this.imageUrl) {
+      const data = {
+        title: form.value.title,
+        body: text,
+        status: form.value.status,
+        source: form.value.source,
+        image: this.imageUrl,
+        imageName: this.imgName,
+        dateUpdated: new Date(),
+      };
+      return articleRef.set(data, { merge: true });
+    } else {
+      const data = {
+        title: form.value.title,
+        body: text,
+        status: form.value.status,
+        source: form.value.source,
+        imageName: this.imgName,
+        dateUpdated: new Date(),
+      };
+      return articleRef.set(data, { merge: true });
+    }
+    // return articleRef.set(data, { merge: true });
+  }
+
+  deleteSelectedArticle(id: any, imageName, title: string) {
+    if (imageName) {
+      return this.storage.storage
+        .ref(`/images_article/${imageName}`)
+        .delete()
+        .then(() => {
+          return this.afs.collection('/articles').doc(id).delete();
+        });
+    } else {
+      return this.afs.collection('/articles').doc(id).delete();
+    }
   }
 }

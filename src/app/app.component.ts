@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
               private hamburger: HamburgerService) {}
 
   ngOnInit() {
-    this.auth.user$.subscribe(user=> this.user = user);
+    this.auth.user$.subscribe(user => this.user = user);
   }
 
   hideHamburgerMenu() {

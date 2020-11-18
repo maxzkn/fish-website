@@ -1,0 +1,27 @@
+.wrapper-main {
+  min-height: 100vh;
+  width: 100%;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.wrapper-main .wrapper-image {
+  max-width: 500px;
+  width: 80%;
+  margin: 0px auto 10px auto;
+}
+
+.wrapper-main .wrapper-image img {
+  width: 100%;
+}
+
+.wrapper-main .body-text {
+  width: 90%;
+  margin: 0 auto;
+  line-height: 1.5em;
+}
+
+.wrapper-main .body-text p {
+  margin-bottom: 20px;
+}
+/*# sourceMappingURL=articles-read.component.css.map */

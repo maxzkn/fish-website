@@ -26,6 +26,7 @@ import { AdminBarComponent } from './components/ui/admin-bar/admin-bar.component
 import { AdminImagesComponent } from './components/admin/admin-images/admin-images.component';
 import { AdminArticlesComponent } from './components/admin/admin-articles/admin-articles.component';
 import { AdminArticleNewComponent } from './components/admin/admin-articles/admin-article-new/admin-article-new.component';
+import { AdminArticleEditComponent } from './components/admin/admin-articles/admin-article-edit/admin-article-edit.component';
 
 import { AuthService } from 'src/app/services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
@@ -44,7 +45,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
-import { AdminArticleEditComponent } from './components/admin/admin-articles/admin-article-edit/admin-article-edit.component';
+import { ArticlesReadComponent } from './components/articles/articles-read/articles-read.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { AdminArticleEditComponent } from './components/admin/admin-articles/adm
     AdminArticlesComponent,
     AdminArticleNewComponent,
     AdminArticleEditComponent,
+    ArticlesReadComponent,
   ],
   imports: [
     BrowserModule,

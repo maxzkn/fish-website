@@ -12,6 +12,7 @@ section.articles {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: flex-end;
 
     .card {
       width: 30%;
@@ -43,12 +44,39 @@ section.articles {
         margin: 0;
       }
 
+      // .truncate-text {
+      //   max-width: 430px;
+      //   white-space: nowrap;
+      //   overflow: hidden;
+      //   text-overflow: ellipsis;
+      //   padding: 10px;
+      // }
+
       .truncate-text {
-        max-width: 430px;
-        white-space: nowrap;
+        /* hide text if it more than N lines  */
         overflow: hidden;
-        text-overflow: ellipsis;
-        padding: 10px;
+        /* for setting '...' in absolute position */
+        position: relative;
+        /* use this value to count block height */
+        line-height: 1.4em;
+        /* max-height = line-height (1.2) * lines max number (3) */
+        max-height: 4.6em;
+        /* fix problem when last visible word doesn't adjoin right side  */
+        text-align: justify;
+
+        margin-right: -1em;
+        padding: 0.5em 3em 0em 1em;
+
+        &::before {
+          /* points in the end */
+          content: "...";
+          /* absolute position */
+          position: absolute;
+          /* set position to right bottom corner of block */
+          right: 0;
+          bottom: -1px;
+          padding-right: 2.1em;
+        }
       }
 
       .button-read {

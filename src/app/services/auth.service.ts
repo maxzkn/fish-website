@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   user$: Observable<User>;
+  loggedIn: boolean = false;
 
   constructor(
     private afs: AngularFirestore,
@@ -127,8 +128,8 @@ export class AuthService {
     });
   }
 
-  //funkcijos padesencios issiaiskinti vartotojo role
-  public isAdmin(user: User) {
+  //funkcijos padesiancios issiaiskinti vartotojo role
+  isAdmin(user: User) {
     const role = ['admin'];
     return this.checkAuthorization(user, role);
   }

@@ -13,6 +13,7 @@ import { AdminImagesComponent } from './components/admin/admin-images/admin-imag
 import { AdminArticlesComponent } from './components/admin/admin-articles/admin-articles.component';
 import { AdminArticleNewComponent } from './components/admin/admin-articles/admin-article-new/admin-article-new.component';
 import { AdminArticleEditComponent } from './components/admin/admin-articles/admin-article-edit/admin-article-edit.component';
+import { ArticlesReadComponent } from './components/articles/articles-read/articles-read.component';
 
 const routes: Routes = [
   { path:'login', component: LoginComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path:'resetpsw', component: ResetPswComponent },
   { path:'photos', component: PhotosComponent },
   { path:'articles', component: ArticlesComponent },
+  { path:'articles/:id', component: ArticlesReadComponent },
   { path:'admin', children: [
     {
       path: 'photos',

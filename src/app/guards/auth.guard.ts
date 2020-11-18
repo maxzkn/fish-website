@@ -22,6 +22,8 @@ export class AuthGuard implements CanActivate {
         if (!loggedIn) {
           //jeigu vartotojas neprisijunges, nukreipiame i login puslapi
           this.router.navigate(['/login']);
+        } else {
+          this.auth.loggedIn = loggedIn;
         }
       })
     )

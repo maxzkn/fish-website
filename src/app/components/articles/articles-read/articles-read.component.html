@@ -1,0 +1,20 @@
+<div class="wrapper-main" [ngStyle]="applyMargin()">
+    <div class="container">
+        <div class="wrapper-article" *ngIf="selectedArticle">
+            <ng-container *ngIf="!selectedArticle.image">
+                <div class="wrapper-image">
+                    <img
+                    src="../../../assets/images/articles/dummy-article.jpg"
+                    alt="default-image"
+                    />
+                </div>
+            </ng-container>
+            <ng-container *ngIf="selectedArticle.image">
+                <div class="wrapper-image">
+                    <img src="{{ selectedArticle.image }}" alt="{{ selectedArticle.title }}" />
+                </div>
+            </ng-container>
+            <div class="body-text" [innerHTML]="selectedArticle.body"></div>
+        </div>
+    </div>
+</div>

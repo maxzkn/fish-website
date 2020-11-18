@@ -22,14 +22,14 @@ export class AdminArticleNewComponent implements OnInit {
   addArticleForm: FormGroup;
 
   statuses: Status[] = [
-    { value: 'active', viewValue: 'Active' },
-    { value: 'inactive', viewValue: 'Inactive' },
+    { value: 'visible', viewValue: 'Visible' },
+    { value: 'invisible', viewValue: 'Invisible' },
   ];
 
   ngOnInit(): void {
     this.articleService.imageUrl = '';
     this.articleService.imgName = '';
-    
+
     this.addArticleForm = this.formBuilder.group({
       title: [null, Validators.compose([Validators.required])],
       status: [null, Validators.compose([Validators.required])],
@@ -43,16 +43,14 @@ export class AdminArticleNewComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    const regex = /(<([^>]+)>)/gi;
-    const articleText = form.value.editor.replace(regex, '');
     if (this.selectedFile) {
       this.articleService
         .uploadArticleImage(this.selectedFile)
         .then(() => {
-          this.articleService.saveArticleInDatabase(form.value, articleText);
+          this.articleService.saveArticleInDatabase(form.value, form.value.editor);
         });
     } else {
-      this.articleService.saveArticleInDatabase(form.value, articleText);
+      this.articleService.saveArticleInDatabase(form.value, form.value.editor);
     }
   }
 

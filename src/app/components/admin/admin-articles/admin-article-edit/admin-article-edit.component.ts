@@ -77,20 +77,17 @@ export class AdminArticleEditComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    const regex = /(<([^>]+)>)/gi;
-    const articleText = form.value.editor.replace(regex, '');
-
     if (this.selectedFile) {
     this.articleService.deleteOldArticleImage(this.selectedArticle).then(() => {
       this.articleService
         .uploadArticleImage(this.selectedFile).then(() => {
-          this.articleService.editSelectedArticle(form, articleText).then(() => {
+          this.articleService.editSelectedArticle(form, form.value.editor).then(() => {
             this.router.navigate(['/admin/articles']);
           });
         });
       });
       } else {
-        this.articleService.editSelectedArticle(form, articleText).then(() => {
+        this.articleService.editSelectedArticle(form, form.value.editor).then(() => {
           this.router.navigate(['/admin/articles']);
         });
       }

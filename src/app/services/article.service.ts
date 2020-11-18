@@ -44,7 +44,7 @@ export class ArticleService {
     );
   }
 
-  async saveArticleInDatabase(articleForm, articleText: string) {
+  async saveArticleInDatabase(articleForm, articleText) {
     await this.afs.collection('/articles').add({
       title: articleForm.title,
       body: articleText,

@@ -16,10 +16,18 @@
 
 .wrapper-main table {
   width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-width: 500px;
 }
 
 .wrapper-main table th.mat-sort-header-sorted {
   color: black;
+}
+
+.wrapper-main table th.mat-header-cell, .wrapper-main table td.mat-cell, .wrapper-main table td.mat-footer-cell {
+  text-align: left;
+  max-width: 300px;
 }
 
 .wrapper-main .wrapper-input {

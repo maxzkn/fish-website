@@ -148,17 +148,3 @@ export class AuthService {
     return false;
   }
 }
-// sukurti UI admin
-// sukurti image manage (istrinti, ikelti)
-// articles (crud);
-
-//calendar.where(august, == , 'working_days')
-// collection(ref => ref.where(a, ==, b))
-//calendar.add(pacient)
-
-// scalinti...
-// pacientu
-// newsletteriu
-
-// 2x darbo ka darytum su django
-//

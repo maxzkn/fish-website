@@ -8,17 +8,21 @@
   transition: 0.5s;
 }
 
+.wrapper-input {
+  width: 100%;
+}
+
 [type="file"] {
   background: #d4ecfa;
-  border-radius: 5px;
+  width: 100%;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
   color: transparent;
   cursor: pointer;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  width: 97%;
-  height: 200px;
   position: relative;
-  margin: 10px 0px 1px 0px;
   padding-top: 200px;
 }
 
@@ -111,18 +115,12 @@
 }
 
 @media screen and (max-width: 940px) {
-  [type="file"] {
-    width: 100%;
-  }
   .wrapper-images .images {
     width: 33%;
   }
 }
 
 @media screen and (max-width: 860px) {
-  [type="file"] {
-    width: 99%;
-  }
   .wrapper-images {
     margin-top: 150px;
     margin-bottom: 50px;
@@ -139,9 +137,6 @@
 }
 
 @media screen and (max-width: 450px) {
-  [type="file"] {
-    width: 100%;
-  }
   .wrapper-images .images {
     width: 100%;
   }

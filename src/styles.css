@@ -5,7 +5,9 @@
   padding: 0;
 }
 
-html, body {
+html,
+body {
+  height: 100%;
   background: white;
   font-family: Roboto, sans-serif;
   font-weight: 400;
@@ -30,8 +32,8 @@ a {
 
 a:hover {
   color: rgba(0, 0, 0, 0.7);
-  -webkit-transition: .2s ease-in-out;
-  transition: .2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
 }
 
 a.contacts-a {
@@ -41,8 +43,8 @@ a.contacts-a {
 
 a.contacts-a:hover {
   color: #0068d6;
-  -webkit-transition: .2s ease-in-out;
-  transition: .2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
 }
 
 @media screen and (max-width: 750px) {
@@ -55,14 +57,5 @@ a.contacts-a:hover {
   .container {
     padding: 0px 15px;
   }
-}
-
-html, body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 /*# sourceMappingURL=styles.css.map */

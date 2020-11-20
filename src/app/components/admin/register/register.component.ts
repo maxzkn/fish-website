@@ -50,10 +50,6 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  applyMargin() {
-    return this.hamburger.marginStyleOther();
-  }
-
   hidePassword() {
     this._hidePassword = !this._hidePassword;
   }

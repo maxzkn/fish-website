@@ -10,6 +10,7 @@ import { Articles } from '../models/articles';
   providedIn: 'root',
 })
 export class ArticleService {
+  uploadProgress: Observable<number>;
   imageUrl: string = '';
   imgName: string = '';
   articleId = null;
@@ -67,6 +68,7 @@ export class ArticleService {
     this.imgName = imageName;
 
     const uploadTask: AngularFireUploadTask = this.storage.upload(`images_article/${imageName}`, file);
+    this.uploadProgress = uploadTask.percentageChanges();
 
     return uploadTask.then((res) => {
       return res.ref.getDownloadURL().then((downloadUrl) => {

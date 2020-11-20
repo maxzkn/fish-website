@@ -3,6 +3,7 @@
   width: 100%;
   -webkit-transition: 0.5s;
   transition: 0.5s;
+  margin-top: 140px;
 }
 
 .wrapper-main .header {
@@ -25,6 +26,7 @@
 
 .wrapper-main form .addArticleBtn {
   margin-top: 10px;
+  margin-bottom: 15px;
 }
 
 .wrapper-main form .upload {
@@ -54,5 +56,11 @@
 .wrapper-main form .editor-wrapper #errorPosition {
   position: unset;
   padding: 0 1em;
+}
+
+@media screen and (max-width: 570px) {
+  .wrapper-main {
+    margin-top: 90px;
+  }
 }
 /*# sourceMappingURL=admin-article-edit.component.css.map */

@@ -1,61 +1,79 @@
-<header>
-  <div class="header-info-wrapper">
-    <div class="container">
-      <div class="info-wrapper">
-        <p>Sveiki prisijungę!</p>
-        <div class="contacts">
-          <div class="contacts-phone">
-            <div class="material-icons phone">phone</div>
-            <div>
-              <a class="contacts-a" href="tel:+37069962727" id="phone">+ (370) 699 62727</a>
-            </div>
-          </div>
-          <div class="contacts-mail">
-            <div class="material-icons mail">mail</div>
-            <div>
-              <a class="contacts-a" href="mailto:jokubasfisas@gmail.com">jokubasfisas@gmail.com</a>
+<mat-sidenav-container>
+  <mat-sidenav *ngIf="user" [(opened)]="sideNavOpened">
+    <ui-admin-bar></ui-admin-bar>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <header>
+      <div class="header-info-wrapper">
+        <div class="container">
+          <div class="info-wrapper">
+            <p>Sveiki prisijungę!</p>
+            <div class="contacts">
+              <div class="contacts-phone">
+                <div class="material-icons phone">phone</div>
+                <div>
+                  <a class="contacts-a" href="tel:+37069962727" id="phone">+ (370) 699 62727</a>
+                </div>
+              </div>
+              <div class="contacts-mail">
+                <div class="material-icons mail">mail</div>
+                <div>
+                  <a class="contacts-a" href="mailto:jokubasfisas@gmail.com">jokubasfisas@gmail.com</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="header-nav-wrapper">
-    <div class="container">
-      <div class="nav-wrapper">
-        <a href="#" class="logo">
-          <div class="logoName">
-            <p id="logoName1">Jokūbas Fišas</p>
-            <p id="logoName2">Daktaras Neurologas</p>
+      <div class="header-nav-wrapper">
+        <div class="container">
+          <div class="nav-wrapper">
+            <div class="logo">
+              <button *ngIf="isAdmin()"
+                      mat-flat-button
+                      color="primary"
+                      type="button"
+                      class="adminBtn"
+                      (click)="sideNavOpened = !sideNavOpened">
+                      Admin
+              </button>
+              <a href="#">
+                <div class="logoName">
+                  <p id="logoName1">Jokūbas Fišas</p>
+                  <p id="logoName2">Daktaras Neurologas</p>
+                </div>
+              </a>
+            </div>
+            <div class="nav-links"
+                 [ngClass]="{'hamburgerHidden': hamburgerHidden, 'hamburgerShown': !hamburgerHidden}">
+              <ul>
+                <li *ngFor="let link of ids">
+                  <a [routerLink]="['/']"
+                     [fragment]='link'
+                     (click)='hideHamburgerMenu()'
+                     routerLinkActive='active'>{{ link.replace('-', ' ') }}</a> <!--.?-->
+                </li>
+                <li><a routerLink='/photos'
+                       (click)='hideHamburgerMenu()'
+                       routerLinkActive='active'>Nuotraukos</a></li>
+                <li><a routerLink='/articles' 
+                       (click)='hideHamburgerMenu()'
+                       routerLinkActive='active'>Straipsniai</a></li>
+              </ul>
+            </div>
+            <a class="hamburger" (click)="showHamburgerMenu()">
+              <img src="../assets/images/icons8-menu.svg" alt="hamburger-icon" height="40px" width="30px"/>
+            </a>
           </div>
-        </a>
-        <div class="nav-links"
-             [ngClass]="{'hamburgerHidden': hamburgerHidden, 'hamburgerShown': !hamburgerHidden}">
-          <ul>
-            <li *ngFor="let link of ids">
-              <a [routerLink]="['/']"
-                 [fragment]='link'
-                 (click)='hideHamburgerMenu()'
-                 routerLinkActive='active'>{{ link.replace('-', ' ') }}</a> <!--.?-->
-            </li>
-            <li><a routerLink='/photos'
-                   (click)='hideHamburgerMenu()'
-                   routerLinkActive='active'>Nuotraukos</a></li>
-            <li><a routerLink='/articles' 
-                   (click)='hideHamburgerMenu()'
-                   routerLinkActive='active'>Straipsniai</a></li>
-          </ul>
         </div>
-        <a class="hamburger" (click)="showHamburgerMenu()">
-          <img src="../assets/images/icons8-menu.svg" alt="hamburger-icon" height="40px" width="30px"/>
-        </a>
       </div>
-    </div>
-  </div>
-</header>
-<ui-admin-bar *ngIf="isAdmin()"></ui-admin-bar>
-<router-outlet></router-outlet>
-<footer>
-  <p>Visos teisės priklauso: <a class="contacts-a"
-                                href="https://jokubasfisas.lt/">www.jokubasfisas.lt</a> @ 2020</p>
-</footer>
+    </header>
+    <router-outlet></router-outlet>
+    <footer>
+      <p>Visos teisės priklauso: <a class="contacts-a"
+                                    href="https://jokubasfisas.lt/">www.jokubasfisas.lt
+                                  </a> @ 2020
+      </p>
+    </footer>    
+  </mat-sidenav-content>
+</mat-sidenav-container>

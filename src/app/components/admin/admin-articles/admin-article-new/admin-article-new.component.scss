@@ -2,6 +2,7 @@
   min-height: 100vh;
   width: 100%;
   transition: 0.5s;
+  margin-top: 140px;
 
   .header {
     text-align: center;
@@ -24,6 +25,7 @@
 
     .addArticleBtn {
       margin-top: 10px;
+      margin-bottom: 15px;
     }
 
     .upload {
@@ -48,5 +50,11 @@
         padding: 0 1em;
       }
     }
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .wrapper-main {
+    margin-top: 90px;
   }
 }

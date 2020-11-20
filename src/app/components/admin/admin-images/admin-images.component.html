@@ -1,6 +1,10 @@
 <div class="wrapper-main" [ngStyle]="applyMargin()">
   <div class="container">
     <div class="wrapper-images">
+      <div *ngIf="uploadProgress | async as progress" id="upload" class="uploadProgress">
+        <mat-progress-bar id="progressBar" mode="determinate" [value]="progress"></mat-progress-bar>
+        <!-- {{ hi(progress) }} -->
+      </div>
       <div class="images">
         <input
           type="file"
@@ -11,9 +15,6 @@
           accept="image/*"
         />
       </div>
-      <!-- <div class="uploadProgress">
-                <mat-progress-bar mode="determinate" value="uploadProgress"></mat-progress-bar>
-            </div> -->
       <div class="images" *ngFor="let photo of photos; let i = index">
         <img src="{{ photo.url }}" alt="image_{{ i + 1 }}" />
         <div

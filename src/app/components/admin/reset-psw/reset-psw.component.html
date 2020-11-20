@@ -1,60 +1,63 @@
-<div class="reset-form" [ngStyle]="applyMargin()">
-    <!-- <div class="wrapper-form">
-        <form [formGroup]="resetForm" (ngSubmit)="onSubmit(resetForm)">
-            <div class="field-email">
-                <label for="email">E-mail: </label>
-                <input id="email" 
-                    type="email" 
-                    formControlName="email" 
-                    placeholder="Your email"
-                    [ngClass]="{'fieldInvalid': resetForm.controls.email.invalid && 
-                                                resetForm.controls.email.touched,
-                                'fieldValid':   resetForm.controls.email.valid &&
-                                                resetForm.controls.email.touched}">
-                <div class="email-errors" *ngIf="resetForm.controls.email.errors">
-                    <p *ngIf="resetForm.controls.email.touched &&
-                            resetForm.controls.email.errors.required">
-                            Please provide your e-mail address.
-                    </p>
-                    <p *ngIf="resetForm.controls.email.touched &&
-                            resetForm.controls.email.errors.email">
-                            Please provide correct e-mail address.
-                    </p>
+<div class="wrapper-main">
+    <div class="reset-form">
+        <mat-card>
+            <mat-card-content>
+                <div class="header">
+                    <h2>Password Reset</h2>
                 </div>
-            </div>
-            <button type="submit"
-                    [disabled]="!resetForm.valid"
-                    [ngClass]="{'buttonValid': resetForm.valid, 'buttonInvalid': !resetForm.valid}">Reset password</button>
-        </form>
-    </div> -->
-
-    <mat-card>
-        <mat-card-content>
-            <div class="header">
-                <h2>Password Reset</h2>
-            </div>
+                <form [formGroup]="resetForm" (ngSubmit)="onSubmit(resetForm)">
+                    <div class="email-field">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>E-mail</mat-label>
+                            <input formControlName="email"
+                                   matInput
+                                   required
+                                   placeholder="Ex: yourmail@mail.com">
+                            <mat-error *ngIf="resetForm.get('email').errors?.required">
+                                Please provide your e-mail address.
+                            </mat-error>
+                            <mat-error *ngIf="resetForm.get('email').errors?.email">
+                                Please enter a valid e-mail address.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="resetBtn">
+                        <button mat-flat-button color="primary"
+                                type="submit"
+                                [disabled]="!resetForm.valid">Reset Password</button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    
+        <!-- custom form -->
+        <!-- <div class="wrapper-form">
             <form [formGroup]="resetForm" (ngSubmit)="onSubmit(resetForm)">
-                <div class="email-field">
-                    <mat-form-field class="full-width" appearance="outline">
-                        <mat-label>E-mail</mat-label>
-                        <input formControlName="email"
-                               matInput
-                               required
-                               placeholder="Ex: yourmail@mail.com">
-                        <mat-error *ngIf="resetForm.get('email').errors?.required">
-                            Please provide your e-mail address.
-                        </mat-error>
-                        <mat-error *ngIf="resetForm.get('email').errors?.email">
-                            Please enter a valid e-mail address.
-                        </mat-error>
-                    </mat-form-field>
+                <div class="field-email">
+                    <label for="email">E-mail: </label>
+                    <input id="email" 
+                        type="email" 
+                        formControlName="email" 
+                        placeholder="Your email"
+                        [ngClass]="{'fieldInvalid': resetForm.controls.email.invalid && 
+                                                    resetForm.controls.email.touched,
+                                    'fieldValid':   resetForm.controls.email.valid &&
+                                                    resetForm.controls.email.touched}">
+                    <div class="email-errors" *ngIf="resetForm.controls.email.errors">
+                        <p *ngIf="resetForm.controls.email.touched &&
+                                resetForm.controls.email.errors.required">
+                                Please provide your e-mail address.
+                        </p>
+                        <p *ngIf="resetForm.controls.email.touched &&
+                                resetForm.controls.email.errors.email">
+                                Please provide correct e-mail address.
+                        </p>
+                    </div>
                 </div>
-                <div class="resetBtn">
-                    <button mat-flat-button color="primary"
-                            type="submit"
-                            [disabled]="!resetForm.valid">Reset Password</button>
-                </div>
+                <button type="submit"
+                        [disabled]="!resetForm.valid"
+                        [ngClass]="{'buttonValid': resetForm.valid, 'buttonInvalid': !resetForm.valid}">Reset password</button>
             </form>
-        </mat-card-content>
-    </mat-card>
+        </div> -->
+    </div>
 </div>

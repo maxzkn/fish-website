@@ -14,6 +14,6 @@ export class DashboardComponent implements OnInit {
   }
 
   applyMargin() {
-    return this.hamburger.marginStyleHome();
+    return this.hamburger.marginStyleOther();
   }
 }

@@ -1,6 +1,7 @@
 .wrapper-app {
   -webkit-transition: 0.5s;
   transition: 0.5s;
+  margin-top: 100px;
 }
 
 @media screen and (max-width: 860px) {

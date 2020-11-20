@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   ids: Array<String> = ['Apie-mane', 'Paslaugos', 'Kontaktai'];
   hamburgerHidden: boolean = true;
   user;
+  sideNavOpened: boolean = false;
 
   constructor(private aR: ActivatedRoute,
               private auth: AuthService,
@@ -28,16 +29,16 @@ export class AppComponent implements OnInit {
     //jeigu cia nuimti tai antra karta jei paspausti tai neskrolins
     this.aR.fragment.subscribe(param => {
       console.log(param);
-      setTimeout(() => {
-        if (param !== null && param !== undefined) {
+      if (param !== null && param !== undefined) {
+        setTimeout(() => {
           document.querySelector(`#${param}`).scrollIntoView({
               behavior: 'smooth',
               block: 'start',
               inline: 'nearest'
           });
-        }
+        }, 100);
         // uzdejau irgi cia timeout nes kitaip lagina skrolas
-      }, 100);
+      }
     });
   }
 

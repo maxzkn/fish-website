@@ -28,8 +28,4 @@ export class ResetPswComponent implements OnInit {
       this.auth.resetPassword(form.value.email);
     }
   }
-
-  applyMargin() {
-    return this.hamburger.marginStyleOther();
-  }
 }

@@ -39,6 +39,8 @@ export class PhotosComponent implements OnInit {
     document.getElementsByTagName('header')[0].style.display = "none";
     document.getElementsByTagName('footer')[0].style.display = "none";
     document.getElementById('myModal').style.display = "block";
+    document.getElementById('wrapper').style.marginTop = "0px"
+    document.getElementById('wrapper').style.transition = "none"
   }
 
   closeModal(): void {
@@ -46,6 +48,10 @@ export class PhotosComponent implements OnInit {
     document.getElementsByTagName('header')[0].style.display = "block";
     document.getElementsByTagName('footer')[0].style.display = "block";
     document.getElementById('myModal').style.display = "none";
+    document.getElementById('wrapper').style.marginTop = "140px"
+    setTimeout(() => {
+      document.getElementById('wrapper').style.transition = "0.5s"
+    }, 0.5)
   }
 
   plusSlide(n): void {

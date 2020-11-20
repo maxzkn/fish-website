@@ -1,100 +1,106 @@
 .wrapper-main {
   min-height: 100vh;
   width: 100%;
-  display: flex;
   transition: 0.5s;
-}
+  margin-top: 140px;
 
-.wrapper-input {
-  width: 100%;
-}
-
-[type="file"] {
-  background: #d4ecfa;
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  color: transparent;
-  cursor: pointer;
-  transition: all 0.3s;
-  position: relative;
-  padding-top: 200px;
-
-  &::after,
-  &::before {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    content: " ";
-    height: 45px;
-    width: 2px;
-    background-color: #333;
-    opacity: 0.2;
-    cursor: pointer;
-  }
-
-  &::after {
-    transform: rotate(-90deg);
-    top: 39%;
-    left: 49.85%;
-  }
-
-  &:hover {
-    background-color: darken(#d4ecfa, 10%);
-  }
-}
-
-.wrapper-images {
-  display: flex;
-  flex-wrap: wrap;
-
-  .uploadProgress {
+  .wrapper-input {
     width: 100%;
   }
 
-  .images {
-    width: 24%;
-    overflow: hidden;
+  [type="file"] {
+    background: #d4ecfa;
+    width: 100%;
     height: 200px;
-    margin: 1px;
+    object-fit: cover;
+    color: transparent;
+    cursor: pointer;
+    transition: all 0.3s;
     position: relative;
+    padding-top: 200px;
 
-    img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      transition: 0.3s ease;
-      filter: brightness(0.9);
+    &::after,
+    &::before {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      content: " ";
+      height: 45px;
+      width: 2px;
+      background-color: #333;
+      opacity: 0.2;
+      cursor: pointer;
+    }
 
-      &:hover {
-        transform: scale(1.15);
-        transition: 0.3s ease;
-        cursor: pointer;
-        filter: brightness(1);
+    &::after {
+      transform: rotate(-90deg);
+      top: 39%;
+      left: 49.85%;
+    }
 
-        ~ #deleteBtn {
-          display: block;
-        }
+    &:hover {
+      background-color: darken(#d4ecfa, 10%);
+    }
+  }
+
+  .wrapper-images {
+    display: flex;
+    flex-wrap: wrap;
+
+    .uploadProgress {
+      width: 96.7%;
+      margin: 20px 0px 10px 0px;
+
+      .mat-progress-bar {
+        height: 10px;
+        border-radius: 5px;
       }
     }
 
-    .displayDiv {
-      display: none;
-    }
+    .images {
+      width: 24%;
+      overflow: hidden;
+      height: 200px;
+      margin: 1px;
+      position: relative;
 
-    .deleteButton {
-      color: white;
-      border-radius: 2px;
-      padding: 0px 5px;
-      background: tomato;
-      position: absolute;
-      cursor: pointer;
-      top: 10px;
-      right: 10px;
-      text-align: center;
-      font-size: 13px;
-      font-weight: 300;
+      img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: 0.3s ease;
+        filter: brightness(0.9);
+
+        &:hover {
+          transform: scale(1.15);
+          transition: 0.3s ease;
+          cursor: pointer;
+          filter: brightness(1);
+
+          ~ #deleteBtn {
+            display: block;
+          }
+        }
+      }
+
+      .displayDiv {
+        display: none;
+      }
+
+      .deleteButton {
+        color: white;
+        border-radius: 2px;
+        padding: 0px 5px;
+        background: tomato;
+        position: absolute;
+        cursor: pointer;
+        top: 10px;
+        right: 10px;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 300;
+      }
     }
   }
 }
@@ -102,34 +108,43 @@
 // RESPONSIVE
 
 @media screen and (max-width: 940px) {
+  .uploadProgress {
+    width: 100% !important;
+  }
+
   .wrapper-images {
     .images {
-      width: 33%;
+      width: 33% !important;
     }
   }
 }
 
 @media screen and (max-width: 860px) {
   .wrapper-images {
-    margin-top: 150px;
-    margin-bottom: 50px;
+    .uploadProgress {
+      width: 98.5% !important;
+    }
 
     .images {
-      width: 49%;
+      width: 49% !important;
     }
   }
 }
 
 @media screen and (max-width: 570px) {
-  .wrapper-images {
-    margin-top: 110px;
+  .wrapper-main {
+    margin-top: 90px;
   }
 }
 
 @media screen and (max-width: 450px) {
   .wrapper-images {
+    .uploadProgress {
+      width: 100% !important;
+    }
+
     .images {
-      width: 100%;
+      width: 100% !important;
     }
   }
 }

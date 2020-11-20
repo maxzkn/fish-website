@@ -16,8 +16,6 @@ export class LoginComponent implements OnInit {
   maxPswLength: number = 16;
   allowedSpecial: string = "*.!@#$%^&(){}\:;<>,.?~_+-=|\]["
   _hidePassword: boolean = true;
-  // email: string;
-  // password: string;
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
@@ -52,19 +50,7 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/resetpsw']);
   }
 
-  applyMargin() {
-    return this.hamburger.marginStyleOther();
-  }
-
   hidePassword() {
     this._hidePassword = !this._hidePassword;
   }
-
-  // onSubmit(form: any) {
-  //   this.email = form.email;
-  //   this.password = form.password;
-
-  //   window.alert('email: ' + this.email +
-  //                ' password: ' + this.password);
-  // }
 }

@@ -3,6 +3,7 @@
   width: 100%;
   -webkit-transition: 0.5s;
   transition: 0.5s;
+  margin-top: 140px;
 }
 
 .wrapper-main .wrapper-image {
@@ -23,5 +24,11 @@
 
 .wrapper-main .body-text p {
   margin-bottom: 20px;
+}
+
+@media screen and (max-width: 570px) {
+  .wrapper-main {
+    margin-top: 90px;
+  }
 }
 /*# sourceMappingURL=articles-read.component.css.map */

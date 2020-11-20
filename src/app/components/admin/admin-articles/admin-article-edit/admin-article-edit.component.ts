@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { Articles } from 'src/app/models/articles';
 import { ArticleService } from 'src/app/services/article.service';
+import { FileTypeValidatorService } from 'src/app/services/file-type-validator.service';
 import { HamburgerService } from 'src/app/services/hamburger.service';
 import { Status } from '../../../../models/statuses';
 
@@ -24,13 +25,14 @@ export class AdminArticleEditComponent implements OnInit {
     private formBuilder: FormBuilder,
     private articleService: ArticleService,
     private router: Router,
+    private typeValidator: FileTypeValidatorService
   ) {}
 
   addArticleForm: FormGroup;
 
   statuses: Status[] = [
-    { value: 'active', viewValue: 'Active' },
-    { value: 'inactive', viewValue: 'Inactive' },
+    { value: 'visible', viewValue: 'Visible' },
+    { value: 'invisible', viewValue: 'Invisible' },
   ];
 
   ngOnInit(): void {
@@ -94,7 +96,12 @@ export class AdminArticleEditComponent implements OnInit {
   }
 
   imgInputChange(fileInputEvent: any) {
-    this.fileName = fileInputEvent.target.files[0].name;
-    this.selectedFile = fileInputEvent.target.files[0];
+    const validateFile = this.typeValidator.validateFile(fileInputEvent.target.files[0]);
+    if (validateFile) {
+      this.fileName = fileInputEvent.target.files[0].name;
+      this.selectedFile = fileInputEvent.target.files[0];
+    } else {
+      window.alert('Only image files are allowed!');
+    }
   }
 }

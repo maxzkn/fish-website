@@ -1,18 +1,16 @@
 .wrapper-main {
   min-height: 100vh;
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-transition: 0.5s;
   transition: 0.5s;
+  margin-top: 140px;
 }
 
-.wrapper-input {
+.wrapper-main .wrapper-input {
   width: 100%;
 }
 
-[type="file"] {
+.wrapper-main [type="file"] {
   background: #d4ecfa;
   width: 100%;
   height: 200px;
@@ -26,7 +24,7 @@
   padding-top: 200px;
 }
 
-[type="file"]::after, [type="file"]::before {
+.wrapper-main [type="file"]::after, .wrapper-main [type="file"]::before {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -40,18 +38,18 @@
   cursor: pointer;
 }
 
-[type="file"]::after {
+.wrapper-main [type="file"]::after {
   -webkit-transform: rotate(-90deg);
           transform: rotate(-90deg);
   top: 39%;
   left: 49.85%;
 }
 
-[type="file"]:hover {
+.wrapper-main [type="file"]:hover {
   background-color: #a6d8f5;
 }
 
-.wrapper-images {
+.wrapper-main .wrapper-images {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -59,11 +57,17 @@
       flex-wrap: wrap;
 }
 
-.wrapper-images .uploadProgress {
-  width: 100%;
+.wrapper-main .wrapper-images .uploadProgress {
+  width: 96.7%;
+  margin: 20px 0px 10px 0px;
 }
 
-.wrapper-images .images {
+.wrapper-main .wrapper-images .uploadProgress .mat-progress-bar {
+  height: 10px;
+  border-radius: 5px;
+}
+
+.wrapper-main .wrapper-images .images {
   width: 24%;
   overflow: hidden;
   height: 200px;
@@ -71,7 +75,7 @@
   position: relative;
 }
 
-.wrapper-images .images img {
+.wrapper-main .wrapper-images .images img {
   width: 100%;
   height: 200px;
   -o-object-fit: cover;
@@ -82,7 +86,7 @@
           filter: brightness(0.9);
 }
 
-.wrapper-images .images img:hover {
+.wrapper-main .wrapper-images .images img:hover {
   -webkit-transform: scale(1.15);
           transform: scale(1.15);
   -webkit-transition: 0.3s ease;
@@ -92,15 +96,15 @@
           filter: brightness(1);
 }
 
-.wrapper-images .images img:hover ~ #deleteBtn {
+.wrapper-main .wrapper-images .images img:hover ~ #deleteBtn {
   display: block;
 }
 
-.wrapper-images .images .displayDiv {
+.wrapper-main .wrapper-images .images .displayDiv {
   display: none;
 }
 
-.wrapper-images .images .deleteButton {
+.wrapper-main .wrapper-images .images .deleteButton {
   color: white;
   border-radius: 2px;
   padding: 0px 5px;
@@ -115,30 +119,35 @@
 }
 
 @media screen and (max-width: 940px) {
+  .uploadProgress {
+    width: 100% !important;
+  }
   .wrapper-images .images {
-    width: 33%;
+    width: 33% !important;
   }
 }
 
 @media screen and (max-width: 860px) {
-  .wrapper-images {
-    margin-top: 150px;
-    margin-bottom: 50px;
+  .wrapper-images .uploadProgress {
+    width: 98.5% !important;
   }
   .wrapper-images .images {
-    width: 49%;
+    width: 49% !important;
   }
 }
 
 @media screen and (max-width: 570px) {
-  .wrapper-images {
-    margin-top: 110px;
+  .wrapper-main {
+    margin-top: 90px;
   }
 }
 
 @media screen and (max-width: 450px) {
+  .wrapper-images .uploadProgress {
+    width: 100% !important;
+  }
   .wrapper-images .images {
-    width: 100%;
+    width: 100% !important;
   }
 }
 /*# sourceMappingURL=admin-images.component.css.map */

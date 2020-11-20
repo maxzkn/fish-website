@@ -1,4 +1,10 @@
-.login-form {
+.wrapper-main {
+  min-height: 100vh;
+  width: 100%;
+  margin-top: 120px;
+}
+
+.wrapper-main .login-form {
   height: 100vh;
   width: 100%;
   display: -webkit-box;
@@ -14,61 +20,50 @@
   transition: 0.5s;
 }
 
-.mat-card {
+.wrapper-main .mat-card {
   max-width: 400px;
   width: 100%;
   padding: 0;
 }
 
-.mat-card .header {
+.wrapper-main .mat-card .header {
   text-align: center;
   background: #3f51b5;
   color: white;
 }
 
-.mat-card .header h2 {
+.wrapper-main .mat-card .header h2 {
   font-size: 24px;
   font-weight: 300;
   text-transform: uppercase;
   padding: 10px;
 }
 
-.mat-card form {
+.wrapper-main .mat-card form {
   padding: 20px;
 }
 
-.mat-card form .full-width {
+.wrapper-main .mat-card form .full-width {
   width: 100%;
 }
 
-.mat-card form .forgotLink {
+.wrapper-main .mat-card form .forgotLink {
   font-size: 12px;
   padding: 0;
 }
 
-.mat-card form .loginBtn {
+.wrapper-main .mat-card form .loginBtn {
   margin-top: 60px;
   text-align: center;
 }
 
-.mat-card form .password-field, .mat-card form .email-field {
+.wrapper-main .mat-card form .password-field,
+.wrapper-main .mat-card form .email-field {
   margin-top: 10px;
 }
 
-.mat-card form .icon-eye {
+.wrapper-main .mat-card form .icon-eye {
   padding: 2px;
   cursor: pointer;
-}
-
-@media screen and (max-width: 860px) {
-  .login-form {
-    margin-top: 50px;
-  }
-}
-
-@media screen and (max-width: 570px) {
-  .login-form {
-    margin-top: 0px;
-  }
 }
 /*# sourceMappingURL=login.component.css.map */

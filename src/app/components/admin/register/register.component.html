@@ -1,182 +1,182 @@
-<div class="register-form" [ngStyle]="applyMargin()">
-    <!-- <div class="wrapper-form">
-        <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
-            <div class="field-username">
-                <label for="username">Username: </label>
-                <input id="username" 
-                    type="text" 
-                    formControlName="username" 
-                    placeholder="Your username"
-                    [ngClass]="{'fieldInvalid': registerForm.controls.username.invalid && 
-                                                registerForm.controls.username.touched,
-                                'fieldValid':   registerForm.controls.username.valid &&
-                                                registerForm.controls.username.touched}">
-                <div class="username-errors" *ngIf="registerForm.controls.username.errors">
-                    <p *ngIf="registerForm.controls.username.touched &&
-                            registerForm.controls.username.errors.required">
-                            Please provide your username.
-                    </p>
-                    <p *ngIf="registerForm.controls.username.touched &&
-                            registerForm.controls.username.errors.minlength">
-                            Your username should consist of minimum of 3 characters.
-                    </p>
-                    <p *ngIf="registerForm.controls.username.touched &&
-                            registerForm.controls.username.errors.maxlength">
-                            Your username should consist of maximum of 10 characters.
-                    </p>
+<div class="wrapper-main">
+    <div class="register-form">
+        <mat-card>
+            <mat-card-content>
+                <div class="header">
+                    <h2>Register</h2>
                 </div>
-            </div>
-            <div class="field-email">
-                <label for="email">E-mail: </label>
-                <input id="email" 
-                    type="email" 
-                    formControlName="email" 
-                    placeholder="Your email"
-                    [ngClass]="{'fieldInvalid': registerForm.controls.email.invalid && 
-                                                registerForm.controls.email.touched,
-                                'fieldValid':   registerForm.controls.email.valid &&
-                                                registerForm.controls.email.touched}">
-                <div class="email-errors" *ngIf="registerForm.controls.email.errors">
-                    <p *ngIf="registerForm.controls.email.touched &&
-                            registerForm.controls.email.errors.required">
-                            Please provide your e-mail address.
-                    </p>
-                    <p *ngIf="registerForm.controls.email.touched &&
-                            registerForm.controls.email.errors.email">
-                            Please provide correct e-mail address.
-                    </p>
-                </div>
-            </div>
-            <div class="field-password">
-                <label for="password">Password: </label>
-                <input id="password"
-                    type="password"
-                    formControlName="password" 
-                    placeholder="Your password"
-                    [ngClass]="{'fieldInvalid': registerForm.controls.password.invalid && 
-                                                registerForm.controls.password.touched,
-                                'fieldValid':   registerForm.controls.password.valid &&
-                                                registerForm.controls.password.touched}">
-                <div class="password-errors" *ngIf="registerForm.controls.password.errors">
-                    <p *ngIf="registerForm.controls.password.touched &&
-                              registerForm.controls.password.errors.required">
-                            Please provide your password.
-                    </p>
-                    <p *ngIf="registerForm.controls.password.touched &&
-                              registerForm.controls.password.errors.minlength">
-                            Your password must be more than {{ minPswLength }} characters long.
-                    </p>
-                    <p *ngIf="registerForm.controls.password.touched &&
-                              registerForm.controls.password.errors.maxlength">
-                            Your password must be no more than {{ maxPswLength }} characters long.
-                    </p>
-                    <p *ngIf="registerForm.controls.password.touched &&
-                              registerForm.controls.password.hasError('hasNumber')">
-                            Your password must have at least 1 number.
-                    </p>
-                    <p *ngIf="registerForm.controls.password.touched &&
-                              registerForm.controls.password.hasError('hasCapital')">
-                            Your password must have at least 1 capital letter.
-                    </p>
-                    <p *ngIf="registerForm.controls.password.touched &&
-                              registerForm.controls.password.hasError('hasLower')">
-                            Your password must have at least 1 lower letter.
-                    </p>
-                    <p *ngIf="registerForm.controls.password.touched &&
-                              registerForm.controls.password.hasError('hasSpecial')">
-                            Your password must have at least 1 special character. <br>
-                            <span style="font-size: 11px">Allowed special characters: {{ allowedSpecial }}</span>
-                    </p>
-                </div>
-            </div>
-            <button type="submit" [disabled]="!registerForm.valid"
-            [ngClass]="{'buttonValid': registerForm.valid, 'buttonInvalid': !registerForm.valid}">Register</button>
-        </form>
-    </div> -->
-
-    <mat-card>
-        <mat-card-content>
-            <div class="header">
-                <h2>Register</h2>
-            </div>
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
+                    <div class="email-field">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Username</mat-label>
+                            <input formControlName="username"
+                                   matInput
+                                   required
+                                   placeholder="Your username">
+                            <mat-error *ngIf="registerForm.get('username').errors?.required">
+                                Please provide your username.
+                            </mat-error>
+                            <mat-error *ngIf="registerForm.get('username').errors?.minlength">
+                                Your username should consist of minimum of {{ minUsrLength }} characters.
+                            </mat-error>
+                            <mat-error *ngIf="registerForm.get('username').errors?.maxlength">
+                                Your username should consist of minimum of {{ maxUsrLength }} characters.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="email-field">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>E-mail</mat-label>
+                            <input formControlName="email"
+                                   matInput
+                                   required
+                                   placeholder="Ex: yourmail@mail.com">
+                            <mat-error *ngIf="registerForm.get('email').errors?.required">
+                                Please provide your e-mail address.
+                            </mat-error>
+                            <mat-error *ngIf="registerForm.get('email').errors?.email">
+                                Please enter a valid e-mail address.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="password-field">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input formControlName="password"
+                                   matInput
+                                   required
+                                   [type]="_hidePassword ? 'password' : 'text'">
+                            <mat-icon class="icon-eye"
+                                      matSuffix
+                                      (click)="hidePassword()">{{ _hidePassword ? 'visibility_off' : 'visibility' }}
+                            </mat-icon>
+                            <mat-error *ngIf="registerForm.get('password').errors?.required">
+                                Please provide your password.
+                            </mat-error>
+                            <mat-error *ngIf="registerForm.get('password').errors?.minlength">
+                                Your password must be more than {{ minPswLength }} characters long.
+                            </mat-error>
+                            <mat-error *ngIf="registerForm.get('password').errors?.maxlength">
+                                Your password must be no more than {{ maxPswLength }} characters long.
+                            </mat-error>
+                            <mat-error *ngIf="registerForm.get('password').errors?.hasNumber">
+                                Your password must have at least 1 number.
+                            </mat-error>
+                            <mat-error *ngIf="registerForm.get('password').errors?.hasCapital">
+                                Your password must have at least 1 capital letter.
+                            </mat-error>
+                            <mat-error *ngIf="registerForm.get('password').errors?.hasLower">
+                                Your password must have at least 1 lower letter.
+                            </mat-error>
+                            <mat-error *ngIf="registerForm.get('password').errors?.hasSpecial">
+                                Your password must have at least 1 special character.<br>
+                                <span style="font-size: 11px">Allowed special characters: {{ allowedSpecial }}</span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="registerBtn">
+                        <button mat-flat-button color="primary"
+                                type="submit"
+                                [disabled]="!registerForm.valid">Register</button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    
+        <!-- custom register form -->
+        <!-- <div class="wrapper-form">
             <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
-                <div class="email-field">
-                    <mat-form-field class="full-width" appearance="outline">
-                        <mat-label>Username</mat-label>
-                        <input formControlName="username"
-                               matInput
-                               required
-                               placeholder="Your username">
-                        <mat-error *ngIf="registerForm.get('username').errors?.required">
-                            Please provide your username.
-                        </mat-error>
-                        <mat-error *ngIf="registerForm.get('username').errors?.minlength">
-                            Your username should consist of minimum of {{ minUsrLength }} characters.
-                        </mat-error>
-                        <mat-error *ngIf="registerForm.get('username').errors?.maxlength">
-                            Your username should consist of minimum of {{ maxUsrLength }} characters.
-                        </mat-error>
-                    </mat-form-field>
+                <div class="field-username">
+                    <label for="username">Username: </label>
+                    <input id="username" 
+                        type="text" 
+                        formControlName="username" 
+                        placeholder="Your username"
+                        [ngClass]="{'fieldInvalid': registerForm.controls.username.invalid && 
+                                                    registerForm.controls.username.touched,
+                                    'fieldValid':   registerForm.controls.username.valid &&
+                                                    registerForm.controls.username.touched}">
+                    <div class="username-errors" *ngIf="registerForm.controls.username.errors">
+                        <p *ngIf="registerForm.controls.username.touched &&
+                                registerForm.controls.username.errors.required">
+                                Please provide your username.
+                        </p>
+                        <p *ngIf="registerForm.controls.username.touched &&
+                                registerForm.controls.username.errors.minlength">
+                                Your username should consist of minimum of 3 characters.
+                        </p>
+                        <p *ngIf="registerForm.controls.username.touched &&
+                                registerForm.controls.username.errors.maxlength">
+                                Your username should consist of maximum of 10 characters.
+                        </p>
+                    </div>
                 </div>
-                <div class="email-field">
-                    <mat-form-field class="full-width" appearance="outline">
-                        <mat-label>E-mail</mat-label>
-                        <input formControlName="email"
-                               matInput
-                               required
-                               placeholder="Ex: yourmail@mail.com">
-                        <mat-error *ngIf="registerForm.get('email').errors?.required">
-                            Please provide your e-mail address.
-                        </mat-error>
-                        <mat-error *ngIf="registerForm.get('email').errors?.email">
-                            Please enter a valid e-mail address.
-                        </mat-error>
-                    </mat-form-field>
+                <div class="field-email">
+                    <label for="email">E-mail: </label>
+                    <input id="email" 
+                        type="email" 
+                        formControlName="email" 
+                        placeholder="Your email"
+                        [ngClass]="{'fieldInvalid': registerForm.controls.email.invalid && 
+                                                    registerForm.controls.email.touched,
+                                    'fieldValid':   registerForm.controls.email.valid &&
+                                                    registerForm.controls.email.touched}">
+                    <div class="email-errors" *ngIf="registerForm.controls.email.errors">
+                        <p *ngIf="registerForm.controls.email.touched &&
+                                registerForm.controls.email.errors.required">
+                                Please provide your e-mail address.
+                        </p>
+                        <p *ngIf="registerForm.controls.email.touched &&
+                                registerForm.controls.email.errors.email">
+                                Please provide correct e-mail address.
+                        </p>
+                    </div>
                 </div>
-                <div class="password-field">
-                    <mat-form-field class="full-width" appearance="outline">
-                        <mat-label>Password</mat-label>
-                        <input formControlName="password"
-                               matInput
-                               required
-                               [type]="_hidePassword ? 'password' : 'text'">
-                        <!-- <button mat-icon-button
-                                aria-label="Hide password"
-                                aria-pressed="Show password"> -->
-                        <mat-icon class="icon-eye"
-                                  matSuffix
-                                  (click)="hidePassword()">{{ _hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-                        <!-- </button> -->
-                        <mat-error *ngIf="registerForm.get('password').errors?.required">
-                            Please provide your password.
-                        </mat-error>
-                        <mat-error *ngIf="registerForm.get('password').errors?.minlength">
-                            Your password must be more than {{ minPswLength }} characters long.
-                        </mat-error>
-                        <mat-error *ngIf="registerForm.get('password').errors?.maxlength">
-                            Your password must be no more than {{ maxPswLength }} characters long.
-                        </mat-error>
-                        <mat-error *ngIf="registerForm.get('password').errors?.hasNumber">
-                            Your password must have at least 1 number.
-                        </mat-error>
-                        <mat-error *ngIf="registerForm.get('password').errors?.hasCapital">
-                            Your password must have at least 1 capital letter.
-                        </mat-error>
-                        <mat-error *ngIf="registerForm.get('password').errors?.hasLower">
-                            Your password must have at least 1 lower letter.
-                        </mat-error>
-                        <mat-error *ngIf="registerForm.get('password').errors?.hasSpecial">
-                            Your password must have at least 1 special character.<br>
-                            <span style="font-size: 11px">Allowed special characters: {{ allowedSpecial }}</span>
-                        </mat-error>
-                    </mat-form-field>
+                <div class="field-password">
+                    <label for="password">Password: </label>
+                    <input id="password"
+                        type="password"
+                        formControlName="password" 
+                        placeholder="Your password"
+                        [ngClass]="{'fieldInvalid': registerForm.controls.password.invalid && 
+                                                    registerForm.controls.password.touched,
+                                    'fieldValid':   registerForm.controls.password.valid &&
+                                                    registerForm.controls.password.touched}">
+                    <div class="password-errors" *ngIf="registerForm.controls.password.errors">
+                        <p *ngIf="registerForm.controls.password.touched &&
+                                  registerForm.controls.password.errors.required">
+                                Please provide your password.
+                        </p>
+                        <p *ngIf="registerForm.controls.password.touched &&
+                                  registerForm.controls.password.errors.minlength">
+                                Your password must be more than {{ minPswLength }} characters long.
+                        </p>
+                        <p *ngIf="registerForm.controls.password.touched &&
+                                  registerForm.controls.password.errors.maxlength">
+                                Your password must be no more than {{ maxPswLength }} characters long.
+                        </p>
+                        <p *ngIf="registerForm.controls.password.touched &&
+                                  registerForm.controls.password.hasError('hasNumber')">
+                                Your password must have at least 1 number.
+                        </p>
+                        <p *ngIf="registerForm.controls.password.touched &&
+                                  registerForm.controls.password.hasError('hasCapital')">
+                                Your password must have at least 1 capital letter.
+                        </p>
+                        <p *ngIf="registerForm.controls.password.touched &&
+                                  registerForm.controls.password.hasError('hasLower')">
+                                Your password must have at least 1 lower letter.
+                        </p>
+                        <p *ngIf="registerForm.controls.password.touched &&
+                                  registerForm.controls.password.hasError('hasSpecial')">
+                                Your password must have at least 1 special character. <br>
+                                <span style="font-size: 11px">Allowed special characters: {{ allowedSpecial }}</span>
+                        </p>
+                    </div>
                 </div>
-                <div class="registerBtn">
-                    <button mat-flat-button color="primary"
-                            type="submit"
-                            [disabled]="!registerForm.valid">Register</button>
-                </div>
+                <button type="submit" [disabled]="!registerForm.valid"
+                [ngClass]="{'buttonValid': registerForm.valid, 'buttonInvalid': !registerForm.valid}">Register</button>
             </form>
-        </mat-card-content>
-    </mat-card>
+        </div> -->
+    </div>
 </div>

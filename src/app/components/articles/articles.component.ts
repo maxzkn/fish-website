@@ -53,6 +53,6 @@ export class ArticlesComponent implements OnInit {
   }
 
   applyMargin() {
-    return this.hamburger.marginStyleHome();
+    return this.hamburger.marginStyleOther();
   }
 }

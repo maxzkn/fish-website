@@ -1,4 +1,4 @@
-<div class="wrapper-main" [ngStyle]="applyMargin()">
+<div class="wrapper-main" id="wrapper" [ngStyle]="applyMargin()">
     <div class="container" id="hideContainer">
         <div class="wrapper-images">
             <div class="images" *ngFor="let image of images; let i = index">
@@ -26,8 +26,7 @@
                 </div>
             </div>
             <div class="wrapper-modal-images">
-                <div class="modal-images-divs"
-                     *ngFor="let image of images; let i = index">
+                <div class="modal-images-divs" *ngFor="let image of images; let i = index">
                 <!-- <div class="modal-images-divs" *ngFor="let image of newImagesArray; let i = index"> -->
                     <img class="modal-images"
                          id="{{ i + 1 }}"

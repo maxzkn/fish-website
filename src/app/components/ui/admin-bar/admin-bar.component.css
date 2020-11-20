@@ -1,37 +1,12 @@
-.activate-ui {
-  position: fixed;
-  width: 1px;
-  top: 0;
-  bottom: 0;
-  z-index: 100;
-  overflow: hidden;
+.wrapper-sidenav {
+  padding: 20px;
 }
 
-.activate-ui .wrapper-ui-admin-bar {
-  opacity: 0;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-}
-
-.activate-ui .wrapper-ui-admin-bar ul {
+.wrapper-sidenav ul {
   list-style-type: none;
-  padding: 39px 20px 20px 8px;
 }
 
-.activate-ui .wrapper-ui-admin-bar ul li {
+.wrapper-sidenav ul li {
   padding-bottom: 10px;
-}
-
-.activate-ui:hover .wrapper-ui-admin-bar {
-  height: 100%;
-  opacity: 1;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  z-index: 99;
-  max-width: 300px;
-  background-color: #fff;
-  -webkit-box-shadow: 4px 5px 10px -4px rgba(168, 158, 168, 0.86);
-          box-shadow: 4px 5px 10px -4px rgba(168, 158, 168, 0.86);
 }
 /*# sourceMappingURL=admin-bar.component.css.map */

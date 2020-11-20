@@ -12,8 +12,7 @@ import {
   providedIn: 'root',
 })
 export class ImageService {
-  uploadProgress = null;
-  // imageUrl: string = '';
+  uploadProgress: Observable<number>;
   imageNameToDelete: string = '';
   imageIdToDelete: string = '';
 
@@ -25,17 +24,13 @@ export class ImageService {
   async uploadPicture(file) {
     // async visada returnina Promise, bet jis cia nebutinas + nera await.
     // imagename_date formatas
-    let imageName =
-      file.name.split('.').slice(0, -1).join(' ') + '_' + Date.now();
+    let imageName = file.name.split('.').slice(0, -1).join(' ') + '_' + Date.now();
     const uploadTask: AngularFireUploadTask = this.storage.upload(
       `images/${imageName}`,
       file
     );
 
-    uploadTask.percentageChanges().subscribe((change) => {
-      this.uploadProgress = change;
-      console.log(this.uploadProgress);
-    });
+    this.uploadProgress = uploadTask.percentageChanges();
 
     // return uploadTask
     //   .then(async (res) => {

@@ -43,6 +43,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { ArticlesReadComponent } from './components/articles/articles-read/articles-read.component';
@@ -90,6 +91,7 @@ import { ArticlesReadComponent } from './components/articles/articles-read/artic
     MatSortModule,
     MatSelectModule,
     MatSidenavModule,
+    MatMenuModule,
     EditorModule,
   ],
   providers: [

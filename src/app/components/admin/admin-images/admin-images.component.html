@@ -17,7 +17,16 @@
       </div>
       <div class="images" *ngFor="let photo of photos; let i = index">
         <img src="{{ photo.url }}" alt="image_{{ i + 1 }}" />
-        <div
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="delete-button">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="deletePicture(photo)">
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+          </button>
+        </mat-menu>
+        <!-- <div
           title="Delete"
           class="deleteButton displayDiv"
           (mouseover)="displayDiv($event)"
@@ -26,7 +35,7 @@
           (click)="deletePicture(photo)"
         >
           X
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

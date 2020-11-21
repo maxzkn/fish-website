@@ -28,16 +28,16 @@ export class AdminImagesComponent implements OnInit {
     return this.hamburger.marginStyleOther();
   }
 
-  displayDiv(event: any) {
-    if (event.type === 'mouseover') {
-      // document.getElementById('deleteBtn').className.replace(' displayDiv', '');
-      event.target.className = event.target.className.replace(' displayDiv', '');
-    }
-    if (event.type === 'mouseout') {
-      // document.getElementById('deleteBtn').classList.add('displayDiv');
-      event.target.className += ' displayDiv';
-    }
-  }
+  // displayDiv(event: any) {
+  //   if (event.type === 'mouseover') {
+  //     // document.getElementById('deleteBtn').className.replace(' displayDiv', '');
+  //     event.target.className = event.target.className.replace(' displayDiv', '');
+  //   }
+  //   if (event.type === 'mouseout') {
+  //     // document.getElementById('deleteBtn').classList.add('displayDiv');
+  //     event.target.className += ' displayDiv';
+  //   }
+  // }
 
   selectPicture(event) {
     const validateFile = this.typeValidator.validateFile(event.target.files[0]);

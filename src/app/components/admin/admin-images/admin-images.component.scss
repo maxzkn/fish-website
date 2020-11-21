@@ -65,6 +65,13 @@
       margin: 1px;
       position: relative;
 
+      .mat-icon-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: steelblue;
+      }
+
       img {
         width: 100%;
         height: 200px;
@@ -78,29 +85,29 @@
           cursor: pointer;
           filter: brightness(1);
 
-          ~ #deleteBtn {
-            display: block;
-          }
+          // ~ #deleteBtn {
+          //   display: block;
+          // }
         }
       }
 
-      .displayDiv {
-        display: none;
-      }
+      // .displayDiv {
+      //   display: none;
+      // }
 
-      .deleteButton {
-        color: white;
-        border-radius: 2px;
-        padding: 0px 5px;
-        background: tomato;
-        position: absolute;
-        cursor: pointer;
-        top: 10px;
-        right: 10px;
-        text-align: center;
-        font-size: 13px;
-        font-weight: 300;
-      }
+      // .deleteButton {
+      //   color: white;
+      //   border-radius: 2px;
+      //   padding: 0px 5px;
+      //   background: tomato;
+      //   position: absolute;
+      //   cursor: pointer;
+      //   top: 10px;
+      //   right: 10px;
+      //   text-align: center;
+      //   font-size: 13px;
+      //   font-weight: 300;
+      // }
     }
   }
 }

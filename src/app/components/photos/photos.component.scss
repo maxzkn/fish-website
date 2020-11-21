@@ -14,6 +14,7 @@
   width: 100%;
   min-height: 100vh;
   background: black;
+  padding-bottom: 30px;
 
   .wrapper-close-modal {
     display: flex;
@@ -37,7 +38,7 @@
 .modal-content {
   max-width: 1200px;
   width: 90%;
-  margin: 0px auto 50px auto;
+  margin: 0px auto;
 
   .wrapper-image-main {
     position: relative;
@@ -74,7 +75,6 @@
     text-align: center;
     width: 100%;
     position: relative;
-    // display: none;
 
     .image-number {
       color: white;
@@ -84,7 +84,7 @@
     }
 
     img {
-      max-width: 40%;
+      max-width: 35%;
     }
   }
 

@@ -15,6 +15,7 @@
   width: 100%;
   min-height: 100vh;
   background: black;
+  padding-bottom: 30px;
 }
 
 .modal .wrapper-close-modal {
@@ -43,7 +44,7 @@
 .modal-content {
   max-width: 1200px;
   width: 90%;
-  margin: 0px auto 50px auto;
+  margin: 0px auto;
 }
 
 .modal-content .wrapper-image-main {
@@ -95,7 +96,7 @@
 }
 
 .modal-content .modal-image-main img {
-  max-width: 40%;
+  max-width: 35%;
 }
 
 .modal-content .wrapper-modal-images {

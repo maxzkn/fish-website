@@ -24,16 +24,18 @@ export class HomeComponent implements OnInit {
   ngAfterViewInit() {
     this.aR.fragment.subscribe(param => {
       // jeigu nuimti timeout tai skrolina ne ten po psl perkrovimo
-      setTimeout(() => {
-        if (param !== null) {
-          document.querySelector(`#${param}`).scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-            inline: 'nearest'
-          });
-        }
-        // jeigu uzdeti laika, tai skrolina su uzdelsimu pirma karta
-      }, 100);
+      if (param !== null && param !== undefined) {
+        setTimeout(() => {
+          if (param !== null) {
+            document.querySelector(`#${param}`).scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+              inline: 'nearest'
+            });
+          }
+          // jeigu uzdeti laika, tai skrolina su uzdelsimu pirma karta
+        }, 100);
+      }
     });
   }
 }

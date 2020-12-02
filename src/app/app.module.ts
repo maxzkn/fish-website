@@ -44,6 +44,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { ArticlesReadComponent } from './components/articles/articles-read/articles-read.component';
@@ -92,6 +94,8 @@ import { ArticlesReadComponent } from './components/articles/articles-read/artic
     MatSelectModule,
     MatSidenavModule,
     MatMenuModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     EditorModule,
   ],
   providers: [

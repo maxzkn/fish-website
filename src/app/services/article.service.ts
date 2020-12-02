@@ -23,7 +23,7 @@ export class ArticleService {
 
   getAllArticles(): Observable<any> {
     const articles = this.afs.collection('articles', (ref) =>
-      ref.orderBy('date', 'desc')
+      ref.orderBy('dateAdded', 'desc')
     );
     
     return articles.snapshotChanges().pipe(
@@ -38,7 +38,8 @@ export class ArticleService {
             source: article['source'],
             image: article['image'],
             imageName: article['imageName'],
-            date: article['date'],
+            dateAdded: article['dateAdded'],
+            dateWritten: article['dateWritten'],
           };
         });
       })
@@ -53,7 +54,8 @@ export class ArticleService {
       source: articleForm.source,
       image: this.imageUrl,
       imageName: this.imgName,
-      date: new Date(),
+      dateAdded: new Date(),
+      dateWritten: articleForm.date,
     });
     this.router.navigate(['/admin/articles']);
   }

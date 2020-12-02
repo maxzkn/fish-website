@@ -18,7 +18,7 @@ export class AdminArticlesComponent implements OnInit {
     'Title',
     'Source',
     'Status',
-    'Date',
+    'Date added',
     'Action',
   ];
   dataSource: MatTableDataSource<Articles>;

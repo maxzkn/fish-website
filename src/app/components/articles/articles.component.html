@@ -4,9 +4,9 @@
       <mat-card *ngFor="let article of articleArray" class="card">
         <mat-card-header>
           <mat-card-title>{{ article.title }}</mat-card-title>
-          <mat-card-subtitle>{{
-            article.date.toDate() | date
-          }}</mat-card-subtitle>
+          <mat-card-subtitle *ngIf="article.dateWritten">
+            {{ article.dateWritten.toDate() | date }}
+          </mat-card-subtitle>
         </mat-card-header>
         <ng-container *ngIf="!article.image">
           <img

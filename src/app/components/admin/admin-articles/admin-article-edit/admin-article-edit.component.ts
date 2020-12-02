@@ -19,6 +19,8 @@ export class AdminArticleEditComponent implements OnInit {
   selectedFile: File = null;
   selectedArticle = null;
   selected$: Observable<any>;
+  minDate: Date;
+  maxDate: Date;
 
   constructor(
     private hamburger: HamburgerService,
@@ -26,7 +28,11 @@ export class AdminArticleEditComponent implements OnInit {
     private articleService: ArticleService,
     private router: Router,
     private typeValidator: FileTypeValidatorService
-  ) {}
+  ) {
+      const currentYear = new Date().getFullYear();
+      this.minDate = new Date(currentYear - 20, 0, 1); // minimum to January 1st 20 years in the past
+      this.maxDate = new Date();
+  }
 
   addArticleForm: FormGroup;
 
@@ -68,6 +74,7 @@ export class AdminArticleEditComponent implements OnInit {
         title: [this.selectedArticle.title, Validators.compose([Validators.required])],
         status: [this.selectedArticle.status, Validators.compose([Validators.required])],
         source: [this.selectedArticle.source],
+        date: [this.selectedArticle.dateWritten.toDate()],
         editor: [this.selectedArticle.body, Validators.compose([Validators.required])],
       });
       if (this.selectedArticle.image) this.fileName = this.selectedArticle.imageName;

@@ -12,12 +12,18 @@ import { Status } from '../../../../models/statuses';
 export class AdminArticleNewComponent implements OnInit {
   fileName: string = null;
   selectedFile: File = null;
+  minDate: Date;
+  maxDate: Date;
 
   constructor(
     private hamburger: HamburgerService,
     private formBuilder: FormBuilder,
     private articleService: ArticleService
-  ) {}
+  ) {
+      const currentYear = new Date().getFullYear();
+      this.minDate = new Date(currentYear - 20, 0, 1); // minimum to January 1st 20 years in the past
+      this.maxDate = new Date();
+  }
 
   addArticleForm: FormGroup;
 
@@ -34,6 +40,7 @@ export class AdminArticleNewComponent implements OnInit {
       title: [null, Validators.compose([Validators.required])],
       status: [null, Validators.compose([Validators.required])],
       source: [null],
+      date: [null],
       editor: [null, Validators.compose([Validators.required])],
     });
   }
